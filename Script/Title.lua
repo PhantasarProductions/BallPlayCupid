@@ -1,6 +1,6 @@
 --[[
-	Main file: Ballplay Cupid
-	
+	BallPlay Cupid
+	Title Screen
 	
 	
 	
@@ -22,17 +22,20 @@
 	to the project the exceptions are needed for.
 Version: 16.03.26
 ]]
--- *import phantasar
--- *import md5
--- *import title
+local me = {}; chain.reg("Title",me)
 
-require("socket.http")
+me.cupido=0
 
---function love.load()
-assets = phantasar.init({
-                           image = { cupid = "GFX/TITLE/CUPID.PNG",
-                                      logo = "GFX/TITLE/LOGO.PNG"},
-                           audio = {},
-                           font  = {}
-                        },"Title")
---end               
+function me.draw()
+Cls()
+--HotCenter("logo")
+DrawImage("logo",400-(assets.logo.image:getWidth()/2),300)
+DrawImage("cupid",0,200-(math.sin(me.cupido)*50)) 
+end
+
+function me.update()
+me.cupido=me.cupido+.01
+if me.cupido>=360 then me.cupido=me.cupido-360 end
+end
+
+return me

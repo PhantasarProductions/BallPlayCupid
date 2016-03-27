@@ -1,6 +1,6 @@
 --[[
-	Main file: Ballplay Cupid
-	
+	BallPlay Cupid
+	Global definitions
 	
 	
 	
@@ -22,18 +22,7 @@
 	to the project the exceptions are needed for.
 Version: 16.03.27
 ]]
--- *import phantasar
--- *import md5
--- *import glob
--- *import title
+local glob = {}
+glob.love2dfont = love.graphics.getFont()
 
-require("socket.http")
-
---function love.load()
-assets = phantasar.init({
-                           image = { cupid = "GFX/TITLE/CUPID.PNG",
-                                      logo = "GFX/TITLE/LOGO.PNG"},
-                           audio = {},
-                           font  = {}
-                        },"Title")
---end               
+return glob

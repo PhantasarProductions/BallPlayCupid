@@ -20,9 +20,15 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.27
+Version: 16.03.28
 ]]
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
 
+
+glob.config = {}
+glob.config.music = true
+glob.config.sfx = true
+glob.config.colorblind = false
+glob.config.lang = 'ENGLISH'
 return glob

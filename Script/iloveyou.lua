@@ -20,19 +20,41 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.27
+Version: 16.03.28
 ]]
+
+-- External libs
+-- *import math
 -- *import phantasar
 -- *import md5
--- *import glob
--- *import title
+-- *import home
 
-require("socket.http")
+-- Interal libs
+-- *import glob
+-- *import user
+-- *import mouse
+
+-- Program parts
+-- *import title
+-- *import mainmenu
+
+mkl.version("BallPlay Cupid - iloveyou.lua","16.03.28")
+mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
+
+
+
+
+--home.createmydatadir()
+love.filesystem.createDirectory("users")
+love.filesystem.createDirectory("homemadepuzzles")
+
+
 
 --function love.load()
 assets = phantasar.init({
                            image = { cupid = "GFX/TITLE/CUPID.PNG",
-                                      logo = "GFX/TITLE/LOGO.PNG"},
+                                      logo = "GFX/TITLE/LOGO.PNG",
+                                  menuitem = "GFX/MAINMENU/ITEM.PNG"},
                            audio = {},
                            font  = {}
                         },"Title")

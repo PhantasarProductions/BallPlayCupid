@@ -46,9 +46,11 @@ end
 function u.load(name)
 u.data = j_love_import("users/"..name..".lua",true)
 u.username=name
+u.data.config = u.data.config or glob.config
 u.config = u.data.config
 u.config = u.config or glob.config
 for k,v in pairs(glob.config) do u.config[k] = u.config[k] or v end -- If newer config exists, add it to the user account.
+music.config = u.data.config
 lang = j_love_import("SCRIPT/LANGUAGES/"..upper(u.config.lang)..".LUA",true)
 end 
 
@@ -66,6 +68,7 @@ u.data.online   = false
 u.data.timer    = love.timer.getTime()
 u.data.config   = glob.config
 u.config = u.data.config
+music.config = u.data.config
 u.save()
 lang = j_love_import("SCRIPT/LANGUAGES/"..upper(u.config.lang)..".LUA",true)
 return true

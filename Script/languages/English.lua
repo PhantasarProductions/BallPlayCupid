@@ -36,9 +36,25 @@ Version: 16.03.28
         
         But if you are quite handy with Lua, there are a few ways to deal with that ;) 
         
+        If you make a translation, please use the template below to fill out all data.
+        (Please note, the copyright notice above, may NOT be modified).
+        
+        
+        BallPlay Cupid - Translation file
+        Translated to language: English
+        Original English file:  Jeroen P. Broks
+        Translation by:         Jeroen P. Broks
+        
+        
 ]]
 
+-- Don't bother modifying the mkl lines. My building scripts put in the data that goes there automatically.
+mkl.version("BallPlay Cupid - English.lua","16.03.28")
+mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
+
 local lang = {
+
+      translator = 'Jeroen P. Broks',  -- When translating, replace my name here, with yours ;)
 
       onoff = {
                 [true]='On',
@@ -51,7 +67,9 @@ local lang = {
                 editor = "Start the puzzle editor",
                 sfx = "Sound Effects",
                 music = "Music",
+                cblind = "Color Blind Mode",
                 language = "Language",
+                license = "Credits & License",
                 logout = "Log out",
                 quit = "Quit"
              }

@@ -28,11 +28,13 @@ Version: 16.03.28
 -- *import phantasar
 -- *import md5
 -- *import home
+-- *import music
 
 -- Interal libs
 -- *import glob
 -- *import user
--- *import mouse
+-- import mouse
+-- (mouse may not be needed, so it will no longer be imported)
 
 -- Program parts
 -- *import title

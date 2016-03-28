@@ -33,6 +33,12 @@ chain.reg("mainmenu",mm)
 mm.logopos = mm.logopos or {x=0,y=0}
 mm.cupidpos = mm.cupidpos or {x=0,y=0}
 
+function mm.langdata(item)
+Color(0,255,255)
+love.graphics.print(user.data.config.lang,item.ix+300,item.iy+10)
+end
+
+
 mm.menuitems = {
                  { tag = "gamestart", chain='pickmainpuzzle' },
                  { tag = "homegamestart", chain="pickcustompuzzle", para='game' },
@@ -40,7 +46,7 @@ mm.menuitems = {
                  { tag = "sfx", booleconfig='sfx' },
                  { tag = 'music', booleconfig='music'},
                  { tag = 'cblind', booleconfig='colorblind'},
-                 { tag = 'language',fun='lang'},
+                 { tag = 'language',fun='lang', xdata=mm.langdata},
                  { tag = 'license', chain='license'},
                  { tag = 'logout', fun='logout'},
                  { tag = 'quit', fun='quit'}
@@ -64,11 +70,17 @@ function mm.mousepressed(x,y,but,touched)
 		user.data.config[mm.item.booleconfig] = not user.data.config[mm.item.booleconfig]
 		if mm.item.tag=='music' then music.play("MUSIC/MAINMENU/BLOB-MONSTERS-RETURN_LOOPING.MP3") end
   end
+  if mm.item.fun then
+     assert(mm.fun[mm.item.fun],"Menu function "..mm.item.fun.." does not exit")
+     mm.fun[mm.item.fun]()
+  end
 end
 
 function mm.draw()
-  if mm.cupidpos.y>-300 then mm.cupidpos.y = mm.cupidpos.y-1.5; DrawImage('cupid',mm.cupidpos.x,mm.cupidpos.y) end
+  Color(80,80,80)
+  love.graphics.print(user.username)
   white()
+  if mm.cupidpos.y>-300 then mm.cupidpos.y = mm.cupidpos.y-1.5; DrawImage('cupid',mm.cupidpos.x,mm.cupidpos.y) end
   DrawImage('logo',mm.logopos.x,mm.logopos.y); if mm.logopos.y>0 then mm.logopos.y = mm.logopos.y-1 return end
   local ix = 850
   local iy = 200
@@ -90,7 +102,8 @@ function mm.draw()
       if item.booleconfig then
          mm.onoffcol[user.data.config[item.booleconfig]]()
          love.graphics.print(lang.onoff[user.data.config[item.booleconfig]],item.ix+300,item.iy+10)
-         end         
+         end        
+      if item.xdata then item.xdata(item) end    
   end  
   white()
   love.graphics.print("(c) Copyright 2016, Jeroen P. Broks, GNU General Public License v3",300,550)
@@ -105,6 +118,25 @@ end
 function mm.leave()
 music.stop()
 end
+
+
+mm.fun = {}
+function mm.fun.lang()
+end
+
+function mm.fun.logout()
+user.save()
+user.username=""
+user.data=nil
+title.subchain="askname"
+chain.go("Title")
+end 
+
+function mm.fun.quit()
+user.save()
+os.exit()
+end
+
 
 
 return mm

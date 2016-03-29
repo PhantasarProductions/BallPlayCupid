@@ -18,8 +18,20 @@ If you are playing an outdated version of BallPlay Cupid, Anna MIGHT reject some
 It would not be a wise thing to try to fool Anna. She is not only able to ban you, but your IP and your ISP altogether as well. Don't try her patience, for she has none. And if I have any suspicion people managed to outsmart Anna too much, I will block the game itself and then you ruined a magnificent feature for the rest of us. Please be nice, don't do it!
 
 
+## Privacy statement
 
-Below is a list of contributors to the game. This list was last updated on Tue 29 March 2016; 19:47:10.
+All data collected through the website is solely collected to put up the charts correctly and to enable Anna to do her job.
+
+None of the data will be transferred to third parties with basically three exceptions:
+
+- Gravatar - Receives an md5 hash of your e-mail address in order to set up your avatar. They do not receive the address itself, only an md5 hash of it, which is pretty safe and private.
+- GameJolt - Receives your GameJolt ID and Token, in order to enable GameJolt to award you your achievements and ranking data. Well that data belonged to GameJolt from the start.
+- I am not above the law. If an order from court of law requests my data, I can only obbey. I deem the chance this will happen below 0.00001%, but I need to note it just in case.
+
+Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
+
+
+Below is a list of contributors to the game. This list was last updated on Tue 29 March 2016; 20:23:27.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -53,6 +65,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/languages/English.lua
     - Script/mainmenu.lua
     - Script/user.lua
+- pacdv
+  - This file has been downloaded from: www.pacdv.com (it is possible a few alterations were made for fitting better in the game). The license forbids me to allow you to extract it from this project. If you want it, download it yourself from their website.
+    - Audio/Interface/Buzz.ogg
 
 
 

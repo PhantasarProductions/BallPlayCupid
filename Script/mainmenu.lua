@@ -20,11 +20,11 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.28
+Version: 16.03.29
 ]]
 local mm = {}
 
-mkl.version("BallPlay Cupid - mainmenu.lua","16.03.28")
+mkl.version("BallPlay Cupid - mainmenu.lua","16.03.29")
 mkl.lic    ("BallPlay Cupid - mainmenu.lua","GNU General Public License 3")
 
 chain.reg("mainmenu",mm)
@@ -47,6 +47,7 @@ mm.menuitems = {
                  { tag = 'music', booleconfig='music'},
                  { tag = 'cblind', booleconfig='colorblind'},
                  { tag = 'language',fun='lang', xdata=mm.langdata},
+                 { tag = 'viewmyprofile', fun='profile'},
                  { tag = 'license', chain='license'},
                  { tag = 'logout', fun='logout'},
                  { tag = 'quit', fun='quit'}

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.28
+Version: 16.03.29
 ]]
 
 -- And exception to the GPL Freedom!
@@ -33,7 +33,7 @@ Version: 16.03.28
 
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 
-mkl.version("BallPlay Cupid - user.lua","16.03.28")
+mkl.version("BallPlay Cupid - user.lua","16.03.29")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")

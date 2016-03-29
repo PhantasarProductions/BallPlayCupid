@@ -56,6 +56,7 @@ love.filesystem.createDirectory("homemadepuzzles")
 assets = phantasar.init({
                            image = { cupid = "GFX/TITLE/CUPID.PNG",
                                       logo = "GFX/TITLE/LOGO.PNG",
+                                       gpl = "GFX/GENERAL/GPL.PNG",
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
                            audio = {},
                            font  = {}

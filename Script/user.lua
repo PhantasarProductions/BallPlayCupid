@@ -23,6 +23,14 @@
 Version: 16.03.28
 ]]
 
+-- And exception to the GPL Freedom!
+-- I cannot allow modified versions of the game to contact the website, like this file does.
+-- Results being sent in by modified versions can lead to unfair results.
+-- So if you want to play a modified version of the game, all find with me, but then
+-- you MUST disable to network features this game has.
+-- Exception to this will take in place when I did accept your changes as "official" 
+-- (which will mostly only happen with bugfixes, actually).
+
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 
 mkl.version("BallPlay Cupid - user.lua","16.03.28")

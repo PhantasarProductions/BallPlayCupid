@@ -108,6 +108,7 @@ function mm.draw()
   white()
   love.graphics.print("(c) Copyright 2016, Jeroen P. Broks, GNU General Public License v3",300,550)
   love.graphics.print("This game was built: "..builddate,300,575)
+  DrawImage("gpl",5,545)
 end
 
 function mm.arrive()

@@ -135,7 +135,7 @@ chain.go("Title")
 end 
 
 function mm.fun.profile()
-	if user.data.online and user.data.onlineid and user.data.onlineid>1 then -- Above 1 is pretty safe, since 1 is the bot Anna.
+	if user.data.online and user.data.onlineid and user.data.onlineid~='-1' and user.data.onlineid~=-1 then 
 		love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=BPC_View&id='..user.data.onlineid..'&Secu='..user.data.secucode)
   else
   	PlaySound('buzz')

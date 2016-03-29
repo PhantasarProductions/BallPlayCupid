@@ -20,7 +20,24 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.28
+Version: 16.03.29
+]]
+
+--[[
+
+    Important note!
+    The GNU license DOES allow modified versions of the game, but in order to make sure the rankings on-line 
+    are 100% fair (or at least as fair as possible) I will not allow modified versions to use the net features.
+    
+    The "USER.LUA" file contains the possibility to turn of all network features. You MUST do this before distributing
+    a modified version ofthe game! If "Anna" suspects data being transmitted from a modified version of the game
+    "she" will ban the player without mercy. If this happens too often, I may even need to block out the server
+    entirely for this game, so please don't spoil it for the rest of us, and be a good boy or girl and block out
+    the network features if you modify the game. 
+    
+    (Okay, when it just handles modified artwork, audio files or fonts, I will be merciful, but as soon as any
+    script file needs to be modified the network features must be "shut down")
+
 ]]
 
 -- External libs
@@ -40,7 +57,7 @@ Version: 16.03.28
 -- *import title
 -- *import mainmenu
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.03.28")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.03.29")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 

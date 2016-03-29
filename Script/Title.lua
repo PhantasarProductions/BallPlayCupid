@@ -20,10 +20,10 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.28
+Version: 16.03.29
 ]]
 
-mkl.version("BallPlay Cupid - Title.lua","16.03.28")
+mkl.version("BallPlay Cupid - Title.lua","16.03.29")
 mkl.lic    ("BallPlay Cupid - Title.lua","GNU General Public License 3")
 
 local me = {}; chain.reg("Title",me)
@@ -58,12 +58,18 @@ love.graphics.setFont(glob.love2dfont)
                   return
                 end
                love.graphics.print("Hello, "..me.username.."! I have create a user file for you.",5,400)
-               love.graphics.print("I can turn your data into an online account, enabling you to",5,415)
-               love.graphics.print("test your skills with the rest of the world.",5,430)
-               love.graphics.print("What do you want me to do?",5,445)
-               Color(255,180,0)
-               love.graphics.print("Go on-line",200,500)
-               love.graphics.print("Stay off-line",400,500)
+               if user.netallowed then
+               	love.graphics.print("I can turn your data into an online account, enabling you to",5,415)
+               	love.graphics.print("test your skills with the rest of the world.",5,430)
+               	love.graphics.print("What do you want me to do?",5,445)
+               	Color(255,180,0)
+               	love.graphics.print("Go on-line",200,500)
+               	love.graphics.print("Stay off-line",400,500)
+               else
+                Color(255,180,0)
+                love.graphics.print("Click the game screen to continue",5,500)
+               end
+               	
                end    ,
      waitverify = function()
                   love.graphics.print("Hello, "..me.username.."!",5,400)
@@ -98,6 +104,7 @@ end
 
 function me.mousepressed(x,y,button,touch)
 (({  	   newuser  = function() 
+                      if not user.netallowed then chain.go("mainmenu") return end
                       if y<500 or y>520 then return end -- Move along, there's nothing to see here!
                       if x<300 then 
                          -- let's go online

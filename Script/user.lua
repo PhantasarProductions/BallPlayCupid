@@ -31,14 +31,22 @@ Version: 16.03.29
 -- Exception to this will take in place when I did accept your changes as "official" 
 -- (which will mostly only happen with bugfixes, actually).
 
+-- If you modified the game, you MUST change the line below into "-- *undef original", which will put down all network functions.
+-- *define original
+
+
+local u = { data = {} }
+
+-- *if original
+u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
+-- *fi
 
 mkl.version("BallPlay Cupid - user.lua","16.03.29")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
 
-local u = { data = {} }
 
 u.username = ""
 u.data.kenteken = "??-??-??"
@@ -83,11 +91,14 @@ return true
 end
 
 function u.tietosite()
+if not u.netallowed then return end
 local success,status,reason
 local r = love.math.random(1,math.ceil(u.data.timer))
 local pseudosecu = "BallPlay"..u.username .. u.data.timer .. r .. "Cupido"
 u.data.secucode = md5.sumhexa(pseudosecu)
+-- *if original
 local cnt,stat,header = http.request("http://utbbs.tbbs.nl/Game.php?HC=Game&A=BPC_Create&Secu="..u.data.secucode.."&name="..u.username)
+-- *fi
 -- *if userdebug_tie
 print("Request to tie to site done. Returned:")
 print("cnt    = "..valstr(cnt))

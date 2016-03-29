@@ -75,7 +75,7 @@ assets = phantasar.init({
                                       logo = "GFX/TITLE/LOGO.PNG",
                                        gpl = "GFX/GENERAL/GPL.PNG",
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
-                           audio = {},
+                           audio = {  buzz = "AUDIO/INTERFACE/BUZZ.OGG" },
                            font  = {}
                         },"Title")
 --end               

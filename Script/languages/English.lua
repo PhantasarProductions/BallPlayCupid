@@ -55,6 +55,8 @@ mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
 local lang = {
 
       translator = 'Jeroen P. Broks',  -- When translating, replace my name here, with yours ;)
+      
+      font = nil,  -- If set to 'nil' the default Love2D font will be used. Otherwise the sytem will use the font you define here. Please only use this feature if the language of your choice requires characters the Love Font does not support.
 
       onoff = {
                 [true]='On',

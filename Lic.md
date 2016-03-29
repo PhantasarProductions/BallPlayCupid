@@ -17,6 +17,8 @@ If you are playing an outdated version of BallPlay Cupid, Anna MIGHT reject some
 
 It would not be a wise thing to try to fool Anna. She is not only able to ban you, but your IP and your ISP altogether as well. Don't try her patience, for she has none. And if I have any suspicion people managed to outsmart Anna too much, I will block the game itself and then you ruined a magnificent feature for the rest of us. Please be nice, don't do it!
 
+One last note. Being banned by Anna will NOT affect the game itself. You will only lose access to the network features, but that's all. Anna cannot affect the game itself in any way.
+
 
 ## Privacy statement
 
@@ -31,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Tue 29 March 2016; 20:58:02.
+Below is a list of contributors to the game. This list was last updated on Tue 29 March 2016; 22:32:58.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -65,6 +67,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/languages/English.lua
     - Script/mainmenu.lua
     - Script/user.lua
+    - Translate.md
 - pacdv
   - This file has been downloaded from: www.pacdv.com (it is possible a few alterations were made for fitting better in the game). The license forbids me to allow you to extract it from this project. If you want it, download it yourself from their website.
     - Audio/Interface/Buzz.ogg

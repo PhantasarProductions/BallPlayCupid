@@ -48,7 +48,7 @@ mm.menuitems = {
                  { tag = 'cblind', booleconfig='colorblind'},
                  { tag = 'language',fun='lang', xdata=mm.langdata},
                  { tag = 'viewmyprofile', fun='profile'},
-                 { tag = 'license', chain='license'},
+                 { tag = 'license', fun='license'},
                  { tag = 'logout', fun='logout'},
                  { tag = 'quit', fun='quit'}
                }
@@ -125,6 +125,11 @@ end
 mm.fun = {}
 function mm.fun.lang()
 end
+
+function mm.fun.license()
+love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=Doc&Game=BPC&Doc=Lic&id='..user.data.onlineid..'&Secu='..user.data.secucode)
+end
+
 
 function mm.fun.logout()
 user.save()

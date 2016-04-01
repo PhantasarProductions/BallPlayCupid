@@ -86,9 +86,10 @@ if hps.chosenfile==0 then return end -- A file must be chosen
 -- Yeah, I know about the lines below.
 -- Now THIS is very dirty Lua code. STRAIGHT from HELL! If you are studying my code as a new Lua student.... SKIP THIS FUNCTION ENTIRELY FOR YOUR STUDIES :D
 -- Especially because this ONLY works, because I used a pre-processor! (Without that pre-processor Lua would throw a 'nil'-value error).
-chain.go(
+local chaingo=
 ({ 
-   game = function()
+   go_game = function()
+          print("Loading game")
           local
           -- *import game
           -- *if ignore
@@ -96,15 +97,18 @@ chain.go(
           -- *fi
           return game
           end,
-   edit = function()
+   go_edit = function()
+          print("Loading editor")
           local
-          -- *import game
+          -- *import edit
           -- *if ignore
           edit -- This will be ignored by the game, but my outliner gets crazy if I don't do it this way.
           -- *fi
           return edit
           end         
-})[mainmenu.para])
+})["go_"..mainmenu.para]()
+assert ( chaingo, "param."..valstr(mainmenu.para).." returned nil" )
+chain.go(chaingo)
 end
 
 function hps.keypressed(key,s,r)

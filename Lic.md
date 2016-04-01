@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Fri 01 April 2016; 23:12:56.
+Below is a list of contributors to the game. This list was last updated on Fri 01 April 2016; 23:42:38.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -66,6 +66,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - README.md
     - Script/Title.lua
     - Script/anna.lll/anna.lua
+    - Script/edit.lll/edit.lua
     - Script/game.lll/game.lua
     - Script/glob.lua
     - Script/homemadepuzzleselector.lua

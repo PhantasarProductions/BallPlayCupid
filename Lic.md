@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Wed 30 March 2016; 14:45:16.
+Below is a list of contributors to the game. This list was last updated on Fri 01 April 2016; 19:48:54.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -45,6 +45,9 @@ This list is automatically updated every time I modify the game myself, and as s
   - The banner containing the title of the game is bound to the game in the GNU GPL licence (yeah I know, pretty uncommon license for a picture), all other banners are under a CCBYNCSA license: http://creativecommons.org/licenses/by-nc-sa/4.0/
     - GFX/Title/Logo.png
     - GFX/Title/Logo.xcf
+- David Newkerk
+  - Files by David Newkerk are downloaded from his own website http://www.absolutecross.com -- I cannot allow extraction of the file from this game due to the license it has -- Read more here: http://www.absolutecross.com/about/terms
+    - GFX/Interface/dark-drops.jpg
 - Eric Matyas
   - For the full license of Eric Matyas, check his website at: http://soundimage.org
     - music/mainmenu/Blob-Monsters-Return_Looping.mp3
@@ -62,7 +65,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - Lic.md
     - README.md
     - Script/Title.lua
+    - Script/anna.lll/anna.lua
     - Script/glob.lua
+    - Script/homemadepuzzleselector.lua
     - Script/iloveyou.lua
     - Script/languages/English.lua
     - Script/mainmenu.lua

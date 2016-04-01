@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.29
+Version: 16.04.01
 ]]
 
 -- And exception to the GPL Freedom!
@@ -42,7 +42,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.03.29")
+mkl.version("BallPlay Cupid - user.lua","16.04.01")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
@@ -114,7 +114,7 @@ local allowread
 local getdata = {}
 local didclose,d
 for i,cl in ipairs(lines) do 
-    if cl=="HANDSHAKE" and lines[i-1] then 
+    if cl=="HANDSHAKE" and lines[i-1]=="GREET:ANNA" then 
     	 allowread=true
     elseif cl=="BYEBYE:SEEYA" and allowread then
        allowread=false
@@ -133,6 +133,50 @@ u.data.online = getdata.STATUS=="SUCCESS"
 if getdata.STATUS=="SUCCESS" then love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=BPC_Verify&id='..u.data.onlineid..'&secu='..u.data.secucode) end
 u.save()
 return getdata.STATUS,getdata.REASON or "--"   
+end
+
+function u.call_anna(query)
+  if not u.netallowed then return end
+	local function t2q()
+	   local ret = ""
+	   for k,v in spairs(query) do
+	       if ret~="" then ret = ret .. "&" end
+	       ret = k .. "="..v
+	   end
+	   return ret
+	end
+	local querystring = ({ ['string'] = query, ['table']=t2q(query)})[type(query)]
+	-- *if original
+	local cnt,stat,header = http.request("http://utbbs.tbbs.nl/Game.php?"..querystring)
+  -- *fi
+  -- *if userdebug_tie
+  print("Request to tie to site done. Returned:")
+  print("cnt    = "..valstr(cnt))
+  print("stat   = "..valstr(stat))
+  print("header = "..valstr(header))
+  error("Got "..valstr(cnt).." / "..valstr(stat)..valstr(header))
+  -- *fi
+  if not cnt then return "FAILED","Counldn't get any data ("..valstr(stat)..")" end
+  success='failed'
+  local lines=mysplit(cnt,"\n")
+  for i=1,#lines do lines[i]=trim(lines[i]) end
+  local allowread
+  local getdata = {}
+  local didclose,d
+  for i,cl in ipairs(lines) do  
+    if cl=="HANDSHAKE" and lines[i-1]=="GREET:ANNA" then 
+    	 allowread=true
+    elseif cl=="BYEBYE:SEEYA" and allowread then
+       allowread=false
+       didclose=true
+    elseif allowread then
+    	 d = mysplit(cl,":")
+    	 if d=="ANNA.SAY" then anna.addmsg(d[2])
+    	 elseif d=="ANNA.BOX" then love.window.showMessageBox( "Anna says: ", d[2] ) end
+    	 getdata[d[1]] = d[2]
+    end    	 
+  end  
+	return didclose,getdata	
 end
 
 return u

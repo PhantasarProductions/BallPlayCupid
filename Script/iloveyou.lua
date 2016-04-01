@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.29
+Version: 16.04.01
 ]]
 
 --[[
@@ -56,8 +56,9 @@ Version: 16.03.29
 -- Program parts
 -- *import title
 -- *import mainmenu
+-- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.03.29")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.01")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -66,6 +67,7 @@ mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 --home.createmydatadir()
 love.filesystem.createDirectory("users")
 love.filesystem.createDirectory("homemadepuzzles")
+love.filesystem.createDirectory("config")
 
 
 

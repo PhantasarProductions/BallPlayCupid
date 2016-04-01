@@ -20,11 +20,11 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.03.29
+Version: 16.04.01
 ]]
 local mm = {}
 
-mkl.version("BallPlay Cupid - mainmenu.lua","16.03.29")
+mkl.version("BallPlay Cupid - mainmenu.lua","16.04.01")
 mkl.lic    ("BallPlay Cupid - mainmenu.lua","GNU General Public License 3")
 
 chain.reg("mainmenu",mm)
@@ -57,10 +57,10 @@ mm.item = nil
 
 mm.onoffcol = {[false]=red, [true]=green}
 function mm.mousemoved(x,y,dx,dy)
-    mm.item = nil
+    mm.item = nil    
     -- error("Yo!")
     for item in each(mm.menuitems) do
-        if x>item.ix and x<item.ix+500 and y>item.iy and y<item.iy+25 then mm.item=item end
+        if item.ix and item.iy and x>item.ix and x<item.ix+500 and y>item.iy and y<item.iy+25 then mm.item=item end
     end
 end
 
@@ -75,10 +75,15 @@ function mm.mousepressed(x,y,but,touched)
      assert(mm.fun[mm.item.fun],"Menu function "..mm.item.fun.." does not exit")
      mm.fun[mm.item.fun]()
   end
+  if mm.item.chain then
+     mm.para = mm.item.para
+     chain.go(mm.item.chain)
+  end
 end
 
 function mm.draw()
   Color(80,80,80)
+  LangFont(lang)
   love.graphics.print(user.username)
   white()
   if mm.cupidpos.y>-300 then mm.cupidpos.y = mm.cupidpos.y-1.5; DrawImage('cupid',mm.cupidpos.x,mm.cupidpos.y) end
@@ -127,7 +132,7 @@ function mm.fun.lang()
 end
 
 function mm.fun.license()
-love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=Doc&Game=BPC&Doc=Lic&id='..user.data.onlineid..'&Secu='..user.data.secucode)
+love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=Doc&Game=BPC&Doc=Lic&id='..user.data.onlineid..'&secu='..user.data.secucode.."&game=BPC")
 end
 
 
@@ -141,7 +146,7 @@ end
 
 function mm.fun.profile()
 	if user.data.online and user.data.onlineid and user.data.onlineid~='-1' and user.data.onlineid~=-1 then 
-		love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=BPC_View&id='..user.data.onlineid..'&Secu='..user.data.secucode)
+		love.system.openURL('http://utbbs.tbbs.nl/Game.php?HC=Game&A=BPC_View&id='..user.data.onlineid..'&secu='..user.data.secucode.."&game=BPC")
   else
   	PlaySound('buzz')
   end

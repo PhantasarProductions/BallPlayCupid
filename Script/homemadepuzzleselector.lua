@@ -20,10 +20,14 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.01
+Version: 16.04.02
 ]]
 local hps = {}
 local c
+
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.02")
+mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
+
 
 chain.reg("pickcustompuzzle",hps)
 
@@ -61,6 +65,21 @@ Cls()
 hps.xdraw[mainmenu.para]()
 end
 
+--[[
+function hps.leave()
+(({
+
+	game = function()
+	       end,
+	edit = function()
+	       editfile = hps.chosenfile	           
+	       end
+	
+})[mainmenu.para] or chain.nothing)()
+end
+
+]]
+
 hps.xhitkey = {
      game = chain.nothing,
      edit = function(key,s,r)
@@ -81,8 +100,7 @@ hps.xhitkey = {
 }
 
 local function nextround()
-if hps.chosenfile==0 then return end -- A file must be chosen
-
+if (not hps.chosenfile) or len(hps.chosenfile)==0 then return end -- A file must be chosen
 -- Yeah, I know about the lines below.
 -- Now THIS is very dirty Lua code. STRAIGHT from HELL! If you are studying my code as a new Lua student.... SKIP THIS FUNCTION ENTIRELY FOR YOUR STUDIES :D
 -- Especially because this ONLY works, because I used a pre-processor! (Without that pre-processor Lua would throw a 'nil'-value error).
@@ -90,20 +108,13 @@ local chaingo=
 ({ 
    go_game = function()
           print("Loading game")
-          local
-          -- *import game
-          -- *if ignore
-          game -- This will be ignored by the game, but my outliner gets crazy if I don't do it this way.
-          -- *fi
+          -- *localimport game
           return game
           end,
    go_edit = function()
           print("Loading editor")
-          local
-          -- *import edit
-          -- *if ignore
-          edit -- This will be ignored by the game, but my outliner gets crazy if I don't do it this way.
-          -- *fi
+          -- *localimport edit
+          edit.file = hps.chosenfile
           return edit
           end         
 })["go_"..mainmenu.para]()

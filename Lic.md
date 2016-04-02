@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Fri 01 April 2016; 23:42:38.
+Below is a list of contributors to the game. This list was last updated on Sat 02 April 2016; 22:15:59.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -51,6 +51,18 @@ This list is automatically updated every time I modify the game myself, and as s
 - Eric Matyas
   - For the full license of Eric Matyas, check his website at: http://soundimage.org
     - music/mainmenu/Blob-Monsters-Return_Looping.mp3
+- Fractint
+  - These files are all generated with Fractint and after that colored by Jeroen P. Broks. It's hard to license them, so I'll keep it to a CC_BY_SA license.
+    - gfx/game/fractals/FRACT001.BMP
+    - gfx/game/fractals/FRACT002.BMP
+    - gfx/game/fractals/FRACT003.BMP
+    - gfx/game/fractals/FRACT004.BMP
+    - gfx/game/fractals/FRACT005.BMP
+    - gfx/game/fractals/FRACT006.BMP
+    - gfx/game/fractals/FRACT007.BMP
+    - gfx/game/fractals/FRACT008.BMP
+    - gfx/game/fractals/FRACT009.BMP
+    - gfx/game/fractals/FRACT010.BMP
 - Free Software Association
   - GNU GPL -- http://www.gnu.org/licenses/gpl-3.0.en.html
     - GFX/General/gpl.png
@@ -60,14 +72,52 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Title/Cupid.png
 - Jeroen Petrus Broks
   - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
+    - GFX/Game/Laser/HorizontalLaserBeam.png
+    - GFX/Game/Laser/VerticalLaserBeam.png
+    - GFX/Game/Puzzle/Extern/Bom.png
+    - GFX/Game/Puzzle/Extern/Crate.png
+    - GFX/Game/Puzzle/Extern/Explosion.png
+    - GFX/Game/Puzzle/Extern/GeneralWall.png
+    - GFX/Game/Puzzle/Extern/Marble.png
+    - GFX/Game/Puzzle/Extern/Muur1.png
+    - GFX/Game/Puzzle/Extern/Muur2.png
+    - GFX/Game/Puzzle/Extern/Muur3.png
+    - GFX/Game/Puzzle/Extern/Muur4.png
+    - GFX/Game/Puzzle/Extern/NoBuild.png
+    - GFX/Game/Puzzle/Extern/PlantMuur.png
+    - GFX/Game/Puzzle/Extern/Vloer1.png
+    - GFX/Game/Puzzle/Extern/Vloer2.png
+    - GFX/Game/Puzzle/Extern/Vloer3.png
+    - GFX/Game/Puzzle/Extern/Vloer4.png
+    - GFX/Game/Puzzle/Objects/Ball.png
+    - GFX/Game/Puzzle/Objects/Ghost.png
+    - GFX/Game/Puzzle/Objects/Robot.png
+    - GFX/Game/Puzzle/Obstacles/Arrow Down.png
+    - GFX/Game/Puzzle/Obstacles/Arrow Left.png
+    - GFX/Game/Puzzle/Obstacles/Arrow Right.png
+    - GFX/Game/Puzzle/Obstacles/Arrow Up.png
+    - GFX/Game/Puzzle/Obstacles/BreakBlock.png
+    - GFX/Game/Puzzle/Obstacles/Dot.png
+    - GFX/Game/Puzzle/Obstacles/Exit.png
+    - GFX/Game/Puzzle/Obstacles/LaserDown.png
+    - GFX/Game/Puzzle/Obstacles/LaserLeft.png
+    - GFX/Game/Puzzle/Obstacles/LaserPlate.png
+    - GFX/Game/Puzzle/Obstacles/LaserRight.png
+    - GFX/Game/Puzzle/Obstacles/LaserUp.png
+    - GFX/Game/Puzzle/Obstacles/Plate1.png
+    - GFX/Game/Puzzle/Obstacles/Plate2.png
+    - GFX/Game/Puzzle/Obstacles/Trans.png
+    - GFX/Game/PuzzleSolvedIndicator.png
     - GFX/MainMenu/Item.png
   - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself
     - Lic.md
     - README.md
     - Script/Title.lua
     - Script/anna.lll/anna.lua
-    - Script/edit.lll/edit.lua
+    - Script/edit.lua
+    - Script/game.lll/Objects.lua
     - Script/game.lll/game.lua
+    - Script/generateinterface.lua
     - Script/glob.lua
     - Script/homemadepuzzleselector.lua
     - Script/iloveyou.lua

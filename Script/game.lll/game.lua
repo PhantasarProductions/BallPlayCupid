@@ -20,5 +20,22 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.01
+Version: 16.04.02
 ]]
+
+
+-- *if ignore
+local objects
+-- *fi
+local me = {}
+
+
+
+
+
+
+-- This import must always come last, otherwise the functions tied to the objects will all be turned to nil.
+-- *localimport objects
+me.objects = objects
+
+return me

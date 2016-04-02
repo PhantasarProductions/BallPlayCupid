@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.01
+Version: 16.04.02
 ]]
 
 --[[
@@ -46,6 +46,7 @@ Version: 16.04.01
 -- *import md5
 -- *import home
 -- *import music
+-- *import save
 
 -- Interal libs
 -- *import glob
@@ -58,7 +59,7 @@ Version: 16.04.01
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.01")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.02")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -71,13 +72,20 @@ love.filesystem.createDirectory("config")
 
 
 
---function love.load()
-assets = phantasar.init({
+function initgame()
+local junk =            {
                            image = { cupid = "GFX/TITLE/CUPID.PNG",
                                       logo = "GFX/TITLE/LOGO.PNG",
                                        gpl = "GFX/GENERAL/GPL.PNG",
+                                   intback = "GFX/INTERFACE/DARK-DROPS.JPG",
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
                            audio = {  buzz = "AUDIO/INTERFACE/BUZZ.OGG" },
                            font  = {}
-                        },"Title")
---end               
+                        }
+phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")                        
+phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBSTACLES")
+phantasar.adddir(junk,"image","GFX/GAME/FRACTALS","frac_")
+print("Loading all assets");
+assets = phantasar.init(junk,"Title")
+print("Get the interface canvasses");
+end initgame()               

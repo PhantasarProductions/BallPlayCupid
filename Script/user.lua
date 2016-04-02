@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.01
+Version: 16.04.02
 ]]
 
 -- And exception to the GPL Freedom!
@@ -35,6 +35,10 @@ Version: 16.04.01
 -- *define original
 
 
+mkl.version("BallPlay Cupid - user.lua","16.04.02")
+mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
+
+
 local u = { data = {} }
 
 -- *if original
@@ -42,7 +46,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.04.01")
+mkl.version("BallPlay Cupid - user.lua","16.04.02")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")

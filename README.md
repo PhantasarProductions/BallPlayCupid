@@ -11,7 +11,7 @@ b. In order to set up a quick way to import my "libraries" which I intend to use
 
 The BallPlay Cupid game itself will be entirely licensed under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl-3.0.en.html)
 
-My own assets are (unless explicitly stated otherwise in the license information file inside the .love file, or in case of a library asset (all library folders are suffixed with .lll)) licensed under the terms of the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+[My own assets](https://github.com/Tricky1975/Love-Lua-Libraries) are (unless explicitly stated otherwise in the license information file inside the .love file, or in case of a library asset (all library folders are suffixed with .lll)) licensed under the terms of the [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 My own libraries are not part of the Ballplay Cupid game itself. Most of them are licensed under the terms of the terms of the [zlib license](https://en.wikipedia.org/wiki/Zlib_License) however some of them be licensed under the terms of the [Mozilla Public License 2.0](https://www.mozilla.org/en-US/MPL/2.0/). Always check the library files thoroughly for their license before you decide to use those yourself. 
 

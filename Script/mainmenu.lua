@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.02
+Version: 16.04.03
 ]]
 local mm = {}
 
 
-mkl.version("BallPlay Cupid - mainmenu.lua","16.04.02")
+mkl.version("BallPlay Cupid - mainmenu.lua","16.04.03")
 mkl.lic    ("BallPlay Cupid - mainmenu.lua","GNU General Public License 3")
 
 chain.reg("mainmenu",mm)
@@ -123,7 +123,7 @@ end
 function mm.arrive()
 -- print ("Calling module: generateinterface")
 -- *import generateinterface
-music.play("MUSIC/MAINMENU/BLOB-MONSTERS-RETURN_LOOPING.MP3")
+if user.config.music then music.play("MUSIC/MAINMENU/BLOB-MONSTERS-RETURN_LOOPING.MP3") end
 --music.play("MUSIC/MAINMENU/BLOP-MONSTERS-RETURN_LOOPING.MP3")
 end
 
@@ -159,7 +159,8 @@ end
 
 function mm.fun.quit()
 user.save()
-os.exit()
+--os.exit()
+love.event.quit()
 end
 
 

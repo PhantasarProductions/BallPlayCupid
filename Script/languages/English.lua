@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.02
+Version: 16.04.03
 ]]
 
 --- Language file. English
@@ -49,7 +49,7 @@ Version: 16.04.02
 ]]
 
 -- Don't bother modifying the mkl lines. My building scripts put in the data that goes there automatically.
-mkl.version("BallPlay Cupid - English.lua","16.04.02")
+mkl.version("BallPlay Cupid - English.lua","16.04.03")
 mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
 
 local lang = {
@@ -62,6 +62,13 @@ local lang = {
                 [true]='On',
                 [false]='Off'
               },
+       
+      yes = "Yes",
+      no  = "No",
+      
+      general = {
+                   reallyquit = "Do you really want to quit?"
+                }        ,
 
       menu = {
                 gamestart = "Start the game",
@@ -82,7 +89,13 @@ local lang = {
                               obstacles = "Obstacles",
                               walls = "Walls",
                               floors = "Floors"
-                          }
+                          },
+                 savebox = {
+                              warning = "You are going back to the main menu.",
+                              save    = "Save",
+                              dntsave = "Don't Save",
+                              cancel  = "Cancel"
+                           }
              }       
 }
 

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.02
+Version: 16.04.03
 ]]
 
 --[[
@@ -59,7 +59,7 @@ Version: 16.04.02
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.02")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.03")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -89,3 +89,11 @@ print("Loading all assets");
 assets = phantasar.init(junk,"Title")
 print("Get the interface canvasses");
 end initgame()               
+
+function great_quit()
+local ql 
+ql = ql or { general = {reallyquit="Do you really want to quit?"},yes="Yes",no="No"} 
+local ret = love.window.showMessageBox("Ballplay Cupid",ql.general.reallyquit,{ql.yes,ql.no,escapebutton=2})==2
+if user.data then user.save() end
+return ret
+end

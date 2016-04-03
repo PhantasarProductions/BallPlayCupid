@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.02
+Version: 16.04.03
 ]]
 
 -- And exception to the GPL Freedom!
@@ -35,7 +35,7 @@ Version: 16.04.02
 -- *define original
 
 
-mkl.version("BallPlay Cupid - user.lua","16.04.02")
+mkl.version("BallPlay Cupid - user.lua","16.04.03")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 
@@ -46,7 +46,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.04.02")
+mkl.version("BallPlay Cupid - user.lua","16.04.03")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
@@ -69,7 +69,9 @@ u.username=name
 u.data.config = u.data.config or glob.config
 u.config = u.data.config
 u.config = u.config or glob.config
-for k,v in pairs(glob.config) do u.config[k] = u.config[k] or v end -- If newer config exists, add it to the user account.
+for k,v in pairs(glob.config) do 
+    if type(u.config[k])==nil then u.config[k] = v end 
+    end -- If newer config exists, add it to the user account.
 music.config = u.data.config
 lang = j_love_import("SCRIPT/LANGUAGES/"..upper(u.config.lang)..".LUA",true)
 end 

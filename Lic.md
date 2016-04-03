@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 02 April 2016; 22:15:59.
+Below is a list of contributors to the game. This list was last updated on Sun 03 April 2016; 14:02:54.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -53,16 +53,16 @@ This list is automatically updated every time I modify the game myself, and as s
     - music/mainmenu/Blob-Monsters-Return_Looping.mp3
 - Fractint
   - These files are all generated with Fractint and after that colored by Jeroen P. Broks. It's hard to license them, so I'll keep it to a CC_BY_SA license.
-    - gfx/game/fractals/FRACT001.BMP
-    - gfx/game/fractals/FRACT002.BMP
-    - gfx/game/fractals/FRACT003.BMP
-    - gfx/game/fractals/FRACT004.BMP
-    - gfx/game/fractals/FRACT005.BMP
-    - gfx/game/fractals/FRACT006.BMP
-    - gfx/game/fractals/FRACT007.BMP
-    - gfx/game/fractals/FRACT008.BMP
-    - gfx/game/fractals/FRACT009.BMP
-    - gfx/game/fractals/FRACT010.BMP
+    - gfx/game/fractals/f-0.png
+    - gfx/game/fractals/f-1.png
+    - gfx/game/fractals/f-2.png
+    - gfx/game/fractals/f-3.png
+    - gfx/game/fractals/f-4.png
+    - gfx/game/fractals/f-5.png
+    - gfx/game/fractals/f-6.png
+    - gfx/game/fractals/f-7.png
+    - gfx/game/fractals/f-8.png
+    - gfx/game/fractals/f-9.png
 - Free Software Association
   - GNU GPL -- http://www.gnu.org/licenses/gpl-3.0.en.html
     - GFX/General/gpl.png

@@ -20,19 +20,21 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.03
+Version: 16.04.04
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.03")
+mkl.version("BallPlay Cupid - edit.lua","16.04.04")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
+-- *import quickmath
 -- *import save
 
 -- The functions tied to the objects will all be nil, but in the editor that doesn't matter anyway.
--- *import GAME.LLL/objects
+-- *import GAME.LLL/drawgamescreen
+
 
 local puzzle = {}
 local pconfig = {}
@@ -67,7 +69,38 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                        end
                                        white()
                                        love.graphics.print(hovertext,e.mx,e.my)
-                                   end
+                                   end,
+                           clickstrip = function(x,y,b)
+                                          local ox=5
+                                          for k,o in spairs(objects) do
+                                              --er = (er or "") .. k.."  ox= "..ox.."\n"
+                                              --print(k)
+                                        	    if y>=550 and y<=582 and x>=ox and x<=ox+32 then                                        	       
+                                        	       tab.objects.chosen = k                                        	       
+                                        	    end                                        	    
+                                              ox = ox + 35                                      	        
+                                        	end 
+                                        	--print(er.." ("..x..","..y..")")  
+                                        end,        
+                           modify = function(x,y,b)
+                                        (({ function(x,y) -- put in
+                                              local newobj = {
+                                                               kind = tab.objects.chosen,
+                                                               x = x,
+                                                               y = y,
+                                                               dir = tab.objects.dir or "D"
+                                                            }
+                                               puzzle.objects [#puzzle.objects+1] = newobj                                                         
+                                            end,
+                                            function(x,y) -- delete
+                                              local remove 
+                                              for i,v in ipairs(puzzle.objects) do
+                                                  if v.x==x and v.y==y then remove=i end    
+                                              end
+                                              if i then table.remove(puzzle.objects,remove) end
+                                            end
+                                            })[b] or chain.nothing)(x,y) 
+                                    end             
                        },
               obstacles = {
                           }
@@ -78,6 +111,12 @@ function e.arrive()
 	if love.filesystem.exists("homemadepuzzles/"..e.file..".lua") then puzzle,pconfig = save.load("homemadepuzzles/"..e.file) end --j_love_import("homemadepuzzles/"..e.filename..".lua") end
 	pconfig = pconfig or {}
 	puzzle.title = puzzle.title or e.file
+	puzzle.format = puzzle.format or {25,15}
+	e.floors = declaremultidim(puzzle.format)
+	e.walls  = declaremultidim(puzzle.format)
+	puzzle.floors = puzzle.floors or e.floors.array; e.floors.array = puzzle.floors
+	puzzle.walls  = puzzle.walls  or e.walls.array;  e.walls.array  = puzzle.walls
+	puzzle.objects = puzzle.objects or {} 
 end
 
 function e.leave()
@@ -95,6 +134,10 @@ function e.keypressed(key,s,r)
 	if key=='escape' then
   	 c = love.window.showMessageBox("BallPlay Cupid Puzzle Editor", lang.edit.savebox.warning, buttons)
    	;({  function() save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig}) chain.go("mainmenu") end, function() chain.go("mainmenu") end, chain.nothing })[c]()
+  elseif keypressed.lgui or keypressed.rgui or keypressed.rctrl or keypressed.lctrl then -- Linux and Windows use Ctrl for this. Mac uses the "command" key for this, also known as the "apple-key". I don't want to do things too hard, and support both keys on all platforms.
+    (({
+         s = function() save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig}) e.modified=nil end 
+    })[key] or chain.nothing)()
 	elseif (len(key)==1 or (len(key)==3 and left(key,2)=='kp')) and len(puzzle.title)<30 then	
 	  k = key
 	  if keypressed.capslock or keypressed.lshift or keypressed.rshift then
@@ -112,18 +155,30 @@ end
 
 function e.draw()
     local thisisourtab
+    local c=abs(sin(love.timer.getTime( )/500))*255
     pconfig.tab = pconfig.tab or "walls"
     Cls()
-    white()
+    -- Draw puzzle
+    drawgamescreen(puzzle)
+    -- Point in puzzle
+    if e.mx and e.my and e.my>20 and e.my<500 then
+       local dx=floor(e.mx/32)*32
+       local dy=(floor((e.my-20)/32)*32)+20
+       white() love.graphics.print("pos: "..e.mx..","..e.my,5,20); love.graphics.print("rect: "..dx..","..dy,5,40) -- debug line
+       Color(c,c,c) 
+       Rect(dx,dy,32,32,"line")
+    end 
     -- Interface
+    white()
     DrawImage("int_top",0,0)
     DrawImage("int_men",0,500)
     -- Top bar
     DrawImage(e.filename,5,5)
-    local fnpos = 15 + ImageWidth(e.filename)
-    love.graphics.setFont(glob.love2dfont)
+    local fnpos = 15 + ImageWidth(e.filename)    
+    love.graphics.setFont(glob.love2dfont)    
+    if e.modified then red() love.graphics.print("(modified)",700,5) end 
     ember()
-    love.graphics.print(puzzle.title,fnpos,5) 
+    love.graphics.print(puzzle.title.."_",fnpos,5) 
     -- Lower field
     for i,t in ipairs(tabs) do
         thisisourtab = pconfig.tab==t
@@ -131,7 +186,7 @@ function e.draw()
         Rect(i*100,505,80,25,({[true]='fill', [false]='line'})[thisisourtab])
         ;({[true]=ember,[false]=white})[thisisourtab]()      
         love.graphics.print(lang.edit.layers[t],(i*100)+5,510)  
-        end    
+    end    
     -- Show item strip
     (tab[pconfig.tab].strip or chain.nothing)()      
 end
@@ -139,6 +194,13 @@ end
 function e.mousepressed(x,y,button)
 	for i,t in ipairs(tabs) do
 		if y>505 and y<530 and x>i*100 and x<(i*100)+80 then pconfig.tab=t end
+	end
+	(tab[pconfig.tab].clickstrip or chain.nothing)(x,y,button)
+	local fx,fy
+	if y>20 and y<500 then
+	   fx = floor(x/32)
+	   fy = floor((y-20)/32)
+	   ;(tab[pconfig.tab].modify or chain.nothing)(fx,fy,button);e.modified=true
 	end
 end
 

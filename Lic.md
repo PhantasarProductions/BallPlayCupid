@@ -10,7 +10,7 @@ One exception clause, however. The GNU allows modification and the distribution 
 
 ## Anna
 
-All network activity is strictly monitored by Anna. Now Anna is not a real person. She is a bot, who waits patiently until somebody does something, and checks everything that person does. As soon as she doesn't trust you, she'll ban you, mercilessly. And since she's a bot, she has no remorse either.
+All network activity is strictly monitored by Anna. Now Anna is not a real person. She is a bot, who checks all scores and and checks them for validity. As soon as she doesn't trust you, in orther words, as soon as she thinks you're cheating, she'll ban you, mercilessly. 
 Anna's decissions are FINAL and not open for negotiation! If you really believe Anna has a banned you because she was stung by a bug, you will require very solid evidence that she did indeed act on a bug, since everybody can claim innosence. I need proof!
 If you have strong suspicions somebody managed to fool Anna and has set up false data to bypass her judgment, let me know, but then too, you will need evidence.
 If you are playing an outdated version of BallPlay Cupid, Anna MIGHT reject some data to be transferred, however she should not ban you for it. If Anna is sure you are playing a modified version, she'll ban you!
@@ -28,12 +28,12 @@ None of the data will be transferred to third parties with basically three excep
 
 - Gravatar - Receives an md5 hash of your e-mail address in order to set up your avatar. They do not receive the address itself, only an md5 hash of it, which is pretty safe and private.
 - GameJolt - Receives your GameJolt ID and Token, in order to enable GameJolt to award you your achievements and ranking data. Well that data belonged to GameJolt from the start.
-- I am not above the law. If an order from court of law requests my data, I can only obbey. I deem the chance this will happen below 0.00001%, but I need to note it just in case.
+- I am not above the law. If an order from court of law requests my data, I can only obey. I deem the chance this will happen below 0.00001%, but I need to note it just in case.
 
-Under no circumstances shall any data stored on this site be shared with third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
+Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sun 03 April 2016; 14:02:54.
+Below is a list of contributors to the game. This list was last updated on Mon 04 April 2016; 21:30:43.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -116,6 +116,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/anna.lll/anna.lua
     - Script/edit.lua
     - Script/game.lll/Objects.lua
+    - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/generateinterface.lua
     - Script/glob.lua

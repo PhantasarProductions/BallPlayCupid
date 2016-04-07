@@ -88,10 +88,12 @@ local lang = {
                               objects = "Objects",
                               obstacles = "Obstacles",
                               plates = "Plates",
-                              breakblocks = "Break Blocks",
+                              breakblocks = "Break Blcks",
                               lasers = "Lasers",
                               walls = "Walls",
-                              floors = "Floors"
+                              floors = "Floors",
+                              settings = "Settings",
+                              exits = "Exits"
                           },
                  savebox = {
                               warning = "You are going back to the main menu.",

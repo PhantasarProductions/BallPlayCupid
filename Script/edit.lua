@@ -42,7 +42,7 @@ local pconfig = {}
 
 local e = {}
 
-local tabs = {'walls','floors','objects','plates'}
+local tabs = {'walls','floors','objects','plates',"breakblocks","lasers","exits","settings"}
 
 local function showstrip(strip)
         pconfig.strip = pconfig.strip or {}
@@ -125,6 +125,28 @@ local function cstrip(ax,ay,b)
     end    
 end      
 
+local obstacles = {
+                         strip = function()
+                                     local strip=pconfig.tab
+                                     pconfig.strip = pconfig.strip or {}
+                                     pconfig.strip[strip] = pconfig.strip[strip] or {}                                            
+                                     local cstrip = pconfig.strip[strip]      
+                                     local s = glob.sobstacles[pconfig.tab] or {} -- crash prevention and being lazy.
+                                     local x=5
+                                     for k,v in spairs(s) do
+                                         cstrip.tile = cstrip.tile or k
+                                         if cstrip.tile==k then
+                                            Color(255,0,0)
+                                            Rect(x-2,548,36,36,"line")
+                                            end
+                                         Color(v[2],v[3],v[4])
+                                         DrawImage(v[1],x,550)
+                                         x = x + 35 
+                                     end 
+                                 end
+                         
+                  }
+
 
 
 local tab -- The second line *is* required, or the editor *can* and *will* crash!
@@ -193,8 +215,11 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                             })[b] or chain.nothing)(x,y) 
                                     end             
                        },
-              plates = {
-                       }
+              plates = obstacles,
+              lasers = obstacles,
+              breakblocks = obstacles,
+              exits = obstacles,
+              settings = {}
             }
 
 function e.arrive() 
@@ -254,6 +279,7 @@ function e.draw()
     pconfig.tab = pconfig.tab or "walls"
     Cls()
     -- Draw puzzle
+    white()
     drawgamescreen(puzzle)
     -- field if there
     if e.startx and e.starty then
@@ -285,9 +311,9 @@ function e.draw()
     for i,t in ipairs(tabs) do
         thisisourtab = pconfig.tab==t
         Color(100,100,100,120)
-        Rect(i*100,505,80,25,({[true]='fill', [false]='line'})[thisisourtab])
+        Rect(((i-1)*100)+2,505,80,25,({[true]='fill', [false]='line'})[thisisourtab])
         ;({[true]=ember,[false]=white})[thisisourtab]()      
-        love.graphics.print(lang.edit.layers[t],(i*100)+5,510)  
+        love.graphics.print(lang.edit.layers[t] or "lang_err",((i-1)*100)+5,510)  
     end    
     -- Show item strip
     (tab[pconfig.tab].strip or chain.nothing)()      
@@ -295,7 +321,7 @@ end
 
 function e.mousepressed(x,y,button)
 	for i,t in ipairs(tabs) do
-		if y>505 and y<530 and x>i*100 and x<(i*100)+80 then pconfig.tab=t end
+		if y>505 and y<530 and x>(i-1)*100 and x<((i-1)*100)+80 then pconfig.tab=t end
 	end
 	(tab[pconfig.tab].clickstrip or chain.nothing)(x,y,button)
 	local fx,fy

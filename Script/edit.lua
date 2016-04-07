@@ -95,7 +95,34 @@ local function mrelease(x,y)
    e.starty = nil
    e.but = nil
 end
-      
+
+local function cstrip(ax,ay,b)
+    local strip=({walls='wall',floors='floor'})[pconfig.tab]
+    assert(stuff[strip],"Lua claims that "..strip.." has no stuff.... (yeah right)")
+    pconfig.strip[strip] = pconfig.strip[strip] or {}
+    --assert(pconfig.strip[strip],"Lua claims there is no config for strip "..strip.." (yeah right)")
+    pconfig.strip[strip].cstrip = pconfig.strip[strip].cstrip or stuff[strip][1]
+    local x=5
+    local cstrip = pconfig.strip[strip] 
+    if ay>504 and ay<526 then
+       local i = 1
+       for k,v in ipairs(stuff[strip]) do
+           if v==cstrip.tile then i=k+1 end           
+       end
+       if i>#stuff[strip] then i=1 end
+    elseif ay>550 and ay<582 then    
+        print("CHECK! "..strip)
+        for k,v in spairs(assets) do            
+            if prefixed(k,"pz_"..strip.."_"..pconfig.strip[strip].cstrip.."_") then 
+                -- cstrip.tile = cstrip.tile or k
+                print("PIC_CHECK: "..k.." / "..x)
+                if ax>x and ax<x+32 then cstrip.tile=k end
+                x = x + 35
+            end 
+            
+        end
+    end    
+end      
 
 
 
@@ -103,12 +130,14 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
       tab = { walls = {
                            strip = function() showstrip('wall') end,
                            modify = mdown,
-                           release = mrelease
+                           release = mrelease,
+                           clickstrip = cstrip
                       },
               floors = {
                            strip = function() showstrip('floor') end,
                            modify = mdown,
-                           release = mrelease
+                           release = mrelease,
+                           clickstrip = cstrip
                        },
               objects = {
                            strip = function()

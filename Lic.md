@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Mon 04 April 2016; 21:30:43.
+Below is a list of contributors to the game. This list was last updated on Thu 07 April 2016; 10:17:11.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -89,6 +89,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Extern/Vloer2.png
     - GFX/Game/Puzzle/Extern/Vloer3.png
     - GFX/Game/Puzzle/Extern/Vloer4.png
+    - GFX/Game/Puzzle/Floors/Desert/DES_Sand.png
     - GFX/Game/Puzzle/Objects/Ball.png
     - GFX/Game/Puzzle/Objects/Ghost.png
     - GFX/Game/Puzzle/Objects/Robot.png
@@ -107,6 +108,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/Plate1.png
     - GFX/Game/Puzzle/Obstacles/Plate2.png
     - GFX/Game/Puzzle/Obstacles/Trans.png
+    - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
+    - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
     - GFX/Game/PuzzleSolvedIndicator.png
     - GFX/MainMenu/Item.png
   - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself

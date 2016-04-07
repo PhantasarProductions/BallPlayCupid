@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.04
+Version: 16.04.07
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.04")
+mkl.version("BallPlay Cupid - edit.lua","16.04.07")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -43,11 +43,72 @@ local e = {}
 
 local tabs = {'walls','floors','objects','obstacles'}
 
+local function showstrip(strip)
+        pconfig.strip = pconfig.strip or {}
+        pconfig.strip[strip] = pconfig.strip[strip] or {}      
+        pconfig.strip[strip].cstrip = pconfig.strip[strip].cstrip or stuff[strip][1]
+        local cstrip = pconfig.strip[strip]      
+        ember()
+        love.graphics.print(cstrip.cstrip,10,530)
+        local x=5
+        for k,v in spairs(assets) do            
+            if prefixed(k,"pz_"..strip.."_"..pconfig.strip[strip].cstrip.."_") then 
+               cstrip.tile = cstrip.tile or k
+               if cstrip.tile==k then 
+                  Color(255,0,0,80)
+                  Rect(x-2,548,36,36)
+               end 
+               white()
+               DrawImage(v,x,550); x = x + 35
+            end
+        end
+      end
+      
+local function mdown(x,y,b)
+  e.startx = x
+  e.starty = y
+  e.but = b
+end      
+
+local function mrelease(x,y)
+   if e.area then
+      for ax=e.area.sx,e.area.ex do for ay=e.area.sy,e.area.ey do
+          (({ 
+               function ()
+                  -- e[pconfig.tab]:def({ax,ay},pconfig.strip[({walls='wall',floors='floor'})[pconfig.tab]][pconfig.strip[({walls='wall',floors='floor'})[pconfig.tab].tile]])
+                  local arr = e[pconfig.tab]
+                  local str = {walls='wall',floors='floor'}
+                  local ttb = pconfig.tab
+                  local rst = str[ttb]
+                  local tdt = pconfig.strip[rst].tile
+                  arr:def({ax,ay},tdt)
+                  print("define "..strval(tdt).." into ("..ax..","..ay..")")
+               end,
+               function ()
+                  e[pconfig.tab]:def({ax,ay},nil)
+               end                              
+          })[e.area.but or 1] or chain.nothing)()
+      end end
+   end
+   e.area = nil
+   e.startx = nil
+   e.starty = nil
+   e.but = nil
+end
+      
+
+
 
 local tab -- The second line *is* required, or the editor *can* and *will* crash!
       tab = { walls = {
+                           strip = function() showstrip('wall') end,
+                           modify = mdown,
+                           release = mrelease
                       },
               floors = {
+                           strip = function() showstrip('floor') end,
+                           modify = mdown,
+                           release = mrelease
                        },
               objects = {
                            strip = function()
@@ -156,14 +217,25 @@ end
 function e.draw()
     local thisisourtab
     local c=abs(sin(love.timer.getTime( )/500))*255
+    local dx=floor((e.mx or 0)/32)*32
+    local dy=(floor(((e.my or 0)-20)/32)*32)+20
+    local tx=floor((e.mx or 0)/32)
+    local ty=floor(((e.my or 0)-20)/32)
     pconfig.tab = pconfig.tab or "walls"
     Cls()
     -- Draw puzzle
     drawgamescreen(puzzle)
+    -- field if there
+    if e.startx and e.starty then
+       Color(rand(0,255),rand(0,255),rand(0,255),15)
+       e.area = e.area or {}
+       if tx<e.startx then e.area.sx = tx; e.area.ex=e.startx else e.area.ex = tx; e.area.sx=e.startx end 
+       if ty<e.starty then e.area.sy = ty; e.area.ey=e.starty else e.area.ey = ty; e.area.sy=e.starty end
+       Rect(e.area.sx*32,((e.area.sy*32)+20),((e.area.ex+1)-e.area.sx)*32,((e.area.ey+1)-e.area.sy)*32)
+       white(); love.graphics.print(serialize('area',e.area),5,60) -- debug line
+       end
     -- Point in puzzle
     if e.mx and e.my and e.my>20 and e.my<500 then
-       local dx=floor(e.mx/32)*32
-       local dy=(floor((e.my-20)/32)*32)+20
        white() love.graphics.print("pos: "..e.mx..","..e.my,5,20); love.graphics.print("rect: "..dx..","..dy,5,40) -- debug line
        Color(c,c,c) 
        Rect(dx,dy,32,32,"line")
@@ -202,6 +274,10 @@ function e.mousepressed(x,y,button)
 	   fy = floor((y-20)/32)
 	   ;(tab[pconfig.tab].modify or chain.nothing)(fx,fy,button);e.modified=true
 	end
+end
+
+function e.mousereleased(x,y)
+   (tab[pconfig.tab].release or chain.nothing)(fx,fy,button);e.modified=true
 end
 
 

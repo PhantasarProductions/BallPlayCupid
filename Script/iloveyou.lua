@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.04
+Version: 16.04.06
 ]]
 
 --[[
@@ -41,6 +41,7 @@ Version: 16.04.04
 ]]
 
 -- External libs
+-- *import strings
 -- *import quickmath
 -- *import multidim
 -- *import phantasar
@@ -60,7 +61,7 @@ Version: 16.04.04
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.04")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.06")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -86,6 +87,16 @@ local junk =            {
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")                        
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBSTACLES")
 phantasar.adddir(junk,"image","GFX/GAME/FRACTALS","frac_")
+for t in each({"wall","floor"}) do
+    local list = love.filesystem.getDirectoryItems( "GFX/GAME/PUZZLE/"..upper(t).."S" )
+    for d in each(list) do
+        stuff = stuff or {}
+        stuff[t] = stuff[t] or {}
+        stuff[t][#stuff[t]+1] = lower(d) 
+        print("Adding "..t.." dir: "..d)
+        phantasar.adddir(junk,'image','GFX/GAME/PUZZLE/'..upper(t).."S/"..d,"pz_"..t.."_"..lower(d).."_")
+        end
+    end
 print("Loading all assets");
 assets = phantasar.init(junk,"Title")
 print("Get the interface canvasses");

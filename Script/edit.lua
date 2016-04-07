@@ -24,6 +24,7 @@ Version: 16.04.07
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
+user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
 mkl.version("BallPlay Cupid - edit.lua","16.04.07")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
@@ -41,7 +42,7 @@ local pconfig = {}
 
 local e = {}
 
-local tabs = {'walls','floors','objects','obstacles'}
+local tabs = {'walls','floors','objects','plates'}
 
 local function showstrip(strip)
         pconfig.strip = pconfig.strip or {}
@@ -192,8 +193,8 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                             })[b] or chain.nothing)(x,y) 
                                     end             
                        },
-              obstacles = {
-                          }
+              plates = {
+                       }
             }
 
 function e.arrive() 

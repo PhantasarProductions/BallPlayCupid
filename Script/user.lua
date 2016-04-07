@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.03
+Version: 16.04.07
 ]]
 
 -- And exception to the GPL Freedom!
@@ -35,7 +35,9 @@ Version: 16.04.03
 -- *define original
 
 
-mkl.version("BallPlay Cupid - user.lua","16.04.03")
+-- *define annachat
+
+mkl.version("BallPlay Cupid - user.lua","16.04.07")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 
@@ -46,7 +48,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.04.03")
+mkl.version("BallPlay Cupid - user.lua","16.04.07")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
@@ -142,12 +144,15 @@ return getdata.STATUS,getdata.REASON or "--"
 end
 
 function u.call_anna(query)
-  if not u.netallowed then return end
+  if not u.netallowed then
+     print("Request to call Anna has been rejected.") 
+     return 
+     end
 	local function t2q()
 	   local ret = ""
 	   for k,v in spairs(query) do
 	       if ret~="" then ret = ret .. "&" end
-	       ret = k .. "="..v
+	       ret = ret .. k .. "="..v
 	   end
 	   return ret
 	end
@@ -169,7 +174,13 @@ function u.call_anna(query)
   local allowread
   local getdata = {}
   local didclose,d
+  -- *if annachat
+  print("ANNA.REQUEST: ".."http://utbbs.tbbs.nl/Game.php?"..querystring)
+  -- *fi
   for i,cl in ipairs(lines) do  
+    -- *if annachat
+    print("ANNA: "..i.."> "..cl)
+    -- *fi
     if cl=="HANDSHAKE" and lines[i-1]=="GREET:ANNA" then 
     	 allowread=true
     elseif cl=="BYEBYE:SEEYA" and allowread then
@@ -184,6 +195,8 @@ function u.call_anna(query)
   end  
 	return didclose,getdata	
 end
+
+
 
 return u
 

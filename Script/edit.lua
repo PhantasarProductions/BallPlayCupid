@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.07
+Version: 16.04.08
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.07")
+mkl.version("BallPlay Cupid - edit.lua","16.04.08")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -143,7 +143,30 @@ local obstacles = {
                                          DrawImage(v[1],x,550)
                                          x = x + 35 
                                      end 
-                                 end
+                                 end,
+                         
+                         clickstrip = function(x,y,b)
+                                         if y<550 or y>582 then return end
+                                         local strip=pconfig.tab
+                                         pconfig.strip = pconfig.strip or {}
+                                         pconfig.strip[strip] = pconfig.strip[strip] or {}                                            
+                                         local cstrip = pconfig.strip[strip]      
+                                         local s = glob.sobstacles[pconfig.tab] or {} -- crash prevention and being lazy.
+                                         local ax=5                                         
+                                         for k,v in spairs(s) do
+                                             if x>ax and x<ax+32 then cstrip.tile=k end
+                                             ax = ax + 35
+                                         end                                           
+                                      end,
+                                      
+                         modify = function(x,y,b)
+                                         local strip=pconfig.tab
+                                         pconfig.strip = pconfig.strip or {}
+                                         pconfig.strip[strip] = pconfig.strip[strip] or {}
+                                         local cstrip = pconfig.strip[strip] 
+                                         local value = {cstrip.tile}
+                                         e.obstacles:def({x,y},value[b])     
+                                  end                     
                          
                   }
 
@@ -219,7 +242,69 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
               lasers = obstacles,
               breakblocks = obstacles,
               exits = obstacles,
-              settings = {}
+              settings = {
+                              strip = function() 
+                                      Color(255,0,0)
+                                      DrawImage("plate1",5,535)
+                                      DrawImage("plate2",5,568)
+                                      white()
+                                      DrawImage("barrier",60,535)
+                                      DrawImage("trashcan",60,568)
+                                      -- tools
+                                      puzzle.tools = puzzle.tools or {}
+                                      puzzle.tools.plate1  = puzzle.tools.plate1  or 0
+                                      puzzle.tools.plate2  = puzzle.tools.plate2  or 0
+                                      puzzle.tools.barrier = puzzle.tools.barrier or 0
+                                      puzzle.tools.trash   = puzzle.tools.trash   or 0
+                                      puzzle.missionnum    = puzzle.missionnum    or 1
+                                      puzzle.mission       = glob.missions[puzzle.missionnum]
+                                      -- print(serialize('missions',glob.missions))
+                                      love.graphics.print(puzzle.tools.plate1 ,20,545)
+                                      love.graphics.print(puzzle.tools.plate2 ,20,578)
+                                      love.graphics.print(puzzle.tools.barrier,75,545)
+                                      love.graphics.print(puzzle.tools.trash  ,75,578)
+                                      -- other settings
+                                      puzzle.reqballs = puzzle.reqballs or 1
+                                      love.graphics.print("Requirement: "..puzzle.reqballs,150,560)
+                                      puzzle.partime = puzzle.partime or 0
+                                      love.graphics.print("Par (in secs): "..puzzle.partime,150,540)
+                                      love.graphics.print("Mission: "..(puzzle.mission or "?ERROR"),150,580)
+                                      -- message
+                                      local c = abs(sin(love.timer.getTime()/200))*255
+                                      Color(c,c,c)
+                                      love.graphics.print(lang.edit.settingsmessage,100,480)          
+                                      -- draw test button
+                                      local st = {[false]='line',[true]='fill'}
+                                      local cl = {[false]={255,255,255},[true]={255,180,0}}
+                                      local hv = e.mx and e.my and e.mx>600 and e.mx<700 and e.my>550 and e.my<570
+                                      Color(80,80,80)
+                                      Rect(600,550,100,20,st[hv])
+                                      Color(cl[hv][1],cl[hv][2],cl[hv][3])
+                                      love.graphics.print("Test",605,555)                            
+                                      end,
+                              clickstrip = function(mx,my,b)
+                                               local function i(fld,v,max,min)
+                                                   if not v then return end
+                                                   if puzzle.tools[fld] then
+                                                      puzzle.tools[fld] = puzzle.tools[fld] + v
+                                                      if puzzle.tools[fld]>max then puzzle.tools[fld]=0 elseif puzzle.tools[fld]<0 then puzzle.tools[fld]=max end
+                                                   else
+                                                      puzzle[fld] = puzzle[fld] + v
+                                                      if puzzle[fld]>max then puzzle[fld]=min or 0 elseif puzzle[fld]<(min or 0) then puzzle[fld]=max end
+                                                   end
+                                               end
+                                               local a={1,-1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+                                               if my<500 then return end
+                                               if mx> 20 and mx< 52 and my>545 and my<577 then i('plate1' ,      a[b],100) end
+                                               if mx> 20 and mx< 52 and my>578 and my<600 then i('plate2' ,      a[b],100) end
+                                               if mx> 75 and mx<107 and my>545 and my<577 then i('barrier',      a[b],100) end
+                                               if mx> 75 and mx<107 and my>578 and my<600 then i('trash',        a[b],100) end
+                                               if mx>150 and mx<400 and my>560 and my<580 then i('reqballs',     a[b],countballs(puzzle)) end
+                                               if mx>150 and mx<400 and my>540 and my<560 then i('partime',    5*a[b],2*60*60) end
+                                               if mx>150 and mx<400 and my>580            then i('missionnum',   a[b],#glob.missions,1) end   
+                                               if mx>600 and mx<700 and my>550 and my<570 then e.TestPuzzle() end                                                                                                                                        
+                                           end        
+                         }
             }
 
 function e.arrive() 
@@ -230,9 +315,11 @@ function e.arrive()
 	puzzle.format = puzzle.format or {25,15}
 	e.floors = declaremultidim(puzzle.format)
 	e.walls  = declaremultidim(puzzle.format)
-	puzzle.floors = puzzle.floors or e.floors.array; e.floors.array = puzzle.floors
-	puzzle.walls  = puzzle.walls  or e.walls.array;  e.walls.array  = puzzle.walls
-	puzzle.objects = puzzle.objects or {} 
+	e.obstacles = declaremultidim(puzzle.format)
+	puzzle.floors    = puzzle.floors    or e.floors.array;    e.floors.array    = puzzle.floors
+	puzzle.walls     = puzzle.walls     or e.walls.array;     e.walls.array     = puzzle.walls
+	puzzle.obstacles = puzzle.obstacles or e.obstacles.array; e.obstacles.array = puzzle.obstacles
+	puzzle.objects   = puzzle.objects   or {} 
 end
 
 function e.leave()
@@ -336,6 +423,16 @@ function e.mousereleased(x,y)
    (tab[pconfig.tab].release or chain.nothing)(fx,fy,button);e.modified=true
 end
 
-
+function e.testpuzzle()
+save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig})
+-- *localimport game
+-- *if ignore
+local game = {} -- Ignored by the game. I just wanted to fool my IDE outliner.
+-- *fi
+game.getback = e
+game.puzzle = puzzle
+game.source = "editor"
+chain.go(game)
+end e.TestPuzzle = e.testpuzzle
 
 return e

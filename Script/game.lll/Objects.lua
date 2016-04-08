@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.03
+Version: 16.04.08
 ]]
 local o = {
 
@@ -98,6 +98,14 @@ local o = {
                } ,      
 
 }
+
+function countballs(puzzle)
+  local c = 0
+  for o in each(puzzle.objects) do
+     if prefixed(o.kind,"ball") then c = c + 1 end
+  end
+  return c 
+end
 
 function DrawObject(name,x,y)
 local obj = o[name]

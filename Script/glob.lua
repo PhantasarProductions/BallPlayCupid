@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.07
+Version: 16.04.08
 ]]
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
@@ -47,5 +47,10 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
                                    ce_exit = {'exit',255,180,  0}
                                    }          
                  }                   
-glob.obstacles = {}   for sk,ls in pairs(glob.sobstacles) do for k,v in pairs(ls) do glob.obstacles[k] = v end end                                 
+glob.obstacles = {}   for sk,ls in pairs(glob.sobstacles) do for k,v in pairs(ls) do glob.obstacles[k] = v end end
+
+
+glob.missions = {"Normal","Break-Away","Break-Free","Collect","Break to Collect","Walkthrough"}      
+
+                           
 return glob

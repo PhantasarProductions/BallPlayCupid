@@ -276,7 +276,7 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                       -- draw test button
                                       local st = {[false]='line',[true]='fill'}
                                       local cl = {[false]={255,255,255},[true]={255,180,0}}
-                                      local hv = e.mx and e.my and e.mx>600 and e.mx<700 and e.my>550 and e.my<570
+                                      local hv = (e.mx and e.my and e.mx>600 and e.mx<700 and e.my>550 and e.my<570) or false -- "or false" does not make sense, does it? It was put in here, to drive the possibility of a 'nil' out, as that would cause a crash.
                                       Color(80,80,80)
                                       Rect(600,550,100,20,st[hv])
                                       Color(cl[hv][1],cl[hv][2],cl[hv][3])

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.06
+Version: 16.04.08
 ]]
 
 --[[
@@ -48,6 +48,7 @@ Version: 16.04.06
 -- *import md5
 -- *import home
 -- *import music
+-- *import time
 -- *import save
 
 -- Interal libs
@@ -61,7 +62,7 @@ Version: 16.04.06
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.06")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.08")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -77,6 +78,10 @@ love.filesystem.createDirectory("config")
 function initgame()
 local junk =            {
                            image = { cupid = "GFX/TITLE/CUPID.PNG",
+                                    di_out = "GFX/GAME/SYMBOL/DIAMONDS.PNG",
+                                     di_in = "GFX/GAME/SYMBOL/HEARTS.PNG",
+                                    di_req = "GFX/GAME/SYMBOL/CLUBS.PNG",
+                                   di_dead = "GFX/GAME/SYMBOL/SPADES.PNG",
                                       logo = "GFX/TITLE/LOGO.PNG",
                                        gpl = "GFX/GENERAL/GPL.PNG",
                                    intback = "GFX/INTERFACE/DARK-DROPS.JPG",

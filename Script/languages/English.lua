@@ -102,7 +102,25 @@ local lang = {
                               cancel  = "Cancel"
                            },
                  settingsmessage = "Left mouse button = increase, right mouse button = decrease"          
-             }       
+             },     
+      game = {
+                 symbols = {
+                              di_in    = "Balls arrived",
+                              di_out   = "Balls in play",
+                              di_dead  = "Balls destroyed",
+                              di_req   = "Balls required"
+                           },
+                 buttons = {
+                              start    = "Start",
+                              pick     = "Pick",
+                              back     = "Back",
+                              pause    = "Pause",
+                              cont     = "Continue",
+                              giveup   = "Give Up",
+                              zagain   = "Retry",
+                              znext    = "Next"
+                           }          
+             }         
 }
 
 return lang

@@ -430,8 +430,9 @@ save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig})
 local game = {} -- Ignored by the game. I just wanted to fool my IDE outliner.
 -- *fi
 game.getback = e
-game.puzzle = puzzle
-game.source = "editor"
+game.puzzle = save.load("homemadepuzzles/"..e.file) -- I need a duplicate, or else the test routine will overwrite the actual level in the editor's memory
+game.source = "Test-Run"
+game.mode   = "test"
 chain.go(game)
 end e.TestPuzzle = e.testpuzzle
 

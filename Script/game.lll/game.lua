@@ -48,7 +48,11 @@ me.backgrounds = {
 
 
 function me.startmusic()
-if not user.data.music then return true end
+if not user.data.config.music then
+   print("Music is turned off in the user's config")
+   -- print(serialize('user'),user) 
+   return true 
+   end
 music.play(puzzle.music or glob.randommusic[rand(1,glob.maxmusic)])
 return true
 end
@@ -60,6 +64,7 @@ function me.draw()
    puzzle.musicplaying = puzzle.musicplaying or me.startmusic()
    -- Clear
    Cls()
+   white()
    -- Background
    me.backgrounds[puzzle.background]()
    -- Draw puzzle

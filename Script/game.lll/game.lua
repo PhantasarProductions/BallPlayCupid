@@ -208,6 +208,7 @@ repeat
 i = i + 1
 until puzzle.objects[i]==o or i>#puzzle.objects
 if i>#puzzle.objects then print("WARNING! Tried to destroy a non-existing object") end
+print("object #"..i.." should be destroyed!")
 append(me.destroylist,i)       
 end
 
@@ -271,8 +272,10 @@ function me.update()
                       end                      
                       for i in each(me.destroylist) do
                           puzzle.objects[i]=nil
+                          print("object #"..i.." set to nil")
                       end
                       if (#me.destroylist>0) then
+                         print("packing objects table")
                          puzzle.objects = packtable(puzzle.objects)
                          puzzle.stats.di_out = countballs(puzzle)
                       end

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.09
 ]]
 
 --[[
@@ -50,6 +50,9 @@ Version: 16.04.08
 -- *import music
 -- *import time
 -- *import save
+-- *import packtable
+-- *import sfx
+-- *import append
 
 -- Interal libs
 -- *import glob
@@ -62,7 +65,7 @@ Version: 16.04.08
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.08")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.09")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -92,6 +95,7 @@ local junk =            {
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")                        
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBSTACLES")
 phantasar.adddir(junk,"image","GFX/GAME/FRACTALS","frac_")
+phantasar.adddir(junk,"audio","AUDIO/GAME","sfx_")
 for t in each({"wall","floor"}) do
     local list = love.filesystem.getDirectoryItems( "GFX/GAME/PUZZLE/"..upper(t).."S" )
     for d in each(list) do

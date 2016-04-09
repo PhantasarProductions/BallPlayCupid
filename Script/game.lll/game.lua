@@ -145,7 +145,7 @@ function me.mousepressed(x,y,b)
    end    
 end
 
-function me.gocoords(o)
+function me.gocoords(o,altdir)
 o.dir = o.dir or "D"
 return 
 (({
@@ -154,7 +154,7 @@ return
      R = function() return o.x+1,o.y end,
      L = function() return o.x-1,o.y end,
      S = function() return o.x,o.y   end
-})[o.dir] or function() error("Object wants to go into direction "..o.dir.."\nI don't know that direction!") end)()
+})[altdir or o.dir] or function() error("Object wants to go into direction "..o.dir.."\nI don't know that direction!") end)()
 end
 
 function me.block(x,y)
@@ -185,10 +185,55 @@ if blk then
 return blk   
 end
 
+function me.plateturn(o)
+-- 1 = /
+-- 2 = \
+local p = { gplate1="/", gplate2="\\", rplate1="/", rplate2="\\", zplate1="/", zplate2="\\"}
+local ob = table2multidim(puzzle.obstacles,puzzle.format)
+local v = ob:get({o.x,o.y}); if not v then return end
+local plate = p[v]
+if not plate then return end
+local nd = { ["\\"] ={ D='R', U='L', L='U', R='D', S='S' }, 
+             ["/"]=  { D='L', U='R', L='D', R='U', S='S' } }
+local newdir=nd[plate][o.dir]
+local nx,ny = me.gocoords(o,newdir)
+if me.block(nx,ny) then return end
+o.dir = newdir
+end
+
+
+function me.destroy(o)
+local i=0
+repeat 
+i = i + 1
+until puzzle.objects[i]==o or i>#puzzle.objects
+if i>#puzzle.objects then print("WARNING! Tried to destroy a non-existing object") end
+append(me.destroylist,i)       
+end
+
+function me.finish(o)
+puzzle.stats.di_in = puzzle.stats.di_in + 1
+me.destroy(o)
+sfx('exit')
+end
+
+me.exits = {}
+
+function me.exits.ball_finish(o)
+   local ob = table2multidim(puzzle.obstacles,puzzle.format)
+   local v = ob:get({o.x,o.y}); if not v then return end
+   if not v then return end
+   if not suffixed(v,"exit") then return end
+   ;(({
+       ['a_exit'] = me.finish                     
+   })[v] or function(o) error("I don't know exit type:"..v) end)(o)
+end
+
 me.moves = {}
 
 function me.moves.move_default(o)
 print("Move Default")
+me.plateturn(o) -- "plateturn" MUST come prior to "blockturn" or you will get some very undesirable behavior!
 me.blockturn(o)
 me.move(o)
 end
@@ -208,6 +253,7 @@ end
 
 
 function me.update()
+    me.destroylist = {};
     (({
          play = function()
                    -- Let's set it all up here
@@ -216,11 +262,19 @@ function me.update()
                    local tsec = os.date("%S")
                    me.oldtsec = me.oldtsec or tsec
                    if tsec~=me.oldtsec then puzzle.time = puzzle.time + 1; me.oldtsec = tsec end
-                   print(abs(timer-me.oldtimer).." acttimer:"..timer.." old-timer:"..me.oldtimer)
+                   --print(abs(timer-me.oldtimer).." acttimer:"..timer.." old-timer:"..me.oldtimer)
                    if abs(timer-me.oldtimer)>me.gamespeed then
-                      print("CYCLE!")
+                      --print("CYCLE!")
                       for o in each(puzzle.objects) do
-                          (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o)
+                          (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
+                          (me.exits[objects[o.kind].finish]   or chain.nothing)(o)
+                      end                      
+                      for i in each(me.destroylist) do
+                          puzzle.objects[i]=nil
+                      end
+                      if (#me.destroylist>0) then
+                         puzzle.objects = packtable(puzzle.objects)
+                         puzzle.stats.di_out = countballs(puzzle)
                       end
                       me.oldtimer=timer
                    end
@@ -243,7 +297,7 @@ end
 
 function me.startpuzzle()
 me.stage = 'play'
-me.ass(countballs(puzzle),"ENOB")
+me.ass(countballs(puzzle)>0,"ENOB")
 end
 
 
@@ -255,7 +309,7 @@ function me.arrive()
                               back = {enable=true, fun=me.back}},
                     play   = {pause = {enable=true, fun=function() me.stage='pause' end},
                               giveup = {enable = true, fun=me.giveup}},
-                    pause  = {cont = {enable=true, fun=function() me.stage='play' end},
+                    pause  = {zcont = {enable=true, fun=function() me.stage='play' end},
                               giveup = {enable = true, fun=me.giveup}},
                     fail   = {zagain = {enable=true, fun=me.restart},
                               pick = {enable=not test, fun=me.pickpuzzle},

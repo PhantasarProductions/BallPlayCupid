@@ -29,7 +29,7 @@ local o = {
                 color = {255,255,255},
                 movement = "move_default",
                 collide = collide_ball,
-                finish = ball_finish,
+                finish = "ball_finish",
                 ename = "Ball"                                
            },
     ballgreen = {
@@ -37,7 +37,7 @@ local o = {
                 color = {0,255,0},
                 movement = "move_default",
                 collide = collide_ball,
-                finish = ball_finish,
+                finish = "ball_finish",
                 ename = "Green Ball"
                 },       
     ballred   = {
@@ -45,7 +45,7 @@ local o = {
                 color = {255,0,0},
                 movement = "move_default",
                 collide = collide_ball,
-                finish = ball_finish,
+                finish = "ball_finish",
                 ename = "Red Ball"
                 },       
     ballblue   = {
@@ -53,7 +53,7 @@ local o = {
                 color = {0,0,255},
                 movement = "move_default",
                 collide = collide_ball,
-                finish = ball_finish,
+                finish = "ball_finish",
                 ename = "Blue Ball"
                 },       
     ballember = {
@@ -61,7 +61,7 @@ local o = {
                 color = {255,180,0},
                 movement = "move_default",
                 collide = collide_ball,
-                finish = ball_finish,
+                finish = "ball_finish",
                 ename = "Ember Ball"
                 },       
     ghostred = {

@@ -165,7 +165,7 @@ function me.block(x,y)
     ret = ret or x>25
     ret = ret or y<0
     ret = ret or y>15
-    ret = ret or walls:get(x,y)~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
+    ret = ret or walls:get({x,y})~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
     return ret
 end
 
@@ -220,7 +220,7 @@ function me.update()
                    if abs(timer-me.oldtimer)>me.gamespeed then
                       print("CYCLE!")
                       for o in each(puzzle.objects) do
-                          (me.moves[o.movement] or function(o) me.error("IUOM",o.movement) end)(o)
+                          (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o)
                       end
                       me.oldtimer=timer
                    end

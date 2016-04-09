@@ -57,9 +57,10 @@ local function dgs(pz)
   -- objects
   for o in each(pz.objects) do
       DrawObject(o.kind,(o.x*32)+(o.modx or 0),((o.y*32)+20)+(o.mody or 0))
+      --love.graphics.print(valstr(o.modx).."/"..valstr(o.mody),o.x*32,(o.y*32)+20) -- debug line only
       if (not o.blockautomod) and o.modx and o.mody then
-         if o.modx<0 then o.modx=o.modx+1 elseif o.modx>0 then o.modx=o.modx-1 end
-         if o.mody<0 then o.mody=o.mody+1 elseif o.mody>0 then o.mody=o.mody-1 end
+         if o.modx<0 then o.modx=o.modx+2 elseif o.modx>0 then o.modx=o.modx-2 end
+         if o.mody<0 then o.mody=o.mody+2 elseif o.mody>0 then o.mody=o.mody-2 end
       end
   end
 end  

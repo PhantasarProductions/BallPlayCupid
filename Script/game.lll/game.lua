@@ -201,8 +201,8 @@ function me.move(o)
       o.x,o.y = me.gocoords(o)
       o.modx = o.modx or 0
       o.mody = o.mody or 0
-      o.modx = o.modx + (1 * (o.x-oldx))
-      o.mody = o.mody + (1 * (o.y-oldy))
+      o.modx = o.modx + (32 * (oldx-o.x))
+      o.mody = o.mody + (32 * (oldy-o.y))
    end
 end
 

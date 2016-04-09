@@ -20,14 +20,14 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.09
 ]]
 local o = {
 
     ball = {
                 image = "ball",
                 color = {255,255,255},
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ball,
                 finish = ball_finish,
                 ename = "Ball"                                
@@ -35,7 +35,7 @@ local o = {
     ballgreen = {
                 image = "ball",
                 color = {0,255,0},
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ball,
                 finish = ball_finish,
                 ename = "Green Ball"
@@ -43,7 +43,7 @@ local o = {
     ballred   = {
                 image = "ball",
                 color = {255,0,0},
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ball,
                 finish = ball_finish,
                 ename = "Red Ball"
@@ -51,7 +51,7 @@ local o = {
     ballblue   = {
                 image = "ball",
                 color = {0,0,255},
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ball,
                 finish = ball_finish,
                 ename = "Blue Ball"
@@ -59,7 +59,7 @@ local o = {
     ballember = {
                 image = "ball",
                 color = {255,180,0},
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ball,
                 finish = ball_finish,
                 ename = "Ember Ball"
@@ -68,7 +68,7 @@ local o = {
                 image = "ghost",
                 color = {255,0,0},
                 alpha = 200,
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ghost,
                 ename = "Ghost"
                },       
@@ -76,7 +76,7 @@ local o = {
                 image = "ghost",
                 color = {0,255,0},
                 alpha = 200,
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ghost,
                 ename = "Ghost"
                } ,      
@@ -84,7 +84,7 @@ local o = {
                 image = "ghost",
                 color = {0,0,255},
                 alpha = 200,
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ghost,
                 ename = "Ghost"
                } ,      
@@ -92,7 +92,7 @@ local o = {
                 image = "ghost",
                 color = {255,180,0},
                 alpha = 200,
-                movement = move_default,
+                movement = "move_default",
                 collide = collide_ghost,
                 ename = "Ghost"
                } ,      

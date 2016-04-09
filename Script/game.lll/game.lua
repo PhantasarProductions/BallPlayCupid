@@ -24,11 +24,15 @@ Version: 16.04.09
 ]]
 
 
+
 -- *if ignore
 local objects
 -- *fi
 local me = {}
 local puzzle
+
+
+me.gamespeed = 500 -- The higher this number, the slower it goes.
 
 me.backgrounds = {
 
@@ -122,6 +126,124 @@ end
 function me.mousemoved(x,y)
 me.mx = x
 me.my = y
+end
+
+function me.back()
+chain.go(me.getback or "mainmenu")
+music.stop()
+end
+
+function me.mousepressed(x,y,b)
+   me.mousemoved(x,y)
+   -- buttons
+   local i = 3
+   for k,b in spairs(me.buttons[me.stage]) do
+       local y = (i*15)+500; i = i - 1
+       local hv = me.mx~=nil and me.my~=nil and me.mx>300 and me.mx<500 and me.my>y and me.my<y+15 and b.enable -- hv=b.enable
+       local fn = {[true]=b.fun or chain.nothing, [false]=chain.nothing}
+       fn[hv]()
+   end    
+end
+
+function me.gocoords(o)
+o.dir = o.dir or "D"
+return 
+(({
+     D = function() return o.x,o.y+1 end,
+     U = function() return o.x,o.y-1 end,
+     R = function() return o.x+1,o.y end,
+     L = function() return o.x-1,o.y end,
+     S = function() return o.x,o.y   end
+})[o.dir] or function() error("Object wants to go into direction "..o.dir.."\nI don't know that direction!") end)()
+end
+
+function me.block(x,y)
+    local ret
+    local walls = table2multidim(puzzle.walls,puzzle.format)
+    ret = false
+    ret = ret or x<0
+    ret = ret or x>25
+    ret = ret or y<0
+    ret = ret or y>15
+    ret = ret or walls:get(x,y)~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
+    return ret
+end
+
+function me.objblock(o)
+   return me.block(o.x,o.y)
+end
+
+function me.objgoblock(o)
+   return me.block(me.gocoords(o))
+end
+
+function me.blockturn(o)
+local blk = me.objgoblock(o)
+if blk then
+   o.dir = ({ D='U', U='D', R='L', L='R', S='S'})[o.dir]
+   end
+return blk   
+end
+
+me.moves = {}
+
+function me.moves.move_default(o)
+print("Move Default")
+me.blockturn(o)
+me.move(o)
+end
+
+function me.move(o)
+   local oldx,oldy
+   if not me.objgoblock(o) then 
+      oldx = o.x
+      oldy = o.y
+      o.x,o.y = me.gocoords(o)
+      o.modx = o.modx or 0
+      o.mody = o.mody or 0
+      o.modx = o.modx + (1 * (o.x-oldx))
+      o.mody = o.mody + (1 * (o.y-oldy))
+   end
+end
+
+
+function me.update()
+    (({
+         play = function()
+                   -- Let's set it all up here
+                   local timer = floor(love.timer.getTime()*1000)
+                   me.oldtimer = me.oldtimer or timer
+                   local tsec = os.date("%S")
+                   me.oldtsec = me.oldtsec or tsec
+                   if tsec~=me.oldtsec then puzzle.time = puzzle.time + 1; me.oldtsec = tsec end
+                   print(abs(timer-me.oldtimer).." acttimer:"..timer.." old-timer:"..me.oldtimer)
+                   if abs(timer-me.oldtimer)>me.gamespeed then
+                      print("CYCLE!")
+                      for o in each(puzzle.objects) do
+                          (me.moves[o.movement] or function(o) me.error("IUOM",o.movement) end)(o)
+                      end
+                      me.oldtimer=timer
+                   end
+                end
+    })[me.stage] or chain.nothing)()
+end
+
+function me.error(err,details)
+local errm = err..":"..(lang.game.error[err] or "Error message not present in this language")
+errm = errm .. (details or "")
+if prefixed(err,"I") then errm = errm .."\n\nThis is an internal error. Please report this on:\nhttps://github.com/Tricky1975/BallPlayCupid/issues" end
+if me.olderror==errm then return end me.olderror=errm -- Prevent throwing the same error multiple times
+love.window.showMessageBox("Ballplay Cupid - Puzzle Error",errm,{"Bye!"})
+me.back()
+end
+
+function me.ass(expression,err)
+if not expression then me.error(err) end
+end
+
+function me.startpuzzle()
+me.stage = 'play'
+me.ass(countballs(puzzle),"ENOB")
 end
 
 

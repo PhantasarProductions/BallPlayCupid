@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.09
 ]]
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
@@ -50,7 +50,11 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
 glob.obstacles = {}   for sk,ls in pairs(glob.sobstacles) do for k,v in pairs(ls) do glob.obstacles[k] = v end end
 
 
-glob.missions = {"Normal","Break-Away","Break-Free","Collect","Break to Collect","Walkthrough"}      
+glob.missions = {"Normal","Break-Away","Break-Free","Collect","Break to Collect","Walkthrough"}     
+
+glob.randommusic =  love.filesystem.getDirectoryItems( "MUSIC/RANDOM" )
+for i=1,#glob.randommusic do glob.randommusic[i]="MUSIC/RANDOM/"..glob.randommusic[i] end
+glob.maxmusic = #glob.randommusic 
 
                            
 return glob

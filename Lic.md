@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Fri 08 April 2016; 21:27:49.
+Below is a list of contributors to the game. This list was last updated on Sat 09 April 2016; 13:28:52.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -51,6 +51,13 @@ This list is automatically updated every time I modify the game myself, and as s
 - Eric Matyas
   - For the full license of Eric Matyas, check his website at: http://soundimage.org
     - music/mainmenu/Blob-Monsters-Return_Looping.mp3
+    - music/random/Droplet-of-life.mp3
+    - music/random/Electric_Rain.mp3
+    - music/random/Sculpture-Garden.mp3
+    - music/random/Special-Time.mp3
+    - music/random/The-Games_v001.mp3
+    - music/random/The-Magic-Box.mp3
+    - music/theme/Urban-Jungle-2061.mp3
 - Fractint
   - These files are all generated with Fractint and after that colored by Jeroen P. Broks. It's hard to license them, so I'll keep it to a CC_BY_SA license.
     - gfx/game/fractals/f-0.png

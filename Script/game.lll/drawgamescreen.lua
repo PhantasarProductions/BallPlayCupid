@@ -20,11 +20,11 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.09
 ]]
 -- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.08")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.09")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -57,6 +57,10 @@ local function dgs(pz)
   -- objects
   for o in each(pz.objects) do
       DrawObject(o.kind,(o.x*32)+(o.modx or 0),((o.y*32)+20)+(o.mody or 0))
+      if (not o.blockautomod) and o.modx and o.mody then
+         if o.modx<0 then o.modx=o.modx+1 elseif o.modx>0 then o.modx=o.modx-1 end
+         if o.mody<0 then o.mody=o.mody+1 elseif o.mody>0 then o.mody=o.mody-1 end
+      end
   end
 end  
 

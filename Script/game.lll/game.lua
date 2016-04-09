@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.09
 ]]
 
 
@@ -46,10 +46,18 @@ me.backgrounds = {
                       end
 }
 
+
+function me.startmusic()
+if not user.data.music then return true end
+music.play(puzzle.music or glob.randommusic[rand(1,glob.maxmusic)])
+return true
+end
+
 function me.draw()
    puzzle = puzzle or me.puzzle
    assert(puzzle,"No puzzle loaded!")
    puzzle.background = puzzle.background or "RandomFractal"
+   puzzle.musicplaying = puzzle.musicplaying or me.startmusic()
    -- Clear
    Cls()
    -- Background

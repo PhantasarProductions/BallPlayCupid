@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 09 April 2016; 21:29:06.
+Below is a list of contributors to the game. This list was last updated on Sun 10 April 2016; 14:01:39.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -43,6 +43,9 @@ This list is automatically updated every time I modify the game myself, and as s
 
 - CoolText
   - The banner containing the title of the game is bound to the game in the GNU GPL licence (yeah I know, pretty uncommon license for a picture), all other banners are under a CCBYNCSA license: http://creativecommons.org/licenses/by-nc-sa/4.0/
+    - GFX/Game/General/fail.png
+    - GFX/Game/General/gratz.png
+    - GFX/Game/General/paused.png
     - GFX/Title/Logo.png
     - GFX/Title/Logo.xcf
 - David Newkerk
@@ -147,6 +150,7 @@ This list is automatically updated every time I modify the game myself, and as s
 - Juhani Junkala
   - The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.     You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. 
     - AUDIO/Game/exit.wav
+    - AUDIO/Game/tool.wav
 - Unknown
   - These pictures were contributed to the public domain. The source has been lost to me. If you can identify the original creator for me, let me know.
     - GFX/Game/Symbol/All.piko

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.09
+Version: 16.04.10
 ]]
 
 
@@ -86,6 +86,14 @@ function me.draw()
    Color(0,180,255) puzzle.time = puzzle.time or 0
    love.graphics.print(time.sec2time(puzzle.time),650,5)
    -- bottom bar
+   me.currenttool = me.currenttool or 'plate1'
+   puzzle.tpr = puzzle.tpr or rand(1,100)
+   puzzle.usedtools = puzzle.usedtools or 0
+   Color(abs(255*sin(love.timer.getTime( )/puzzle.tpr)),abs(255*cos(love.timer.getTime( )/puzzle.tpr)),abs(255*sin(love.timer.getTime( )/(100-puzzle.tpr))))
+   Rect(
+          ({ plate1=100, plate2=150, trash=200, barrier=250})[me.currenttool],
+          550,32,45
+       ) 
    red()
    DrawImage("plate1"  ,100,550)
    DrawImage("plate2"  ,150,550)   white()
@@ -121,6 +129,33 @@ function me.draw()
        Color(c[hv][1]*s[b.enable],c[hv][2]*s[b.enable],c[hv][3]*s[b.enable])
        love.graphics.print(lang.game.buttons[k] or "?"..k,303,y+2)
    end
+   -- stage specific actions
+   (({
+         play = function()
+                    local e=me
+                    local dx=floor((e.mx or 0)/32)*32    
+                    local dy=(floor(((e.my or 0)-20)/32)*32)+20
+                    local c=abs(sin(love.timer.getTime( )))*255
+                    if e.mx and e.my and e.my>20 and e.my<500 then
+                       -- white() love.graphics.print("pos: "..e.mx..","..e.my,5,20); love.graphics.print("rect: "..dx..","..dy,5,40) -- debug line       
+                       Color(c,c,c)       
+                       Rect(dx,dy,32,32,"line")
+                    end   
+                end,
+         pause = function()
+                     DrawImage('gamepaused',
+                                  400-(ImageWidth('gamepaused')/2),
+                                  300-(ImageHeight('gamepaused')/2)
+                              )
+                  end,           
+         succeed = function()
+                     DrawImage('gratz',
+                                  400-(ImageWidth('gratz')/2),
+                                  300-(ImageHeight('gratz')/2)
+                              )
+                  end           
+                
+   })[me.stage] or chain.nothing)()
 end
 
 function me.mousemoved(x,y)
@@ -143,6 +178,52 @@ function me.mousepressed(x,y,b)
        local fn = {[true]=b.fun or chain.nothing, [false]=chain.nothing}
        fn[hv]()
    end    
+   -- toolbar
+   local tools = {[100]='plate1',[150]='plate2',[200]='trash',[250]='barrier'}
+   for i,k in pairs(tools) do
+       if y>550 and x>i and x<i+32 then
+          me.currenttool=k
+       end
+   end    
+   -- stage specific actions
+   (({
+       play = function()
+                if me.my<20 or me.my>500 then return end
+                local tx=floor ((me.mx or 0)/32)
+                local ty=floor(((me.my or 0)-20)/32)
+                local function pplate(p,wall)
+                      local o = table2multidim(puzzle.obstacles,puzzle.format)
+                      local w = table2multidim(puzzle.walls,puzzle.format)
+                      local v = o:get({tx,ty})
+                      local wv= w:get({tx,ty})
+                      local pp= p
+                      if pp and prefixed(pp,"plate") then pp="r"..pp end
+                      if (v=='rplate1' or v=='rplate2' or v=='yplate1' or v=='yplate2' or v==nil) and v~=pp and (not wv) and puzzle.tools[p or 'trash']>0 then
+                         if wall then w:def({tx,ty},p) else o:def({tx,ty},pp) end
+                         puzzle.usedtools = puzzle.usedtools + 1
+                         puzzle.tools[p or 'trash'] = puzzle.tools[p or 'trash'] - 1
+                         sfx("tool")
+                      else
+                         sfx('buzz')
+                      end  
+                end
+                (({
+                     plate1 = function()
+                                 pplate('plate1')
+                              end,
+                     plate2 = function()
+                                 pplate('plate2')
+                              end,
+                     trash = function()
+                                 pplate(nil)
+                             end,
+                     barrier = function()
+                                 pplate('barrier',true)
+                               end                         
+                })[me.currenttool] or function() me.error("IUKT","Tool: "..strval(me.currenttool)) end)()
+              end
+   })
+   [me.stage] or chain.nothing)() 
 end
 
 function me.gocoords(o,altdir)
@@ -252,6 +333,22 @@ function me.move(o)
    end
 end
 
+function me.endofpuzzle()
+    local ihave = puzzle.stats.di_out
+    if puzzle.mission=='Normal' or puzzle.mission=="Break-Free" then ihave = puzzle.stats.di_in end
+    if ihave>=puzzle.stats.di_req then
+       -- success!
+       user.data.puzzlesolved = user.data.puzzlesolved or {}
+       -- if this is an original puzzle, let's set up the personal stats and contact Anna about it.
+       -- all done. let's congratulate the user
+       me.stage='succeed'
+    else
+       -- fail!
+       me.fail='fail'
+       me.failure='Only '..ihave..' balls survived. '..puzzle.stats.di_reg..' were required!'
+    end
+end
+
 
 function me.update()
     me.destroylist = {};
@@ -281,6 +378,8 @@ function me.update()
                       end
                       me.oldtimer=timer
                    end
+                   -- Puzzle solved or failed?
+                   if puzzle.stats.di_out==0 then me.endofpuzzle() end
                 end
     })[me.stage] or chain.nothing)()
 end
@@ -306,6 +405,7 @@ end
 
 function me.arrive()
     local test = me.mode=='test'
+    local homemade = me.mode=='homemade'
     me.buttons = {
                     intro  = {start = {enable=true,fun=me.startpuzzle},
                               pick = {enable=not test, fun=me.pickpuzzle},
@@ -317,7 +417,7 @@ function me.arrive()
                     fail   = {zagain = {enable=true, fun=me.restart},
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
-                    succeed= {znext = {enable=true, fun=me.restart},
+                    succeed= {znext = {enable=not (test or homemade), fun=me.restart},
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
                               

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.09
+Version: 16.04.10
 ]]
 
 --[[
@@ -37,6 +37,8 @@ Version: 16.04.09
     
     (Okay, when it just handles modified artwork, audio files or fonts, I will be merciful, but as soon as any
     script file needs to be modified the network features must be "shut down")
+    
+    This game requires Love2D version 0.10
 
 ]]
 
@@ -65,7 +67,7 @@ Version: 16.04.09
 -- *import mainmenu
 -- *import homemadepuzzleselector
 
-mkl.version("BallPlay Cupid - iloveyou.lua","16.04.09")
+mkl.version("BallPlay Cupid - iloveyou.lua","16.04.10")
 mkl.lic    ("BallPlay Cupid - iloveyou.lua","GNU General Public License 3")
 
 
@@ -88,8 +90,11 @@ local junk =            {
                                       logo = "GFX/TITLE/LOGO.PNG",
                                        gpl = "GFX/GENERAL/GPL.PNG",
                                    intback = "GFX/INTERFACE/DARK-DROPS.JPG",
+                                gamepaused = "GFX/GAME/GENERAL/PAUSED.PNG",
+                                     gratz = "GFX/GAME/GENERAL/GRATZ.PNG",
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
-                           audio = {  buzz = "AUDIO/INTERFACE/BUZZ.OGG" },
+                           audio = {
+                                  sfx_buzz = "AUDIO/INTERFACE/BUZZ.OGG" },
                            font  = {}
                         }
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")                        
@@ -109,7 +114,7 @@ for t in each({"wall","floor"}) do
 print("Loading all assets");
 assets = phantasar.init(junk,"Title")
 print("Get the interface canvasses");
-end initgame()               
+end initgame() initgame=nil -- Execute immediately and get this shit out of the RAM as we don't need it any more.               
 
 function great_quit()
 local ql 

@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.02
+Version: 16.04.11
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.02")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.11")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -126,7 +126,7 @@ function hps.keypressed(key,s,r)
 -- enter name if applicable
 hps.xhitkey[mainmenu.para](key,s,r)
 ;(({  -- switch case -- Lua style --
-      escape     = function() chain.go("mainemnu") end,
+      escape     = function() chain.go("mainmenu") end,
       kpenter    = nextround,
       ['return'] = nextround
       })[key] or chain.nothing)()

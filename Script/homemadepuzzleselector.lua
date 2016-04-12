@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.11
+Version: 16.04.12
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.11")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.12")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -34,13 +34,18 @@ chain.reg("pickcustompuzzle",hps)
 if not love.filesystem.exists("config/editor.lua") then love.filesystem.write("config/editor.lua","return {}") end
 
 function hps.arrive()
-assert(mainmenu.para,"Home made puzzle selector does not know what to do!")
-hps.config = j_love_import("config/editor.lua",true)
-hps.config.pm = hps.config.pm or 0
-c = hps.config 
-hps.files = love.filesystem.getDirectoryItems( "homemadepuzzles/" )
-for i=1,#hps.files do hps.files[i]=replace(hps.files[i],".lua","") end
-hps.chosenfile = ""
+  assert(mainmenu.para,"Home made puzzle selector does not know what to do!")
+  hps.config = j_love_import("config/editor.lua",true)
+  hps.config.pm = hps.config.pm or 0
+  c = hps.config 
+  hps.files = love.filesystem.getDirectoryItems( "homemadepuzzles/" )
+  for i=1,#hps.files do hps.files[i]=replace(hps.files[i],".lua","") end
+  hps.chosenfile = ""
+  local d = love.filesystem.getDirectoryItems( 'homemadepuzzles' )
+  hps.list = {}
+  for f in each(d) do
+    if suffixed(f,".lua") then append(hps.list,stripext(f)) end
+  end
 end
 
 
@@ -58,11 +63,19 @@ hps.xdraw = {
 	
 }
 function hps.draw()
-Cls()
--- list of files
-
--- enter file name if applicable
-hps.xdraw[mainmenu.para]()
+   Cls()
+   -- list of files
+   hps.pm = hps.pm or 0
+   for i=1,10 do
+       if hps.list[i+hps.pm] then
+          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) then ember() else white() end
+          love.graphics.print(hps.list[i+hps.pm],50,100+(i*20))
+       elseif hps.pm>0 then
+          hps.pm = hps.pm - 1
+       end
+   end
+   -- enter file name if applicable
+   hps.xdraw[mainmenu.para]()
 end
 
 --[[
@@ -107,8 +120,13 @@ if (not hps.chosenfile) or len(hps.chosenfile)==0 then return end -- A file must
 local chaingo=
 ({ 
    go_game = function()
-          print("Loading game")
           -- *localimport game
+          game.getback   = 'mainmenu'
+          game.puzzle    = save.load("homemadepuzzles/"..hps.chosenfile) 
+          game.source    = "Home: "..hps.chosenfile
+          game.mode      = "homemade"
+          game.pickchain = hps
+          print("Loading game")
           return game
           end,
    go_edit = function()
@@ -134,8 +152,19 @@ end
 
 
 
+function hps.mousemoved(x,y)
+hps.mx = x
+hps.my = y
+end
 
-
+function hps.mousepressed(x,y,b,t)
+   hps.pm = hps.pm or 0
+   for i=1,10 do
+       if hps.list[i+hps.pm] then
+          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) then hps.chosenfile=hps.list[i+hps.pm] nextround() end
+       end
+   end
+end
 
 
 return hps

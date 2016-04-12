@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Mon 11 April 2016; 09:43:29.
+Below is a list of contributors to the game. This list was last updated on Tue 12 April 2016; 22:32:06.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -103,6 +103,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Extern/Vloer3.png
     - GFX/Game/Puzzle/Extern/Vloer4.png
     - GFX/Game/Puzzle/Floors/Desert/DES_Sand.png
+    - GFX/Game/Puzzle/Floors/Road/Road-0.png
+    - GFX/Game/Puzzle/Floors/Road/Road-1.png
     - GFX/Game/Puzzle/Objects/Ball.png
     - GFX/Game/Puzzle/Objects/Ghost.png
     - GFX/Game/Puzzle/Objects/Robot.png
@@ -126,6 +128,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/trashcan.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
+    - GFX/Game/Puzzle/Walls/Road/Pylon.png
     - GFX/Game/PuzzleSolvedIndicator.png
     - GFX/MainMenu/Item.png
   - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself
@@ -136,6 +139,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/edit.lua
     - Script/game.lll/Objects.lua
     - Script/game.lll/Puzzles/Pz01.lua
+    - Script/game.lll/Puzzles/Pz02.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/generateinterface.lua

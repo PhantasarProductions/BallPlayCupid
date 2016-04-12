@@ -20,8 +20,10 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.10
+Version: 16.04.12
 ]]
+
+-- *import drawgamescreen
 
 
 
@@ -402,6 +404,13 @@ me.stage = 'play'
 me.ass(countballs(puzzle)>0,"ENOB")
 end
 
+function me.pickpuzzle()
+chain.go(me.pickchain)
+end
+
+function me.leave()
+music.stop()
+end
 
 function me.arrive()
     local test = me.mode=='test'

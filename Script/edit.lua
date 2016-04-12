@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.08
+Version: 16.04.12
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.08")
+mkl.version("BallPlay Cupid - edit.lua","16.04.12")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -108,9 +108,10 @@ local function cstrip(ax,ay,b)
     if ay>504 and ay<526 then
        local i = 1
        for k,v in ipairs(stuff[strip]) do
-           if v==cstrip.tile then i=k+1 end           
+           if v==cstrip.cstrip then i=k+1 end           
        end
        if i>#stuff[strip] then i=1 end
+       cstrip.cstrip = stuff[strip][i]
     elseif ay>550 and ay<582 then    
         print("CHECK! "..strip)
         for k,v in spairs(assets) do            

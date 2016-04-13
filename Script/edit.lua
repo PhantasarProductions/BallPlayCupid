@@ -88,7 +88,7 @@ local function mrelease(x,y)
                function ()
                   e[pconfig.tab]:def({ax,ay},nil)
                end                              
-          })[e.area.but or 1] or chain.nothing)()
+          })[e.but or 1] or chain.nothing)()
       end end
    end
    e.area = nil

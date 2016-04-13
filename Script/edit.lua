@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.12
+Version: 16.04.13
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.12")
+mkl.version("BallPlay Cupid - edit.lua","16.04.13")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 

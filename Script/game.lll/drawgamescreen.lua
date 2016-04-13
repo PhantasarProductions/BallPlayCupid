@@ -20,18 +20,20 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.09
+Version: 16.04.13
 ]]
 -- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.09")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.13")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
 local function dglay(pz,lay)
    local l = declaremultidim(pz.format)
    l.array = pz[lay]
-   for c,v in l:pairs() do
+   local c,v
+   -- for c,v in l:pairs({0,0,0}) do
+   for ax=0,25 do for ay=0,15 do c={ax,ay} v=l:get(c)
        -- print(serialize('c',c).."\nvalue:"..v)
        if v then 
           --print("value: "..strval(v))
@@ -43,7 +45,7 @@ local function dglay(pz,lay)
              DrawImage(v,c[1]*32,(c[2]*32)+20)
           end 
        end    
-   end
+   end end
 end
 
 

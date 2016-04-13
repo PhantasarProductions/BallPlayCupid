@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.12
+Version: 16.04.13
 ]]
 
 -- *import drawgamescreen
@@ -245,9 +245,9 @@ function me.block(x,y)
     local walls = table2multidim(puzzle.walls,puzzle.format)
     ret = false
     ret = ret or x<0
-    ret = ret or x>25
+    ret = ret or x>25-1
     ret = ret or y<0
-    ret = ret or y>15
+    ret = ret or y>15-1
     ret = ret or walls:get({x,y})~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
     return ret
 end

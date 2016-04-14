@@ -43,30 +43,30 @@ Version: 16.04.14
 ]]
 
 -- External libs
-filestuff = filestuff or j_love_import("Libs/filestuff.lll/filestuff.lua")	-- *import filestuff
-strings = strings or j_love_import("Libs/strings.lll/strings.lua")	-- *import strings
-quickmath = quickmath or j_love_import("Libs/quickmath.lua")	-- *import quickmath
-multidim = multidim or j_love_import("Libs/multidim.lll/multidim.lua")	-- *import multidim
-phantasar = phantasar or j_love_import("Libs/phantasar.lll/phantasar.lua")	-- *import phantasar
-md5 = md5 or j_love_import("Libs/md5.lll/md5.lua")	-- *import md5
-home = home or j_love_import("Libs/home.lll/home.lua")	-- *import home
-music = music or j_love_import("Libs/music.lll/music.lua")	-- *import music
-time = time or j_love_import("Libs/time.lll/time.lua")	-- *import time
-save = save or j_love_import("Libs/save.lll/save.lua")	-- *import save
-packtable = packtable or j_love_import("Libs/packtable.lll/packtable.lua")	-- *import packtable
-sfx = sfx or j_love_import("SCRIPT/sfx.lua")	-- *import sfx
-append = append or j_love_import("Libs/append.lll/append.lua")	-- *import append
+-- *import filestuff
+-- *import strings
+-- *import quickmath
+-- *import multidim
+-- *import phantasar
+-- *import md5
+-- *import home
+-- *import music
+-- *import time
+-- *import save
+-- *import packtable
+-- *import sfx
+-- *import append
 
 -- Interal libs
-glob = glob or j_love_import("SCRIPT/glob.lua")	-- *import glob
-user = user or j_love_import("SCRIPT/user.lua")	-- *import user
+-- *import glob
+-- *import user
 -- import mouse
 -- (mouse may not be needed, so it will no longer be imported)
 
 -- Program parts
-title = title or j_love_import("SCRIPT/title.lua")	-- *import title
-mainmenu = mainmenu or j_love_import("SCRIPT/mainmenu.lua")	-- *import mainmenu
-homemadepuzzleselector = homemadepuzzleselector or j_love_import("SCRIPT/homemadepuzzleselector.lua")	-- *import homemadepuzzleselector
+-- *import title
+-- *import mainmenu
+-- *import homemadepuzzleselector
 
 mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.14")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")

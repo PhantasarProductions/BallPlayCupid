@@ -97,6 +97,11 @@ function me.draw()
    love.graphics.print(puzzle.title,150,5)
    Color(0,180,255) puzzle.time = puzzle.time or 0
    love.graphics.print(time.sec2time(puzzle.time),650,5)
+   if (puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free") then
+      Color(180,0,255)
+      puzzle.breakblocks = me.countbreakblocks()
+      love.graphics.print(({[0]="",[1]="1 tile"})[puzzle.breakblocks] or strval(puzzle.breakblocks).." tiles",500,5)
+   end   
    -- bottom bar
    me.currenttool = me.currenttool or 'plate1'
    puzzle.tpr = puzzle.tpr or rand(1,100)
@@ -251,15 +256,18 @@ return
 end
 
 function me.block(x,y)
-    local ret
+    local ret,reason = false,nil
     local walls = table2multidim(puzzle.walls,puzzle.format)
+    local obs   = table2multidim(puzzle.obstacles,puzzle.format)
     ret = false
     ret = ret or x<0
     ret = ret or x>25-1
     ret = ret or y<0
     ret = ret or y>15-1
     ret = ret or walls:get({x,y})~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
-    return ret
+    ret = ret or prefixed(strval(obs:get({x,y})),"bb")
+    if ret and prefixed(strval(obs:get({x,y})),"bb") then reason="bb" end
+    return ret,reason
 end
 
 function me.objblock(o)
@@ -271,11 +279,24 @@ function me.objgoblock(o)
 end
 
 function me.blockturn(o)
-local blk = me.objgoblock(o)
-if blk then
-   o.dir = ({ D='U', U='D', R='L', L='R', S='S'})[o.dir]
-   end
-return blk   
+	local blk,rea = me.objgoblock(o)
+	local x,y
+	if blk then
+     if rea == "bb" then
+        x,y = me.gocoords(o)
+        table2multidim(puzzle.obstacles,puzzle.format):def({x,y},nil)
+        sfx("breakblock")
+        puzzle.breakblocks = me.countbreakblocks()
+        if puzzle.breakblocks==0 then 
+           (({
+               ['Break-Away'] = me.endofpuzzle,
+               ['Break-Free'] = function() table2multidim(puzzle.walls,puzzle.format):def({x,y},'a_exit') end
+           })[puzzle.mission] or chain.nothing)()
+        end   
+     end
+  o.dir = ({ D='U', U='D', R='L', L='R', S='S'})[o.dir]
+  end
+	return blk   
 end
 
 function me.plateturn(o)
@@ -356,7 +377,7 @@ function me.endofpuzzle()
        me.stage='succeed'
     else
        -- fail!
-       me.fail='fail'
+       me.stage='fail'
        me.failure='Only '..ihave..' balls survived. '..puzzle.stats.di_reg..' were required!'
     end
 end
@@ -391,7 +412,7 @@ function me.update()
                       me.oldtimer=timer
                    end
                    -- Puzzle solved or failed?
-                   if puzzle.stats.di_out==0 then me.endofpuzzle() end
+                   if puzzle.stats.di_out==0 then me.endofpuzzle() end                   
                 end
     })[me.stage] or chain.nothing)()
 end
@@ -409,9 +430,21 @@ function me.ass(expression,err)
 if not expression then me.error(err) end
 end
 
+function me.countbreakblocks()
+    local cnt,locs = 0,{}
+    for k,v in spairs(puzzle.obstacles) do
+        if prefixed(v,"bb") then cnt=cnt+1 append(locs,k) end
+    end
+    return cnt,locs 
+end
+
 function me.startpuzzle()
-me.stage = 'play'
-me.ass(countballs(puzzle)>0,"ENOB")
+  me.stage = 'play'
+  me.ass(countballs(puzzle)>0,"ENOB")
+  if puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free" then
+     puzzle.breakblocks = me.countbreakblocks()
+     me.ass(puzzle.breakblocks,"ENBB")
+  end
 end
 
 function me.pickpuzzle()

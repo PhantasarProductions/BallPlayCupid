@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 17:07:55.
+Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 20:57:19.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -163,7 +163,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/Game.lua
     - Script/HOMEMADEPUZZLESELECTOR.LUA
     - Script/ILoveYou.lua
-    - Script/LANGUAGES/ENGLISH.LUA
+    - Script/LANGUAGES/English.lua
     - Script/MAINMENU.LUA
     - Script/SFX.LUA
     - Script/TITLE.LUA
@@ -183,6 +183,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - readme.md
 - Juhani Junkala
   - The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.     You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. 
+    - AUDIO/Game/breakblock.wav
     - AUDIO/Game/exit.wav
     - AUDIO/Game/tool.wav
 - Unknown

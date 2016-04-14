@@ -1,4 +1,28 @@
 --[[
+	BallPlay Cupid
+	English Language File
+	
+	
+	
+	(c) Jeroen P. Broks, 2016, All rights reserved
+	
+		This program is free software: you can redistribute it and/or modify
+		it under the terms of the GNU General Public License as published by
+		the Free Software Foundation, either version 3 of the License, or
+		(at your option) any later version.
+		
+		This program is distributed in the hope that it will be useful,
+		but WITHOUT ANY WARRANTY; without even the implied warranty of
+		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+		GNU General Public License for more details.
+		You should have received a copy of the GNU General Public License
+		along with this program.  If not, see <http://www.gnu.org/licenses/>.
+		
+	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
+	to the project the exceptions are needed for.
+Version: 16.04.14
+]]
+--[[
 	English Language file - Ballplay Cupid
 	
 	
@@ -49,7 +73,7 @@ Version: 16.04.10
 ]]
 
 -- Don't bother modifying the mkl lines. My building scripts put in the data that goes there automatically.
-mkl.version("BallPlay Cupid - English.lua","16.04.10")
+mkl.version("BallPlay Cupid - English.lua","16.04.14")
 mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
 
 local lang = {
@@ -123,6 +147,7 @@ local lang = {
                  error = {
                               ENOF     = "No exit present, while the mission requires it",
                               ENOB     = "No balls present",
+                              ENBB     = "No break-away blocks present", -- This error can only appear in break-away or break-free puzzles.
                               IUOM     = "Unknown movement code",
                               IUKT     = "Unnown tool selected"
                          }          

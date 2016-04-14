@@ -192,6 +192,8 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                            strip = function()
                                        local x=5
                                        local hovertext = ""
+                                       local cd = {"ed_cn","ed_cs","ed_cw","ed_ce"}
+                                       pconfig.odir = pconfig.odir or 2
                                        e.mx = e.mx or 0
                                        e.my = e.my or 0
                                        tab.objects.chosen = tab.objects.chosen or "ball"
@@ -208,6 +210,7 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                        end
                                        white()
                                        love.graphics.print(hovertext,e.mx,e.my)
+                                       DrawImage(cd[pconfig.odir],780,550)
                                    end,
                            clickstrip = function(x,y,b)
                                           local ox=5
@@ -217,11 +220,16 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                         	    if y>=550 and y<=582 and x>=ox and x<=ox+32 then                                        	       
                                         	       tab.objects.chosen = k                                        	       
                                         	    end                                        	    
-                                              ox = ox + 35                                      	        
+                                              ox = ox + 35  
+                                              if x>780 and y>=550 and y<=565 then
+                                                  pconfig.odir = (pconfig.odir or 2) + 1
+                                                  if pconfig.odir>4 then pconfig.odir = 1 end
+                                              end                                   	        
                                         	end 
                                         	--print(er.." ("..x..","..y..")")  
                                         end,        
                            modify = function(x,y,b)
+                                        tab.objects.dir = ({"U","D","L","R"})[pconfig.odir] or "D";
                                         (({ function(x,y) -- put in
                                               local newobj = {
                                                                kind = tab.objects.chosen,

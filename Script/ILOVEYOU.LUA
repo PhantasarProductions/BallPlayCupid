@@ -102,6 +102,7 @@ phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBSTACLES")
 phantasar.adddir(junk,"image","GFX/GAME/FRACTALS","frac_")
 phantasar.adddir(junk,"audio","AUDIO/GAME","sfx_")
+phantasar.adddir(junk,"image","GFX/EDITOR/","ed_")
 for t in each({"wall","floor"}) do
     local list = love.filesystem.getDirectoryItems( "GFX/GAME/PUZZLE/"..upper(t).."S" )
     for d in each(list) do

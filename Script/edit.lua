@@ -105,13 +105,14 @@ local function cstrip(ax,ay,b)
     pconfig.strip[strip].cstrip = pconfig.strip[strip].cstrip or stuff[strip][1]
     local x=5
     local cstrip = pconfig.strip[strip] 
-    if ay>504 and ay<526 then
+    if ay>524 and ay<550 then
        local i = 1
        for k,v in ipairs(stuff[strip]) do
            if v==cstrip.cstrip then i=k+1 end           
        end
        if i>#stuff[strip] then i=1 end
-       cstrip.cstrip = stuff[strip][i]
+       --cstrip.cstrip = stuff[strip][i]
+       pconfig.strip[strip].cstrip = stuff[strip][i] or stuff[strip][1] 
        -- showstrip(strip)
     elseif ay>550 and ay<582 then    
         print("CHECK! "..strip)

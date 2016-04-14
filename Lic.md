@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 15:41:25.
+Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 16:14:57.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -109,6 +109,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Floors/Nature/Untitled.png
     - GFX/Game/Puzzle/Floors/Road/Road-0.png
     - GFX/Game/Puzzle/Floors/Road/Road-1.png
+    - GFX/Game/Puzzle/Floors/Road/Road-2.png
     - GFX/Game/Puzzle/Objects/Ball.png
     - GFX/Game/Puzzle/Objects/Ghost.png
     - GFX/Game/Puzzle/Objects/Robot.png
@@ -155,7 +156,6 @@ This list is automatically updated every time I modify the game myself, and as s
     - Lic.md
     - Script/ANNA.LLL/ANNA.LUA
     - Script/GENERATEINTERFACE.LUA
-    - Script/GLOB.LUA
     - Script/Game.lua
     - Script/HOMEMADEPUZZLESELECTOR.LUA
     - Script/ILoveYou.lua
@@ -169,10 +169,12 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz02.lua
     - Script/game.lll/Puzzles/Pz03.lua
     - Script/game.lll/Puzzles/Pz04.lua
+    - Script/game.lll/Puzzles/Pz05.lua
     - Script/game.lll/Puzzles/Titles.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/game.lll/objects.lua
+    - Script/glob.lua
     - Translate.md
     - readme.md
 - Juhani Junkala

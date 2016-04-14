@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 12:36:47.
+Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 14:45:40.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -106,6 +106,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Floors/Modern/Blue.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey2.png
+    - GFX/Game/Puzzle/Floors/Nature/Untitled.png
     - GFX/Game/Puzzle/Floors/Road/Road-0.png
     - GFX/Game/Puzzle/Floors/Road/Road-1.png
     - GFX/Game/Puzzle/Objects/Ball.png
@@ -129,6 +130,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/Plate2.png
     - GFX/Game/Puzzle/Obstacles/Trans.png
     - GFX/Game/Puzzle/Obstacles/trashcan.png
+    - GFX/Game/Puzzle/Walls/Bush.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
     - GFX/Game/Puzzle/Walls/Modern/E.png
@@ -146,28 +148,32 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Walls/Road/Pylon.png
     - GFX/Game/PuzzleSolvedIndicator.png
     - GFX/MainMenu/Item.png
-  - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself
     - Lic.md
     - README.md
-    - Script/Title.lua
-    - Script/anna.lll/anna.lua
-    - Script/edit.lua
-    - Script/game.lll/Objects.lua
+    - Translate.md
+  - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself
+    - Lic.md
+    - Script/ANNA.LLL/ANNA.LUA
+    - Script/EDIT.LUA
+    - Script/GENERATEINTERFACE.LUA
+    - Script/GLOB.LUA
+    - Script/Game.lua
+    - Script/HOMEMADEPUZZLESELECTOR.LUA
+    - Script/ILoveYou.lua
+    - Script/LANGUAGES/ENGLISH.LUA
+    - Script/MAINMENU.LUA
+    - Script/SFX.LUA
+    - Script/TITLE.LUA
+    - Script/USER.LUA
     - Script/game.lll/Puzzles/Pz01.lua
     - Script/game.lll/Puzzles/Pz02.lua
     - Script/game.lll/Puzzles/Pz03.lua
     - Script/game.lll/Puzzles/Titles.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
-    - Script/generateinterface.lua
-    - Script/glob.lua
-    - Script/homemadepuzzleselector.lua
-    - Script/iloveyou.lua
-    - Script/languages/English.lua
-    - Script/mainmenu.lua
-    - Script/sfx.lua
-    - Script/user.lua
+    - Script/game.lll/objects.lua
     - Translate.md
+    - readme.md
 - Juhani Junkala
   - The person who associated a work with this deed has dedicated the work to the public domain by waiving all of his or her rights to the work worldwide under copyright law, including all related and neighboring rights, to the extent allowed by law.     You can copy, modify, distribute and perform the work, even for commercial purposes, all without asking permission. 
     - AUDIO/Game/exit.wav

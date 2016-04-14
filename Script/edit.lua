@@ -112,7 +112,7 @@ local function cstrip(ax,ay,b)
        end
        if i>#stuff[strip] then i=1 end
        cstrip.cstrip = stuff[strip][i]
-       showstrip(strip)
+       -- showstrip(strip)
     elseif ay>550 and ay<582 then    
         print("CHECK! "..strip)
         for k,v in spairs(assets) do            

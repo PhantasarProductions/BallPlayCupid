@@ -378,7 +378,7 @@ function me.endofpuzzle()
     else
        -- fail!
        me.stage='fail'
-       me.failure='Only '..ihave..' balls survived. '..puzzle.stats.di_reg..' were required!'
+       me.failure='Only '..ihave..' balls survived. '..puzzle.stats.di_req..' were required!'
     end
 end
 

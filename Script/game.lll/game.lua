@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.13
+Version: 16.04.14
 ]]
 
 -- *import drawgamescreen
@@ -49,7 +49,17 @@ me.backgrounds = {
                            end)()
                         puzzle.fractal = puzzle.fractal or rand(1,#me.fractals)
                         DrawImage(me.fractals[puzzle.fractal],0,0) 
-                      end
+                      end,
+      space = function()
+               stars = stars or {}
+               if rand(1,15)==1 then append(stars,{x=rand(0,800),y=-5,spd=(rand(1,40)/10),c=rand(100,255)}) end
+               for i,star in pairs(stars) do
+                   star.y = star.y + star.spd
+                   Color(star.c,star.c,star.c)
+                   love.graphics.points(star.x,star.y)
+                   if star.y>500 then star[i] = nil end -- No need to pack. The way this is coded picks up all stars anyway. I used pairs as the order doesn't matter anyway.                    
+               end
+              end                
 }
 
 

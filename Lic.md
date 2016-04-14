@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Wed 13 April 2016; 19:01:37.
+Below is a list of contributors to the game. This list was last updated on Thu 14 April 2016; 12:36:47.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -103,6 +103,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Extern/Vloer3.png
     - GFX/Game/Puzzle/Extern/Vloer4.png
     - GFX/Game/Puzzle/Floors/Desert/DES_Sand.png
+    - GFX/Game/Puzzle/Floors/Modern/Blue.png
+    - GFX/Game/Puzzle/Floors/Modern/BlueGrey.png
+    - GFX/Game/Puzzle/Floors/Modern/BlueGrey2.png
     - GFX/Game/Puzzle/Floors/Road/Road-0.png
     - GFX/Game/Puzzle/Floors/Road/Road-1.png
     - GFX/Game/Puzzle/Objects/Ball.png
@@ -128,6 +131,18 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/trashcan.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
+    - GFX/Game/Puzzle/Walls/Modern/E.png
+    - GFX/Game/Puzzle/Walls/Modern/N.png
+    - GFX/Game/Puzzle/Walls/Modern/NE.png
+    - GFX/Game/Puzzle/Walls/Modern/NES.png
+    - GFX/Game/Puzzle/Walls/Modern/NW.png
+    - GFX/Game/Puzzle/Walls/Modern/NWS.png
+    - GFX/Game/Puzzle/Walls/Modern/S.png
+    - GFX/Game/Puzzle/Walls/Modern/SE.png
+    - GFX/Game/Puzzle/Walls/Modern/SES.png
+    - GFX/Game/Puzzle/Walls/Modern/SW.png
+    - GFX/Game/Puzzle/Walls/Modern/SWS.png
+    - GFX/Game/Puzzle/Walls/Modern/W.png
     - GFX/Game/Puzzle/Walls/Road/Pylon.png
     - GFX/Game/PuzzleSolvedIndicator.png
     - GFX/MainMenu/Item.png
@@ -140,6 +155,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Objects.lua
     - Script/game.lll/Puzzles/Pz01.lua
     - Script/game.lll/Puzzles/Pz02.lua
+    - Script/game.lll/Puzzles/Pz03.lua
     - Script/game.lll/Puzzles/Titles.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua

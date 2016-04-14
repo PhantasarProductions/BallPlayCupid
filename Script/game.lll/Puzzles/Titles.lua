@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.13
+Version: 16.04.14
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -30,6 +30,7 @@ Version: 16.04.13
 
 names = {
 	Pz01 = "It came from the desert",
-	Pz02 = "Head out on the highway"}
+	Pz02 = "Head out on the highway",
+	Pz03 = "The Next Generation"}
 
 

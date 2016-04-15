@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Fri 15 April 2016; 16:34:36.
+Below is a list of contributors to the game. This list was last updated on Fri 15 April 2016; 16:50:07.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -160,7 +160,6 @@ This list is automatically updated every time I modify the game myself, and as s
     - Lic.md
     - Script/ANNA.LLL/ANNA.LUA
     - Script/GENERATEINTERFACE.LUA
-    - Script/Game.lua
     - Script/ILoveYou.lua
     - Script/LANGUAGES/English.lua
     - Script/SFX.LUA

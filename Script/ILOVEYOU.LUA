@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.14
+Version: 16.04.15
 ]]
 
 --[[
@@ -67,8 +67,9 @@ Version: 16.04.14
 -- *import title
 -- *import mainmenu
 -- *import homemadepuzzleselector
+-- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.14")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.15")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 

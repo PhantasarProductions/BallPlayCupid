@@ -20,31 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.14
-]]
---[[
-	BallPlay Genius
-	Game Main Script
-	
-	
-	
-	(c) Jeroen P. Broks, 2016, All rights reserved
-	
-		This program is free software: you can redistribute it and/or modify
-		it under the terms of the GNU General Public License as published by
-		the Free Software Foundation, either version 3 of the License, or
-		(at your option) any later version.
-		
-		This program is distributed in the hope that it will be useful,
-		but WITHOUT ANY WARRANTY; without even the implied warranty of
-		MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-		GNU General Public License for more details.
-		You should have received a copy of the GNU General Public License
-		along with this program.  If not, see <http://www.gnu.org/licenses/>.
-		
-	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
-	to the project the exceptions are needed for.
-Version: 16.04.14
+Version: 16.04.15
 ]]
 
 drawgamescreen = drawgamescreen or j_love_import("SCRIPT/GAME.LLL/drawgamescreen.lua")	-- *import drawgamescreen
@@ -374,8 +350,17 @@ function me.endofpuzzle()
     if puzzle.mission=='Normal' or puzzle.mission=="Break-Free" then ihave = puzzle.stats.di_in end
     if ihave>=puzzle.stats.di_req then
        -- success!
-       user.data.puzzlesolved = user.data.puzzlesolved or {}
-       -- if this is an original puzzle, let's set up the personal stats and contact Anna about it.
+       if me.rec then -- Only act upon an original puzzle!
+          -- Let's first update the local data
+          user.data.puzzlesolved = user.data.puzzlesolved or {}
+          user.data.puzzlesolved[me.rec] = user.data.puzzlesolved[me.rec] or {}
+          local myupd = user.data.puzzlesolved[me.rec]
+          if (not myupd.time) or (myupd.time>puzzle.time) then myupd.time = puzzle.time end
+          if (not myupd.toolsused) or (myupd.toolsused>puzzle.usedtools) then myupd.toolsused = puzzle.usedtools end
+          if (not myupd.ballssurvived) or (myupd.myupd.ballssurvived<ihave) then myupd.ballssurvived=ihave end
+          user.save()
+          -- if this is an original puzzle, let's set up the personal stats and contact Anna about it.
+       end       
        -- all done. let's congratulate the user
        me.stage='succeed'
     else

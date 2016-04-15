@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.12
+Version: 16.04.15
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.12")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.15")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -120,7 +120,7 @@ if (not hps.chosenfile) or len(hps.chosenfile)==0 then return end -- A file must
 local chaingo=
 ({ 
    go_game = function()
-local game = game or j_love_import("SCRIPT/game.lll/game.lua")	          -- *localimport game
+          -- *localimport game
           game.getback   = 'mainmenu'
           game.puzzle    = save.load("homemadepuzzles/"..hps.chosenfile) 
           game.source    = "Home: "..hps.chosenfile
@@ -131,7 +131,7 @@ local game = game or j_love_import("SCRIPT/game.lll/game.lua")	          -- *loc
           end,
    go_edit = function()
           print("Loading editor")
-local edit = edit or j_love_import("SCRIPT/edit.lua")	          -- *localimport edit
+          -- *localimport edit
           edit.file = hps.chosenfile
           return edit
           end         

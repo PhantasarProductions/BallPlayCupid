@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.14
+Version: 16.04.15
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.14")
+mkl.version("BallPlay Cupid - edit.lua","16.04.15")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -390,7 +390,7 @@ function e.draw()
        end
     -- Point in puzzle
     if e.mx and e.my and e.my>20 and e.my<500 then
-       white() love.graphics.print("pos: "..e.mx..","..e.my,5,20); love.graphics.print("rect: "..dx..","..dy,5,40) -- debug line
+       -- white() love.graphics.print("pos: "..e.mx..","..e.my,5,20); love.graphics.print("rect: "..dx..","..dy,5,40) -- debug line
        Color(c,c,c) 
        Rect(dx,dy,32,32,"line")
     end 

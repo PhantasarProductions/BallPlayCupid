@@ -94,6 +94,7 @@ local junk =            {
                                    intback = "GFX/INTERFACE/DARK-DROPS.JPG",
                                 gamepaused = "GFX/GAME/GENERAL/PAUSED.PNG",
                                      gratz = "GFX/GAME/GENERAL/GRATZ.PNG",
+                                    failed = "GFX/GAME/GENERAL/FAIL.PNG",
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
                            audio = {
                                   sfx_buzz = "AUDIO/INTERFACE/BUZZ.OGG" },

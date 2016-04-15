@@ -169,11 +169,21 @@ function me.draw()
                               )
                   end,           
          succeed = function()
+                     puzzle.gratz = 300
                      DrawImage('gratz',
-                                  400-(ImageWidth('gratz')/2),
-                                  300-(ImageHeight('gratz')/2)
+                                           400-(ImageWidth('gratz')/2),
+                                  puzzle.gratz-(ImageHeight('gratz')/2)
                               )
-                  end           
+                  end    ,    
+        fail = function()
+                 DrawImage("failed",
+                                400-(ImageWidth('failed')/2),
+                               300-(ImageHeight('failed')/2) )
+                 puzzle.failure = puzzle.failure or love.graphics.newText(glob.love2dfont,me.failure)
+                 love.graphics.draw(puzzle.failure,
+                                    400-(puzzle.failure:getWidth()/2),
+                                    400-(puzzle.failure:getHeight()/2))  
+               end                     
                 
    })[me.stage] or chain.nothing)()
 end
@@ -293,7 +303,7 @@ function me.blockturn(o)
         if puzzle.breakblocks==0 then 
            (({
                ['Break-Away'] = me.endofpuzzle,
-               ['Break-Free'] = function() table2multidim(puzzle.walls,puzzle.format):def({x,y},'a_exit') end
+               ['Break-Free'] = function() table2multidim(puzzle.obstacles,puzzle.format):def({x,y},'a_exit') end
            })[puzzle.mission] or chain.nothing)()
         end   
      end
@@ -465,6 +475,11 @@ end
 
 function me.leave()
 music.stop()
+end
+
+function me.giveup()
+me.stage='fail'
+me.failure="You gave up"
 end
 
 function me.arrive()

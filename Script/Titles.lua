@@ -34,7 +34,8 @@ local names = {
 	Pz03 = "The Next Generation",
 	Pz04 = "\73\116\39\115\32\110\111\116\32\101\97\115\121\32\98\101\105\110\103\32\103\114\101\101\110\46",
 	Pz05 = "\73\32\99\97\110\39\116\32\98\114\101\97\107\97\119\97\121\46",
-	Pz06 = "Long ago in a galaxy far away"}
+	Pz06 = "Long ago in a galaxy far away",
+	Pz07 = "It takes two, baby"}
 
 
 return names

@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Fri 15 April 2016; 20:07:29.
+Below is a list of contributors to the game. This list was last updated on Sat 16 April 2016; 15:44:07.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -41,6 +41,9 @@ This list is automatically updated every time I modify the game myself, and as s
 ## Contributors:
 
 
+- Carrinkio
+  - Public Domain
+    - GFX/Game/backgrounds/GrimReaper.png
 - CoolText
   - The banner containing the title of the game is bound to the game in the GNU GPL licence (yeah I know, pretty uncommon license for a picture), all other banners are under a CCBYNCSA license: http://creativecommons.org/licenses/by-nc-sa/4.0/
     - GFX/Game/General/fail.png
@@ -89,6 +92,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Editor/CN.png
     - GFX/Editor/CS.png
     - GFX/Editor/CW.png
+    - GFX/Game/ForeGrounds/CircularDarkness.png
     - GFX/Game/Laser/HorizontalLaserBeam.png
     - GFX/Game/Laser/VerticalLaserBeam.png
     - GFX/Game/Puzzle/Extern/Bom.png
@@ -163,7 +167,6 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/ILoveYou.lua
     - Script/LANGUAGES/English.lua
     - Script/SFX.LUA
-    - Script/TITLE.LUA
     - Script/Titles.lua
     - Script/USER.LUA
     - Script/edit.lua
@@ -175,6 +178,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz06.lua
     - Script/game.lll/Puzzles/Pz07.lua
     - Script/game.lll/Puzzles/Pz08.lua
+    - Script/game.lll/Puzzles/Pz09.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/game.lll/objects.lua
@@ -182,6 +186,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/homemadepuzzleselector.lua
     - Script/mainmenu.lua
     - Script/pickmainpuzzle.lua
+    - Script/title.lua
     - Translate.md
     - readme.md
 - Juhani Junkala
@@ -189,6 +194,17 @@ This list is automatically updated every time I modify the game myself, and as s
     - AUDIO/Game/breakblock.wav
     - AUDIO/Game/exit.wav
     - AUDIO/Game/tool.wav
+- Kevin McLeod
+  - Licensed under Creative Commons: By Attribution 3.0
+    - music/theme/dark/Agnus Dei X.mp3
+- Man of Steel
+  - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
+    - gfx/game/puzzle/floors/Horror House/MVloer.png
+    - gfx/game/puzzle/walls/Horror House/WD.png
+    - gfx/game/puzzle/walls/Horror House/WU.png
+    - gfx/game/puzzle/walls/Horror House/WWE.png
+    - gfx/game/puzzle/walls/Horror House/WWS.png
+    - gfx/game/puzzle/walls/Horror House/WWW.png
 - Unknown
   - These pictures were contributed to the public domain. The source has been lost to me. If you can identify the original creator for me, let me know.
     - GFX/Game/Symbol/All.piko

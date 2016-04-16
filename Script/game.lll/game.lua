@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.16
 ]]
 
 
@@ -62,7 +62,21 @@ me.backgrounds = {
                    love.graphics.points(star.x,star.y)
                    if star.y>500 then star[i] = nil end -- No need to pack. The way this is coded picks up all stars anyway. I used pairs as the order doesn't matter anyway.                    
                end
-              end                
+              end,
+      image = function()
+               Color(puzzle.ibck.r or 255,puzzle.ibck.g or 255,puzzle.ibck.b or 255,puzzle.ibck.a or 255)
+               DrawImage("back_"..puzzle.ibck.img,400-(ImageWidth("back_"..puzzle.ibck.img)/2),300-(ImageHeight("back_"..puzzle.ibck.img)/2))
+               white()
+              end                        
+}
+
+me.foregrounds = {
+         nothing = chain.nothing,
+         image = function()
+                  Color(puzzle.ifor.r or 255,puzzle.ifor.g or 255,puzzle.ifor.b or 255,puzzle.ifor.a or 255)
+                  DrawImage("fore_"..puzzle.ifor.img,400-(ImageWidth("fore_"..puzzle.ifor.img)/2),300-(ImageHeight("fore_"..puzzle.ifor.img)/2))
+                  white()
+                 end
 }
 
 

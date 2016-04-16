@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.16
 ]]
 
 --[[
@@ -69,7 +69,7 @@ Version: 16.04.15
 -- *import homemadepuzzleselector
 -- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.15")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.16")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 
@@ -103,6 +103,8 @@ local junk =            {
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBJECTS")                        
 phantasar.adddir(junk,"image","GFX/GAME/PUZZLE/OBSTACLES")
 phantasar.adddir(junk,"image","GFX/GAME/FRACTALS","frac_")
+phantasar.adddir(junk,"image","GFX/GAME/BACKGROUNDS","back_")
+phantasar.adddir(junk,"image","GFX/GAME/FOREGROUNDS","fore_")
 phantasar.adddir(junk,"audio","AUDIO/GAME","sfx_")
 phantasar.adddir(junk,"image","GFX/EDITOR/","ed_")
 for t in each({"wall","floor"}) do

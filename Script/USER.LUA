@@ -184,13 +184,14 @@ function u.call_anna(query)
 -- *fi
     if cl=="HANDSHAKE" and lines[i-1]=="GREET:ANNA" then 
     	 allowread=true
+    	 print("Shaken hands with Anna, so let's read all data.")
     elseif cl=="BYEBYE:SEEYA" and allowread then
        allowread=false
        didclose=true
     elseif allowread then
     	 d = mysplit(cl,":")
-    	 if d=="ANNA.SAY" then anna.addmsg(d[2])
-    	 elseif d=="ANNA.BOX" then love.window.showMessageBox( "Anna says: ", d[2] ) end
+    	 if d[1]=="ANNA.SAY" then anna.addmsg(d[2])
+    	 elseif d[1]=="ANNA.BOX" then love.window.showMessageBox( "Anna says: ", d[2] ) end
     	 getdata[d[1]] = d[2]
     end    	 
   end  

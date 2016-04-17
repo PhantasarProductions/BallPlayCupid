@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.17
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.15")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.17")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -122,7 +122,8 @@ local chaingo=
    go_game = function()
           -- *localimport game
           game.getback   = 'mainmenu'
-          game.puzzle    = save.load("homemadepuzzles/"..hps.chosenfile) 
+          game.puzzle    = save.load("homemadepuzzles/"..hps.chosenfile)
+          game.loadpz    = hps.chosenfile 
           game.source    = "Home: "..hps.chosenfile
           game.mode      = "homemade"
           game.pickchain = hps

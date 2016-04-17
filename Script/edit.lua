@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.17
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.15")
+mkl.version("BallPlay Cupid - edit.lua","16.04.17")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -436,13 +436,14 @@ end
 
 function e.testpuzzle()
 save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig})
-local game = game or j_love_import("SCRIPT/game.lll/game.lua")	-- *localimport game
+-- *localimport game
 -- *if ignore
--- deactivated by builder -- local game = {} -- Ignored by the game. I just wanted to fool my IDE outliner.
+local game = {} -- Ignored by the game. I just wanted to fool my IDE outliner.
 -- *fi
 game.getback = e
 game.puzzle = save.load("homemadepuzzles/"..e.file) -- I need a duplicate, or else the test routine will overwrite the actual level in the editor's memory
 game.source = "Test-Run"
+game.testpz = e.file
 game.mode   = "test"
 chain.go(game)
 end e.TestPuzzle = e.testpuzzle

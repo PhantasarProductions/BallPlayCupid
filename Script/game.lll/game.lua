@@ -526,6 +526,34 @@ me.stage='fail'
 me.failure="You gave up"
 end
 
+function me.restart()
+  music.stop()
+  puzzle    = (({ official = function() return save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(me.rec)) end,
+                  homemade = function() return save.load("homemadepuzzles/"..me.loadpz) end,
+                  test     = function() return save.load("homemadepuzzles/"..me.testpz) end,
+                  
+              })[me.mode] or function() error('Unknown mode') end)()
+  me.stage='intro'                
+end
+
+function me.nextpuzzle()
+   local num = tonumber(right(me.rec,2))
+   local ori = num
+   local function pz() return "Pz"..right("0"..num,2) end
+   repeat
+      num = num + 1
+      if not titles[pz()] then num=1 end
+      if num==ori then 
+         num=ori+1 
+         if not titles[pz()] then num=1 end
+         break 
+      end
+   until not user.data.puzzlesolved[pz()]
+   me.rec = pz()
+   me.source = "Puzzle #"..right(pz(),2)
+   me.restart()
+end
+
 function me.arrive()
     local test = me.mode=='test'
     local homemade = me.mode=='homemade'
@@ -540,7 +568,7 @@ function me.arrive()
                     fail   = {zagain = {enable=true, fun=me.restart},
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
-                    succeed= {znext = {enable=not (test or homemade), fun=me.restart},
+                    succeed= {znext = {enable=not (test or homemade), fun=me.nextpuzzle},
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
                               

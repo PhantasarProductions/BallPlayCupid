@@ -74,7 +74,7 @@ function pmp.mousepressed(x,y,b)
           game.getback   = 'mainmenu'
           game.puzzle    = save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(pmp.hoverkey)) 
           game.source    = "Puzzle #"..right(pmp.hoverkey,2)
-          game.rec       = pmp.hoverkey
+          game.rec       = pmp.hoverkey          
           game.mode      = "official"
           game.pickchain = pmp
           print("Starting game")          

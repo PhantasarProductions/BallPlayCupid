@@ -403,7 +403,7 @@ function me.anna(ihave)
    local want = {'id','secu','puz','time','tools','survived','v1','v2','v3'}
    local unhashed = ''
    local ok,data
-   if user.data.allow then
+   if user.data.online then
       tablemerge(annaquery,{
                                puz      = me.rec,
                                time     = puzzle.time,
@@ -415,9 +415,10 @@ function me.anna(ihave)
       for key in each(want) do   
           unhashed = unhashed .. key .. annaquery[key]
       end
-      annaquery.hash = md5(unhashed)   
-      ok,data = user.call_anna(annaquery)               
+      annaquery.hash = md5.sumhexa(unhashed)   
    end
+   print("Next query sent to Anna\n",serialize("annaquery",annaquery))
+   ok,data = user.call_anna(annaquery)               
    if ok then me.victorydata = data end
 end
 

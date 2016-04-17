@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.17
 ]]
 local mm = {}
 
 
-mkl.version("BallPlay Cupid - mainmenu.lua","16.04.15")
+mkl.version("BallPlay Cupid - mainmenu.lua","16.04.17")
 mkl.lic    ("BallPlay Cupid - mainmenu.lua","GNU General Public License 3")
 
 chain.reg("mainmenu",mm)
@@ -40,6 +40,8 @@ function mm.langdata(item)
 Color(0,255,255)
 love.graphics.print(user.data.config.lang,item.ix+300,item.iy+10)
 end
+
+mm.ver = mkl.newestversion() -- This can be false as the game and editor modules are not loaded at this time this is executed.
 
 
 mm.menuitems = {
@@ -87,7 +89,8 @@ end
 function mm.draw()
   Color(80,80,80)
   LangFont(lang)
-  love.graphics.print(user.username)
+  love.graphics.print(user.username,5,5)
+  love.graphics.print(mkl.newestversion(),700,5)
   white()
   if mm.cupidpos.y>-300 then mm.cupidpos.y = mm.cupidpos.y-1.5; DrawImage('cupid',mm.cupidpos.x,mm.cupidpos.y) end
   DrawImage('logo',mm.logopos.x,mm.logopos.y); if mm.logopos.y>0 then mm.logopos.y = mm.logopos.y-1 return end

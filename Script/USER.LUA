@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.07
+Version: 16.04.17
 ]]
 
 -- And exception to the GPL Freedom!
@@ -37,7 +37,7 @@ Version: 16.04.07
 
 -- *define annachat
 
-mkl.version("BallPlay Cupid - user.lua","16.04.07")
+mkl.version("BallPlay Cupid - user.lua","16.04.17")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 
@@ -48,7 +48,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.04.07")
+mkl.version("BallPlay Cupid - user.lua","16.04.17")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
@@ -148,6 +148,7 @@ function u.call_anna(query)
      print("Request to call Anna has been rejected.") 
      return 
      end
+  print("Let's have a little chat with Anna.")   
 	local function t2q()
 	   local ret = ""
 	   for k,v in spairs(query) do

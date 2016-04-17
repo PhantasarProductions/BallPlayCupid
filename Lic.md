@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 16 April 2016; 15:44:07.
+Below is a list of contributors to the game. This list was last updated on Sun 17 April 2016; 12:47:32.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -162,13 +162,12 @@ This list is automatically updated every time I modify the game myself, and as s
     - Translate.md
   - Licensed under the GNU General Public License 3 -- http://www.gnu.org/licenses/gpl-3.0.en.html -- UNLESS explictly noted in the .lua file itself
     - Lic.md
-    - Script/ANNA.LLL/ANNA.LUA
+    - Script/ANNA.LLL/Anna.lua
     - Script/GENERATEINTERFACE.LUA
     - Script/ILoveYou.lua
     - Script/LANGUAGES/English.lua
     - Script/SFX.LUA
     - Script/Titles.lua
-    - Script/USER.LUA
     - Script/edit.lua
     - Script/game.lll/Puzzles/Pz01.lua
     - Script/game.lll/Puzzles/Pz02.lua
@@ -187,6 +186,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/mainmenu.lua
     - Script/pickmainpuzzle.lua
     - Script/title.lua
+    - Script/user.lua
     - Translate.md
     - readme.md
 - Juhani Junkala

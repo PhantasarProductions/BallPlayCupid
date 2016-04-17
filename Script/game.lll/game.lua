@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.16
+Version: 16.04.17
 ]]
 
 
@@ -94,6 +94,7 @@ function me.draw()
    puzzle = puzzle or me.puzzle
    assert(puzzle,"No puzzle loaded!")
    puzzle.background = puzzle.background or "RandomFractal"
+   puzzle.foreground = puzzle.foreground or "nothing"
    puzzle.musicplaying = puzzle.musicplaying or me.startmusic()
    -- Clear
    Cls()
@@ -107,6 +108,8 @@ function me.draw()
    white()
    DrawImage("int_top",0,0)
    DrawImage("int_men",0,500)
+   -- Foreground
+   me.foregrounds[puzzle.foreground]()
    -- Top bar
    white()
    love.graphics.print(me.source,5,5)
@@ -374,7 +377,7 @@ end
 me.moves = {}
 
 function me.moves.move_default(o)
-print("Move Default")
+-- print("Move Default")
 me.plateturn(o) -- "plateturn" MUST come prior to "blockturn" or you will get some very undesirable behavior!
 me.blockturn(o)
 me.move(o)
@@ -393,6 +396,31 @@ function me.move(o)
    end
 end
 
+function me.anna(ihave)
+   -- *import tablemerge
+   local v,a,g = mkl.newestversion()
+   local annaquery = {v1=a[1]+2000,v2=a[2],v3=a[3], game='BPC', HC='Game', A="BPC_Stats"}
+   local want = {'id','secu','puz','time','tools','survived','v1','v2','v3'}
+   local unhashed = ''
+   local ok,data
+   if user.data.allow then
+      tablemerge(annaquery,{
+                               puz      = me.rec,
+                               time     = puzzle.time,
+                               tools    = puzzle.usedtools,
+                               survived = ihave,
+                               id       = user.data.onlineid,
+                               secu     = user.data.secucode
+                           })
+      for key in each(want) do   
+          unhashed = unhashed .. key .. annaquery[key]
+      end
+      annaquery.hash = md5(unhashed)   
+      ok,data = user.call_anna(annaquery)               
+   end
+   if ok then me.victorydata = data end
+end
+
 function me.endofpuzzle()
     local ihave = puzzle.stats.di_out
     if puzzle.mission=='Normal' or puzzle.mission=="Break-Free" then ihave = puzzle.stats.di_in end
@@ -405,9 +433,10 @@ function me.endofpuzzle()
           local myupd = user.data.puzzlesolved[me.rec]
           if (not myupd.time) or (myupd.time>puzzle.time) then myupd.time = puzzle.time end
           if (not myupd.toolsused) or (myupd.toolsused>puzzle.usedtools) then myupd.toolsused = puzzle.usedtools end
-          if (not myupd.ballssurvived) or (myupd.myupd.ballssurvived<ihave) then myupd.ballssurvived=ihave end
+          if (not myupd.ballssurvived) or (myupd.ballssurvived<ihave) then myupd.ballssurvived=ihave end
           user.save()
           -- if this is an original puzzle, let's set up the personal stats and contact Anna about it.
+          if me.mode == "official" then me.anna(ihave) end
        end       
        -- all done. let's congratulate the user
        me.stage='succeed'

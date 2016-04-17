@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.15
+Version: 16.04.17
 ]]
 -- *import titles
 local pmp = {}
@@ -37,7 +37,7 @@ function pmp.draw()
        white()
        DrawImage('logo',mainmenu.logopos.x,mainmenu.logopos.y); if mainmenu.logopos.y>0 then mainmenu.logopos.y = mainmenu.logopos.y-1 return end
        local y=250-(pmp.pm*20)
-       user.data.puzzlessolved = user.data.puzzlessolved or {}
+       user.data.puzzlesolved = user.data.puzzlesolved or {}
        local hover
        pmp.hoverkey = nil
        love.graphics.print("Best time:" ,400,225)

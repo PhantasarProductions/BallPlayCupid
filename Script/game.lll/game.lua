@@ -180,6 +180,7 @@ function me.draw()
       for l in each(tut) do love.graphics.print(l,305,y) y=y+20 end
    end
    -- stage specific actions   
+   white()
    ;(({
          play = function()
                     local e=me
@@ -294,7 +295,7 @@ function me.mousepressed(x,y,b)
                       local wv= w:get({tx,ty})
                       local pp= p
                       if pp and prefixed(pp,"plate") then pp="r"..pp end
-                      if (v=='rplate1' or v=='rplate2' or v=='yplate1' or v=='yplate2' or v==nil) and v~=pp and (not wv) and puzzle.tools[p or 'trash']>0 then
+                      if (v=='rplate1' or v=='rplate2' or v=='yplate1' or v=='yplate2' or v==nil) and v~=pp and (not wv) and puzzle.tools[p or 'trash']>0 and table2multidim(puzzle.floors,puzzle.format):get({tx,ty}) then
                          if wall then w:def({tx,ty},p) else o:def({tx,ty},pp) end
                          puzzle.usedtools = puzzle.usedtools + 1
                          puzzle.tools[p or 'trash'] = puzzle.tools[p or 'trash'] - 1

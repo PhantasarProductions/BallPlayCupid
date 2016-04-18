@@ -166,6 +166,7 @@ function me.draw()
        Color(c[hv][1]*s[b.enable],c[hv][2]*s[b.enable],c[hv][3]*s[b.enable])
        love.graphics.print(lang.game.buttons[k] or "?"..k,303,y+2)
    end
+   white();
    -- stage specific actions
    (({
          play = function()
@@ -198,7 +199,7 @@ function me.draw()
                         if puzzle.vda>255 then puzzle.vda=255 end
                         if puzzle.gratz>-800 then puzzle.gratz=puzzle.gratz-1 end
                         y=25
-                        Color(0,0,0,puzzle.vda/4)
+                        Color(0,0,0,puzzle.vda*.75)
                         Rect(0,20,800,480)
                         for tab,name in spairs(lang.game.suctab) do
                             if me.victorydata['BOARD.YOU.'..tab] then
@@ -219,7 +220,8 @@ function me.draw()
                                end
                                y = y + 3
                                Color(255,180,0,puzzle.vda)
-                               love.graphics.print("Your best score: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)) })[tab] or me.victorydata['BOARD.YOU.'..tab] or "---"),100,y)
+                               -- love.graphics.print("Your best score: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)) })[tab] or me.victorydata['BOARD.YOU.'..tab] or "---"),100,y)
+                               love.graphics.print("Your current rank: "..(me.victorydata['BOARD.YOU.'..tab] or "unranked"),100,y)
                                Color(180,255,0,puzzle.vda)
                                love.graphics.print("World average: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)) })[tab] or me.victorydata['BOARD.AVG.'..tab] or "---"),500,y)
                                y = y + 50
@@ -500,6 +502,22 @@ function me.update()
                       for o in each(puzzle.objects) do
                           (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
                           (me.exits[objects[o.kind].finish]   or chain.nothing)(o)
+                          if table2multidim(puzzle.floors,puzzle.format):get({o.x,o.y})==nil then -- and o.modx==0 and o.mody==0 then
+                             local of = {
+                                          img    = cpImg(assets[o.kind]),
+                                          x      = (o.x*32)+(16),
+                                          y      = ((o.y*32)+20)+(16),
+                                          r      = objects[o.kind].color[1],
+                                          g      = objects[o.kind].color[2],
+                                          b      = objects[o.kind].color[3],
+                                          a      = objects[o.kind].alpha
+                                        }
+                             append(puzzle.falling,of)
+                             sfx("fall")            
+                             HotCenter(of.img)
+                             me.destroy(o)
+                             if prefixed(o.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                        
+                          end
                       end                      
                       for i in each(me.destroylist) do
                           puzzle.objects[i]=nil

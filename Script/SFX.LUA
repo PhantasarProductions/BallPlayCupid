@@ -20,9 +20,9 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.09
+Version: 16.04.18
 ]]
-mkl.version("BallPlay Cupid - sfx.lua","16.04.09")
+mkl.version("BallPlay Cupid - sfx.lua","16.04.18")
 mkl.lic    ("BallPlay Cupid - sfx.lua","GNU General Public License 3")
 
 return function(f)

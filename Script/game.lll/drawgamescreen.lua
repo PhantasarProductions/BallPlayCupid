@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.14
+Version: 16.04.18
 ]]
 
 objects = objects or j_love_import("SCRIPT/GAME.LLL/objects.lua")	-- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.14")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.18")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -64,7 +64,16 @@ local function dgs(pz)
       if (not o.blockautomod) and o.modx and o.mody then
          if o.modx<0 then o.modx=o.modx+2 elseif o.modx>0 then o.modx=o.modx-2 end
          if o.mody<0 then o.mody=o.mody+2 elseif o.mody>0 then o.mody=o.mody-2 end
-      end
+      end  
+  end
+  -- falling objects
+  pz.falling = pz.falling or {}    
+  for k,o in pairs(pz.falling) do
+      Color(o.r or 255,o.g or 255,o.b or 255,o.a or 255)
+      DrawImage(o.img,o.x,o.y)
+      o.img.scalex = (o.img.scalex or 1)-.01
+      o.img.scaley = (o.img.scaley)
+      if o.img.scalex<=0 then pz.falling[k]=nil end
   end
 end  
 

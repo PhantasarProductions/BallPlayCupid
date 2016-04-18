@@ -102,7 +102,12 @@ local lang = {
                               cancel  = "Cancel"
                            },
                  settingsmessage = "Left mouse button = increase, right mouse button = decrease"          
-             },     
+             }, 
+      missions = {
+                              Normal         = "Bring as many balls as you can\nto the finish",
+                              ['Break-Away'] = "Break all blocks away\nand get as little\nballs destroyed as possible",
+                              ['Break-Free'] = "Break all blocks away.\nThe last block broken\nwill turn into an exit"
+                 },           
       game = {
                  symbols = {
                               di_in    = "Balls arrived",

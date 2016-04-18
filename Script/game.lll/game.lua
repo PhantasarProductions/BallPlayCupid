@@ -116,11 +116,11 @@ function me.draw()
    ember()
    love.graphics.print(puzzle.title,150,5)
    Color(0,180,255) puzzle.time = puzzle.time or 0
-   love.graphics.print(time.sec2time(puzzle.time),650,5)
+   love.graphics.print(time.sec2time(puzzle.time),700,5)
    if (puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free") then
       Color(180,0,255)
       puzzle.breakblocks = me.countbreakblocks()
-      love.graphics.print(({[0]="",[1]="1 tile"})[puzzle.breakblocks] or strval(puzzle.breakblocks).." tiles",500,5)
+      love.graphics.print(({[0]="",[1]="1 tile"})[puzzle.breakblocks] or strval(puzzle.breakblocks).." tiles",550,5)
    end   
    -- bottom bar
    me.currenttool = me.currenttool or 'plate1'
@@ -166,9 +166,21 @@ function me.draw()
        Color(c[hv][1]*s[b.enable],c[hv][2]*s[b.enable],c[hv][3]*s[b.enable])
        love.graphics.print(lang.game.buttons[k] or "?"..k,303,y+2)
    end
-   white();
-   -- stage specific actions
-   (({
+   white()
+   -- Missions
+   Color(180,255,0)
+   love.graphics.print("Mission: "..puzzle.mission,350,5)
+   --love.graphics.print(strval(me.my and me.my<=20 and me.mx and me.mx>300 and me.mx<400)) -- debug line
+   if me.my and me.my<=20 and me.mx and me.mx>300 and me.mx<500 then
+      Color(0,0,0,0.75*255)
+      local y = 25
+      local tut = mysplit(lang.missions[puzzle.mission],"\n")
+      Rect(300,20,300,(#tut*20)+10)
+      white()
+      for l in each(tut) do love.graphics.print(l,305,y) y=y+20 end
+   end
+   -- stage specific actions   
+   ;(({
          play = function()
                     local e=me
                     local dx=floor((e.mx or 0)/32)*32    

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.17
+Version: 16.04.18
 ]]
 
 
@@ -186,11 +186,46 @@ function me.draw()
                               )
                   end,           
          succeed = function()
-                     puzzle.gratz = 300
+                     local y                     
+                     puzzle.gratz = puzzle.gratz or 300
+                     white()
                      DrawImage('gratz',
                                            400-(ImageWidth('gratz')/2),
                                   puzzle.gratz-(ImageHeight('gratz')/2)
                               )
+                     if me.victorydata then
+                        puzzle.vda = (puzzle.vda or -1) + 1
+                        if puzzle.vda>255 then puzzle.vda=255 end
+                        if puzzle.gratz>-800 then puzzle.gratz=puzzle.gratz-1 end
+                        y=25
+                        Color(0,0,0,puzzle.vda/4)
+                        Rect(0,20,800,480)
+                        for tab,name in spairs(lang.game.suctab) do
+                            if me.victorydata['BOARD.YOU.'..tab] then
+                               Color(255,0,0,puzzle.vda)
+                               love.graphics.print(name,10,y)
+                               love.graphics.line(10,y,790,y)
+                               y = y + 20
+                               for i=1,3 do
+                                   Color(0,180,255,puzzle.vda)
+                                   love.graphics.print(i..". "..(me.victorydata['BOARD['..i..'].'..tab..'.NAME'] or "Nobody"),20,y)
+                                   Color(180,0,255,puzzle.vda)
+                                   love.graphics.print( ( { TME = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),  
+                                                            PTE = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),
+                                                            TLS = me.victorydata['BOARD['..i..'].'..tab..'.TOOL'],
+                                                            SUV = me.victorydata['BOARD['..i..'].'..tab..'.SURV']
+                                                            })[tab] or '---',300,y)
+                                   y = y + 15                                                                                       
+                               end
+                               y = y + 3
+                               Color(255,180,0,puzzle.vda)
+                               love.graphics.print("Your best score: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)) })[tab] or me.victorydata['BOARD.YOU.'..tab] or "---"),100,y)
+                               Color(180,255,0,puzzle.vda)
+                               love.graphics.print("World average: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)) })[tab] or me.victorydata['BOARD.AVG.'..tab] or "---"),500,y)
+                               y = y + 50
+                            end
+                        end    
+                     end         
                   end    ,    
         fail = function()
                  DrawImage("failed",

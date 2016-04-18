@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.18
+Version: 16.04.19
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -39,7 +39,8 @@ local names = {
 	Pz08 = "Hit the road, Jack",
 	Pz09 = "Resident Evil",
 	Pz10 = "We all fall down",
-	Pz11 = "The Green Mile"}
+	Pz11 = "The Green Mile",
+	Pz12 = "I want to break free!"}
 
 
 return names

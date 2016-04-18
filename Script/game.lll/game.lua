@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.18
+Version: 16.04.19
 ]]
 
 
@@ -227,8 +227,10 @@ function me.draw()
                                    love.graphics.print( ( { TME = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),  
                                                             PTE = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),
                                                             TLS = me.victorydata['BOARD['..i..'].'..tab..'.TOOL'],
-                                                            SUV = me.victorydata['BOARD['..i..'].'..tab..'.SURV']
+                                                            SUR = me.victorydata['BOARD['..i..'].'..tab..'.SURV']
                                                             })[tab] or '---',300,y)
+                                   Color(180,255,0)
+                                   love.graphics.print(me.victorydata['BOARD['..i..'].'..tab..'.ACHD'] or "Never",400,y)                         
                                    y = y + 15                                                                                       
                                end
                                y = y + 3

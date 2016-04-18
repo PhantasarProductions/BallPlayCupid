@@ -37,7 +37,8 @@ local names = {
 	Pz06 = "Long ago in a galaxy far away",
 	Pz07 = "It takes two, baby",
 	Pz08 = "Hit the road, Jack",
-	Pz09 = "Resident Evil"}
+	Pz09 = "Resident Evil",
+	Pz10 = "We all fall down"}
 
 
 return names

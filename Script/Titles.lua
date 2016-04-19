@@ -40,7 +40,10 @@ local names = {
 	Pz09 = "Resident Evil",
 	Pz10 = "We all fall down",
 	Pz11 = "The Green Mile",
-	Pz12 = "I want to break free!"}
+	Pz12 = "I want to break free!",
+	Pz13 = "\80\73\78\75\33\32\73\116\39\115\32\109\121\32\110\101\119\32\111\98\115\101\115\115\105\111\110\33",
+	Pz14 = "Solid. Solid as a rock.",
+	Pz15 = "I will survive"}
 
 
 return names

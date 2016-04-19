@@ -67,7 +67,12 @@ me.backgrounds = {
                Color(puzzle.ibck.r or 255,puzzle.ibck.g or 255,puzzle.ibck.b or 255,puzzle.ibck.a or 255)
                DrawImage("back_"..puzzle.ibck.img,400-(ImageWidth("back_"..puzzle.ibck.img)/2),300-(ImageHeight("back_"..puzzle.ibck.img)/2))
                white()
-              end                        
+              end,    
+      pink  = function()
+               c = rand(0,255); a = rand(10,100)
+               Color(c,c*.75,c*75)
+               for i=1,3 do Rect(rand(0,800),rand(0,500),rand(0,100),rand(100)) end
+              end                             
 }
 
 me.foregrounds = {

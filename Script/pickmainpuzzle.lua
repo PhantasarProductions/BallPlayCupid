@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.17
+Version: 16.04.19
 ]]
 -- *import titles
 local pmp = {}
@@ -42,9 +42,11 @@ function pmp.draw()
        pmp.hoverkey = nil
        love.graphics.print("Best time:" ,400,225)
        love.graphics.print("Lst tools:" ,500,225)
-       love.graphics.print("Balls surv:",600,225)       
+       love.graphics.print("Balls surv:",600,225)   
+       local allowup = pmp.pm > 0
+       local allowdn = true    
        for k,name in spairs(titles) do
-           hover = pmp.my and pmp.my>=y and pmp.my<=y+19
+           hover = pmp.my and pmp.my>=y and pmp.my<=y+19 and pmp.mx<700
            if hover then pmp.hoverkey = k end
            if y>=250 and y<500 then
               if user.data.puzzlesolved[k] then
@@ -60,14 +62,36 @@ function pmp.draw()
                  Color(255,0,0)
                  if hover then Color(255,30,30) end
               end
-              love.graphics.print(name,20,y)   
+              love.graphics.print(name,20,y)                   
            end
-           y = y + 20
-       end          
+           y = y + 20           
+       end
+       allowdn = y>500
+       if allowup and pmp.mx and pmp.my and pmp.mx>780 and pmp.my>200 and pmp.my<216 then
+          Color(255,180,0)
+       elseif allowup then
+          white()
+       else
+          Color(80,80,80)
+       end
+       DrawImage("ed_cn",780,200)                        
+       if allowdn and pmp.mx and pmp.my and pmp.mx>780 and pmp.my>500 and pmp.my<516 then
+          Color(255,180,0)
+       elseif allowdn then
+          white()
+       else
+          Color(80,80,80)
+       end
+       DrawImage("ed_cs",780,500)
+       pmp.ascroll = {u=allowup,d=allowdn}                        
 end
 
 function pmp.mousepressed(x,y,b)
 (({     function()
+          if pmp.mx>780 then
+             if pmp.ascroll.u and y>200 and y<216 then pmp.pm=pmp.pm - 1 end
+             if pmp.ascroll.d and y>500 and y<516 then pmp.pm=pmp.pm + 1 end
+          end   
           if not pmp.hoverkey then return end
           print("Loading game")
           -- *localimport game
@@ -84,6 +108,14 @@ function pmp.mousepressed(x,y,b)
           chain.go('mainmenu')
         end,  
         })[b] or function() sfx('buzz') end)()
+end
+
+function pmp.keypressed(k)
+(({
+    up     = function() if pmp.ascroll.u then pmp.pm=pmp.pm - 1 end end,
+    down   = function() if pmp.ascroll.d then pmp.pm=pmp.pm + 1 end end,
+    escape = function() chain.go("mainmenu") end
+})[k] or chain.nothing)()
 end
 
 function pmp.mousemoved(x,y)

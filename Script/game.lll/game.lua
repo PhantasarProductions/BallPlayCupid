@@ -95,6 +95,21 @@ music.play(puzzle.music or glob.randommusic[rand(1,glob.maxmusic)])
 return true
 end
 
+me.collide = {
+
+                  collide_ball = function(myself,other)
+                                   if objects[other.kind].collide~='collide_ball' then me.collide[objects[other.kind].collide](other,myself) end -- In other words... destroy me if you can.
+                                 end,
+                  collide_ghost = function(myself,other)
+                                   -- print("ghost collides with "..other.kind)
+                                   if suffixed(other.kind,"ball") then
+                                      sfx('ghost_grab')
+                                      me.destroy(other)
+                                      if suffixed(other.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                      
+                                   end
+                                  end      
+             }
+
 function me.draw()
    puzzle = puzzle or me.puzzle
    assert(puzzle,"No puzzle loaded!")
@@ -440,16 +455,24 @@ me.blockturn(o)
 me.move(o)
 end
 
+function me.checkbump(o)
+   for k,co in pairs(puzzle.objects) do
+       if co~=o and co.x==o.x and co.y==o.y then me.collide[objects[o.kind].collide](o,co) end
+   end
+end   
+
 function me.move(o)
    local oldx,oldy
    if not me.objgoblock(o) then 
       oldx = o.x
       oldy = o.y
+      me.checkbump(o)
       o.x,o.y = me.gocoords(o)
       o.modx = o.modx or 0
       o.mody = o.mody or 0
       o.modx = o.modx + (32 * (oldx-o.x))
       o.mody = o.mody + (32 * (oldy-o.y))
+      me.checkbump(o)
    end
 end
 

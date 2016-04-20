@@ -176,7 +176,7 @@ function me.draw()
    -- buttons
    local i = 3
    for k,b in spairs(me.buttons[me.stage]) do
-       local y = (i*15)+500; i = i - 1
+       local y = (i*15)+515; i = i - 1
        local hv = me.mx~=nil and me.my~=nil and me.mx>300 and me.mx<500 and me.my>y and me.my<y+15 and b.enable -- hv=b.enable
        local s = {[false]=.5, [true]=1}
        local t = {[false]='line',[true]='fill'}
@@ -292,7 +292,7 @@ function me.mousepressed(x,y,b)
    -- buttons
    local i = 3
    for k,b in spairs(me.buttons[me.stage]) do
-       local y = (i*15)+500; i = i - 1
+       local y = (i*15)+515; i = i - 1
        local hv = me.mx~=nil and me.my~=nil and me.mx>300 and me.mx<500 and me.my>y and me.my<y+15 and b.enable -- hv=b.enable
        local fn = {[true]=b.fun or chain.nothing, [false]=chain.nothing}
        fn[hv]()
@@ -665,6 +665,7 @@ function me.arrive()
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
                     succeed= {znext = {enable=not (test or homemade), fun=me.nextpuzzle},
+                              zagain = {enable=true, fun=me.restart},
                               pick = {enable=not test, fun=me.pickpuzzle},
                               back = {enable=true, fun=me.back}},
                               

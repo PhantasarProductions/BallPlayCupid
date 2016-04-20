@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.18
+Version: 16.04.20
 ]]
 
 --- Language file. English
@@ -49,7 +49,7 @@ Version: 16.04.18
 ]]
 
 -- Don't bother modifying the mkl lines. My building scripts put in the data that goes there automatically.
-mkl.version("BallPlay Cupid - English.lua","16.04.18")
+mkl.version("BallPlay Cupid - English.lua","16.04.20")
 mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
 
 local lang = {
@@ -134,7 +134,7 @@ local lang = {
                          },
                  suctab = {
                               TME      = "Best time",
-                              PTE      = "Best time perfect survival",
+                              PTM      = "Best time perfect survival",
                               TLS      = "Least tools used",
                               SUR      = "Balls survived"
                           }                  

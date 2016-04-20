@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.19
+Version: 16.04.20
 ]]
 
 
@@ -230,7 +230,7 @@ function me.draw()
                                    love.graphics.print(i..". "..(me.victorydata['BOARD['..i..'].'..tab..'.NAME'] or "Nobody"),20,y)
                                    Color(180,0,255,puzzle.vda)
                                    love.graphics.print( ( { TME = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),  
-                                                            PTE = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),
+                                                            PTM = time.sec2time(tonumber(me.victorydata['BOARD['..i..'].'..tab..'.TIME'] or 0)),
                                                             TLS = me.victorydata['BOARD['..i..'].'..tab..'.TOOL'],
                                                             SUR = me.victorydata['BOARD['..i..'].'..tab..'.SURV']
                                                             })[tab] or '---',300,y)
@@ -243,7 +243,7 @@ function me.draw()
                                -- love.graphics.print("Your best score: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.YOU.'..tab] or 0)) })[tab] or me.victorydata['BOARD.YOU.'..tab] or "---"),100,y)
                                love.graphics.print("Your current rank: "..(me.victorydata['BOARD.YOU.'..tab] or "unranked"),100,y)
                                Color(180,255,0,puzzle.vda)
-                               love.graphics.print("World average: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)), PTE = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)) })[tab] or me.victorydata['BOARD.AVG.'..tab] or "---"),500,y)
+                               love.graphics.print("World average: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)), PTM = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)) })[tab] or me.victorydata['BOARD.AVG.'..tab] or "---"),500,y)
                                y = y + 50
                             end
                         end    

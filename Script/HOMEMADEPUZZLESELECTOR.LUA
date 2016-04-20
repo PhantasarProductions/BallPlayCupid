@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.17
+Version: 16.04.20
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.17")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.20")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -64,6 +64,8 @@ hps.xdraw = {
 }
 function hps.draw()
    Cls()
+   white()
+   DrawImage('logo',mainmenu.logopos.x,mainmenu.logopos.y); if mainmenu.logopos.y>0 then mainmenu.logopos.y = mainmenu.logopos.y-1 return end
    -- list of files
    hps.pm = hps.pm or 0
    for i=1,10 do

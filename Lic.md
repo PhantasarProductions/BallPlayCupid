@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Thu 21 April 2016; 17:53:31.
+Below is a list of contributors to the game. This list was last updated on Thu 21 April 2016; 21:53:15.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -222,6 +222,7 @@ This list is automatically updated every time I modify the game myself, and as s
   - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
     - gfx/game/puzzle/floors/Horror House/MVloer.png
     - gfx/game/puzzle/objects/Woman.png
+    - gfx/game/puzzle/objects/WomanGhost.png
     - gfx/game/puzzle/walls/Horror House/WD.png
     - gfx/game/puzzle/walls/Horror House/WU.png
     - gfx/game/puzzle/walls/Horror House/WWE.png
@@ -229,6 +230,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - gfx/game/puzzle/walls/Horror House/WWW.png
 - Unknown
   - These pictures were contributed to the public domain. The source has been lost to me. If you can identify the original creator for me, let me know.
+    - GFX/Game/Puzzle/Obstacles/Hut.png
     - GFX/Game/Symbol/All.piko
     - GFX/Game/Symbol/Clubs.png
     - GFX/Game/Symbol/Diamonds.png

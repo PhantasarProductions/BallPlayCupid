@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.18
+Version: 16.04.21
 ]]
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
@@ -40,11 +40,12 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
                                     zzarrowright={'arrow_right',0,255,255},
                                     zzarrowleft ={'arrow_left' ,0,255,255}
                                     },
-                          exits = {a_exit  = {'exit',  0,255,255},
+                          exits = { a_exit = {'exit',  0,255,255},
                                    cr_exit = {'exit',255,  0,  0},
                                    cg_exit = {'exit',  0,255,  0},
                                    cb_exit = {'exit',  0,  0,255},
-                                   ce_exit = {'exit',255,180,  0}
+                                   ce_exit = {'exit',255,180,  0},
+                                 womanhome = {'hut' ,255,255,255}
                                    },       
                           breakblocks = { 
                                            bb01 = {"breakblock",  0,180,255},

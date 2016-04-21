@@ -107,7 +107,7 @@ local lang = {
                               Normal         = "Bring as many balls as you can\nto the finish",
                               ['Break-Away'] = "Break all blocks away\nand get as little\nballs destroyed as possible",
                               ['Break-Free'] = "Break all blocks away.\nThe last block broken\nwill turn into an exit",
-                              Walkthrough    = "You may see a woman, and she needs to get home\nYou can use the directional bottoms or the wasd keys to control her\n\nIf there are multiple women they all move in\nthe same direction if possible.\n\nBe warned, ALL women must get home.\n\nIf they get touched by a ball or any other moving object\nthey die, instantly causing you to fail the puzzle.\n\nAs the end of the puzzle, you must at least still have\n\nthe number of balls writtn at the \"clubs\" symbol to be\nin the field!"
+                              Walkthrough    = "You may see a woman, and she needs\nto get home\nYou can use the directional bottoms or the\nwasd keys to control her\n\nIf there are multiple women they all move in\nthe same direction if possible.\n\nBe warned, ALL women must get home.\n\nIf they get touched by a ball\nor any other moving object\nthey'll die instantly causing you to fail the puzzle.\n\nAs the end of the puzzle,\nyou must at least still have\n\nthe number of balls written\nat the \"clubs\" symbol to be\nin the field!"
                  },           
       game = {
                  symbols = {
@@ -130,6 +130,7 @@ local lang = {
                               ENOF     = "No exit present, while the mission requires it",
                               ENOB     = "No balls present",
                               ENBB     = "No break-away blocks present", -- This error can only appear in break-away or break-free puzzles.
+                              EOWW     = "You may only place a woman in a 'Walkthrough' mission",
                               IUOM     = "Unknown movement code: ",
                               IUKT     = "Unnown tool selected"
                          },

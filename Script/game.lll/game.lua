@@ -107,7 +107,13 @@ me.collide = {
                                       me.destroy(other)
                                       if suffixed(other.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                      
                                    end
-                                  end      
+                                  end,
+                  woman = function(myself,other)
+                             append(puzzle.ghostwomen,{x=myself.x*32, y=(myself.y*32)+20})
+                             me.stage  = 'fail'
+                             me.failure = "A woman died!"
+                             me.destroy(myself)
+                          end                      
              }
 
 function me.draw()
@@ -467,6 +473,19 @@ me.blockturn(o)
 me.move(o)
 end
 
+function me.getwomen()
+  local ret = {}
+  for o in each(puzzle.objects) do
+    if o.kind=="woman" then append(ret,o) end
+  end
+  return ret
+end    
+
+function me.moves.woman(o)
+me.ass(puzzle.mission=='Walkthrough',"EOWW")
+puzzle.women = me.getwomen()
+end
+
 function me.checkbump(o)
    for k,co in pairs(puzzle.objects) do
        if co~=o and co.x==o.x and co.y==o.y then me.collide[objects[o.kind].collide](o,co) end
@@ -491,13 +510,12 @@ end
 function me.anna(ihave)
    -- *import tablemerge
    local v,a,g = mkl.newestversion()
-   local annaquery = {v1=a[1]+2000,v2=a[2],v3=a[3], game='BPC', HC='Game', A="BPC_Stats"}
+   local annaquery = {v1=a[1]+2000,v2=a[2],v3=a[3], game='BPC', HC='Game', A="BPC_Stats",puz = me.rec}
    local want = {'id','secu','puz','time','tools','survived','v1','v2','v3'}
    local unhashed = ''
    local ok,data
    if user.data.online then
-      tablemerge(annaquery,{
-                               puz      = me.rec,
+      tablemerge(annaquery,{                               
                                time     = puzzle.time,
                                tools    = puzzle.usedtools,
                                survived = ihave,
@@ -598,6 +616,59 @@ if prefixed(err,"I") then errm = errm .."\n\nThis is an internal error. Please r
 if me.olderror==errm then return end me.olderror=errm -- Prevent throwing the same error multiple times
 love.window.showMessageBox("Ballplay Cupid - Puzzle Error",errm,{"Bye!"})
 me.back()
+end
+
+local womandir = {
+                    up    = function(o) return o.x  ,o.y-1 end,
+                    down  = function(o) return o.x  ,o.y+1 end,
+                    left  = function(o) return o.x-1,o.y   end,
+                    right = function(o) return o.x+1,o.y   end,
+                 }
+local womankeymove = {
+                          w = womandir.up,
+                          s = womandir.down,
+                          a = womandir.left,
+                          d = womandir.right,
+                          up = womandir.up,
+                          down = womandir.down,
+                          left = womandir.left,
+                          right = womandir.right,
+                          kp4 = womandir.left,
+                          kp8 = womandir.up,
+                          kp2 = womandir.down,
+                          kp6 = womandir.right
+                     }                  
+
+function me.keypressed(k,scancode)
+ local key = love.keyboard.getKeyFromScancode( scancode )
+ local wgoto = womankeymove[key]
+ local xgoto,ygoto
+ local obs = table2multidim(puzzle.obstacles,puzzle.format)
+ local home
+ if not wgoto then return end
+ for o in each(puzzle.women) do
+   xgoto,ygoto = wgoto(o)
+   if not me.block(xgoto,ygoto) then o.x=xgoto o.y=ygoto end
+   me.checkbump(o)
+   print(o.x.."x"..o.y..">"..strval(obs:get({o.x,o.y})))
+   if me.stage~='fail' and obs:get({o.x,o.y})=='womanhome' then
+      me.destroy(o)
+      home=true
+   end
+ end
+ if home then
+    for i in each(me.destroylist) do
+             puzzle.objects[i]=nil
+             print("object #"..i.." set to nil")
+    end
+    if (#me.destroylist>0) then
+             print("packing objects table")
+             puzzle.objects = packtable(puzzle.objects)
+             puzzle.stats.di_out = countballs(puzzle)
+    end
+    puzzle.women=me.getwomen()
+    if #puzzle.women==0 then me.stage='succeed' end 
+ end   
 end
 
 function me.ass(expression,err)

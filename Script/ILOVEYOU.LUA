@@ -123,7 +123,7 @@ print("Get the interface canvasses");
 phantasar.after(
    function()
       Hot("woman",0,32)
-      error("fuck you!")
+      Hot("womanghost",0,32)
    end
 )
 end initgame() initgame=nil -- Execute immediately and get this shit out of the RAM as we don't need it any more.               

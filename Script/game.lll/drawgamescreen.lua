@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.18
+Version: 16.04.21
 ]]
 
 objects = objects or j_love_import("SCRIPT/GAME.LLL/objects.lua")	-- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.18")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.21")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -75,6 +75,14 @@ local function dgs(pz)
       o.img.scaley = (o.img.scaley)
       if o.img.scalex<=0 then pz.falling[k]=nil end
   end
+  -- ghost women
+  pz.ghostwomen = pz.ghostwomen or {}
+  for k,o in pairs(pz.ghostwomen) do
+      --love.graphics.print(k.." ==> ("..o.x..","..o.y..")",5,y*20)
+      DrawImage("womanghost",o.x,o.y)
+      o.y=o.y-.1
+      if o.y<-70 then pz.ghostwomen[k]=nil end
+  end    
 end  
 
 return dgs

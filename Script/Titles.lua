@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.20
+Version: 16.04.21
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -45,7 +45,8 @@ local names = {
 	Pz14 = "Solid. Solid as a rock.",
 	Pz15 = "I will survive",
 	Pz16 = "\73\116\39\115\32\115\111\32\101\97\115\121\32\116\111\32\101\110\106\111\121\32\121\111\117\114\32\100\97\121",
-	Pz17 = "Twelve years a slave"}
+	Pz17 = "Twelve years a slave",
+	Pz18 = "Requiescat in pace"}
 
 
 return names

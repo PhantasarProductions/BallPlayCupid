@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Wed 20 April 2016; 23:05:06.
+Below is a list of contributors to the game. This list was last updated on Thu 21 April 2016; 10:37:28.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -111,6 +111,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Extern/Vloer3.png
     - GFX/Game/Puzzle/Extern/Vloer4.png
     - GFX/Game/Puzzle/Floors/Desert/DES_Sand.png
+    - GFX/Game/Puzzle/Floors/Graveyard/Grass.png
+    - GFX/Game/Puzzle/Floors/Graveyard/Sand.png
     - GFX/Game/Puzzle/Floors/Modern/Blue.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey2.png
@@ -142,6 +144,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/trashcan.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
+    - GFX/Game/Puzzle/Walls/Graveyard/Bush.png
+    - GFX/Game/Puzzle/Walls/Graveyard/Grave1.png
+    - GFX/Game/Puzzle/Walls/Graveyard/Grave2.png
     - GFX/Game/Puzzle/Walls/Modern/E.png
     - GFX/Game/Puzzle/Walls/Modern/N.png
     - GFX/Game/Puzzle/Walls/Modern/NE.png
@@ -188,6 +193,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz15.lua
     - Script/game.lll/Puzzles/Pz16.lua
     - Script/game.lll/Puzzles/Pz17.lua
+    - Script/game.lll/Puzzles/Pz18.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/game.lll/objects.lua

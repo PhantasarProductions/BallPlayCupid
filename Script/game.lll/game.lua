@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.20
+Version: 16.04.21
 ]]
 
 
@@ -170,8 +170,18 @@ function me.draw()
    white()
    for i,k in ipairs(puzzle.showstat) do
        DrawImage(k,(70*i)+420,505)
+          for m=-1,1 do
+              love.graphics.print(puzzle.stats[k],15+(70*i)+420+m,520+m)
+          end
        love.graphics.print(puzzle.stats[k],15+(70*i)+420,520)
-       if me.mx and me.my and me.my>505 and me.my<570 and me.mx>15+(70*i)+420 and me.mx<15+(70*i)+420+70 then love.graphics.print(lang.game.symbols[k] or "?",me.mx-100,me.my) end 
+       if me.mx and me.my and me.my>505 and me.my<570 and me.mx>15+(70*i)+420 and me.mx<15+(70*i)+420+70 then
+          black()
+          for m=-1,1 do
+              love.graphics.print(lang.game.symbols[k] or "?",(me.mx-100)+m,me.my+m)
+          end
+          white()  
+          love.graphics.print(lang.game.symbols[k] or "?",me.mx-100,me.my) 
+          end 
    end    
    -- buttons
    local i = 3

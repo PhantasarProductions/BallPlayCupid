@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Thu 21 April 2016; 10:55:50.
+Below is a list of contributors to the game. This list was last updated on Thu 21 April 2016; 17:53:31.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -195,6 +195,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz17.lua
     - Script/game.lll/Puzzles/Pz18.lua
     - Script/game.lll/Puzzles/Pz19.lua
+    - Script/game.lll/Puzzles/Pz20.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
     - Script/game.lll/objects.lua
@@ -220,6 +221,7 @@ This list is automatically updated every time I modify the game myself, and as s
 - Man of Steel
   - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
     - gfx/game/puzzle/floors/Horror House/MVloer.png
+    - gfx/game/puzzle/objects/Woman.png
     - gfx/game/puzzle/walls/Horror House/WD.png
     - gfx/game/puzzle/walls/Horror House/WU.png
     - gfx/game/puzzle/walls/Horror House/WWE.png

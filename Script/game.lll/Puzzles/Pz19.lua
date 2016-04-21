@@ -34,6 +34,9 @@ local ret1, ret2
 
 
 ret1 = {
+        ["background"] = "space",
+        ["music"] = "MUSIC/THEME/URBAN-JUNGLE-2061.MP3",
+
 	["format"] = {
 		[2] = 15,
 		[1] = 25

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.16
+Version: 16.04.21
 ]]
 
 --[[
@@ -69,7 +69,7 @@ Version: 16.04.16
 -- *import homemadepuzzleselector
 -- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.16")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.21")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 
@@ -120,6 +120,12 @@ for t in each({"wall","floor"}) do
 print("Loading all assets");
 assets = phantasar.init(junk,"Title")
 print("Get the interface canvasses");
+phantasar.after(
+   function()
+      Hot("woman",0,32)
+      error("fuck you!")
+   end
+)
 end initgame() initgame=nil -- Execute immediately and get this shit out of the RAM as we don't need it any more.               
 
 function great_quit()

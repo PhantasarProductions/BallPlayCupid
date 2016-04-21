@@ -34,6 +34,10 @@ local ret1, ret2
 
 
 ret1 = {
+	["ifor"] = {
+		["img"] = "circulardarkness"
+	           },
+foreground='image',
 	["format"] = {
 		[1] = 25,
 		[2] = 15

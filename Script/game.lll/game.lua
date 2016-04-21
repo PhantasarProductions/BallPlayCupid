@@ -170,6 +170,7 @@ function me.draw()
    white()
    for i,k in ipairs(puzzle.showstat) do
        DrawImage(k,(70*i)+420,505)
+       black()
           for m=-1,1 do
               love.graphics.print(puzzle.stats[k],15+(70*i)+420+m,520+m)
           end

@@ -174,6 +174,7 @@ function me.draw()
           for m=-1,1 do
               love.graphics.print(puzzle.stats[k],15+(70*i)+420+m,520+m)
           end
+       white()   
        love.graphics.print(puzzle.stats[k],15+(70*i)+420,520)
        if me.mx and me.my and me.my>505 and me.my<570 and me.mx>15+(70*i)+420 and me.mx<15+(70*i)+420+70 then
           black()

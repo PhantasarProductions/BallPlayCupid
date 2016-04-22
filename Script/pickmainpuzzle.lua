@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.19
+Version: 16.04.22
 ]]
 -- *import titles
 local pmp = {}
@@ -31,6 +31,10 @@ pmp.mx = 0
 pmp.my = 0
 -- *fi
 pmp.pm = user.data.pmppm or 0
+
+function pmp.arrive()
+     if time.month()~=12 or time.day()<18 then titles.Pzxm=nil end -- Only show the Christmas level from one week before christmas until the end of the year. 
+end
 
 function pmp.draw()
        user.data.pmppm = pmp.pm

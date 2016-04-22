@@ -249,7 +249,7 @@ ret1 = {
 		["trash"] = 15,
 		["barrier"] = 0
 	            },
-	["music"] = "MUSIC/THEME/DARK/AGNUS DEI X.MP3",
+	["music"] = "MUSIC/THEME/DARK/LITHIUM.MP3",
 	["title"] = "Resident Evil",
 	["reqballs"] = 17,
 	["walls"] = {

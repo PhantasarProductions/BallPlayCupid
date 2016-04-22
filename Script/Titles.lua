@@ -49,7 +49,8 @@ local names = {
 	Pz18 = "Requiescat in pace",
 	Pz19 = "Space! Above and beyond!",
 	Pz20 = "\83\104\101\39\115\32\97\108\119\97\121\115\32\97\32\119\111\109\97\110\32\116\111\32\109\101",
-	Pz21 = "May the Force be with you."}
+	Pz21 = "May the Force be with you.",
+	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 
 return names

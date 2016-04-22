@@ -72,11 +72,17 @@ me.backgrounds = {
                c = rand(0,255); a = rand(10,100)
                Color(c,c*.75,c*75)
                for i=1,3 do Rect(rand(0,800),rand(0,500),rand(0,100),rand(100)) end
-              end                             
+              end,
+      snow = function()
+               me.snow('back')
+             end                             
 }
 
 me.foregrounds = {
          nothing = chain.nothing,
+         snow = function()
+                  me.snow('front')
+                end,
          image = function()
                   Color(puzzle.ifor.r or 255,puzzle.ifor.g or 255,puzzle.ifor.b or 255,puzzle.ifor.a or 255)
                   DrawImage("fore_"..puzzle.ifor.img,400-(ImageWidth("fore_"..puzzle.ifor.img)/2),300-(ImageHeight("fore_"..puzzle.ifor.img)/2))
@@ -84,6 +90,25 @@ me.foregrounds = {
                  end
 }
 
+function me.snow(layer)
+  puzzle.snow = puzzle.snow or {}
+  puzzle.snow[layer] = puzzle.snow[layer] or {}
+  local snow = puzzle.snow[layer]
+  while #snow<200 do
+     append(snow,{
+                     y=-100,
+                     x=rand(0,800),
+                     s=rand(1,100)/75,
+                     r=rand(2,4)
+                 })                 
+  end
+  Color(255,255,255,200)
+  for i,flake in pairs(snow) do
+      love.graphics.circle('fill',flake.x,flake.y,flake.r,10)
+      flake.y = flake.y + flake.s
+      if flake.y>650 then snow[i]=nil end
+  end
+end
 
 function me.startmusic()
 if not user.data.config.music then

@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.17
+Version: 16.04.22
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.17")
+mkl.version("BallPlay Cupid - edit.lua","16.04.22")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -192,7 +192,7 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                            strip = function()
                                        local x=5
                                        local hovertext = ""
-                                       local cd = {"ed_cn","ed_cs","ed_cw","ed_ce"}
+                                       local cd = {"ed_cw","ed_cs","ed_ce","ed_cn"}
                                        pconfig.odir = pconfig.odir or 2
                                        e.mx = e.mx or 0
                                        e.my = e.my or 0
@@ -221,15 +221,16 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
                                         	       tab.objects.chosen = k                                        	       
                                         	    end                                        	    
                                               ox = ox + 35  
-                                              if x>780 and y>=550 and y<=565 then
+                                              if x>780 and y>=550 and y<=565 and (not e.dt)then
                                                   pconfig.odir = (pconfig.odir or 2) + 1
                                                   if pconfig.odir>4 then pconfig.odir = 1 end
+                                                  e.dt = 100
                                               end                                   	        
                                         	end 
                                         	--print(er.." ("..x..","..y..")")  
                                         end,        
                            modify = function(x,y,b)
-                                        tab.objects.dir = ({"U","D","L","R"})[pconfig.odir] or "D";
+                                        tab.objects.dir = ({"L","D","E","U"})[pconfig.odir] or "D";
                                         (({ function(x,y) -- put in
                                               local newobj = {
                                                                kind = tab.objects.chosen,
@@ -447,5 +448,13 @@ game.testpz = e.file
 game.mode   = "test"
 chain.go(game)
 end e.TestPuzzle = e.testpuzzle
+
+function e.update()
+  if e.dt then 
+     e.dt=e.dt - 1
+     if e.dt<100 then e.dt=nil end
+  end
+end
+  
 
 return e

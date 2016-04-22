@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.20
+Version: 16.04.22
 ]]
 local hps = {}
 local c
 
-mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.20")
+mkl.version("BallPlay Cupid - homemadepuzzleselector.lua","16.04.22")
 mkl.lic    ("BallPlay Cupid - homemadepuzzleselector.lua","GNU General Public License 3")
 
 
@@ -68,14 +68,36 @@ function hps.draw()
    DrawImage('logo',mainmenu.logopos.x,mainmenu.logopos.y); if mainmenu.logopos.y>0 then mainmenu.logopos.y = mainmenu.logopos.y-1 return end
    -- list of files
    hps.pm = hps.pm or 0
+   hps.allowup = hps~= 0
+   hps.allowdown = true
    for i=1,10 do
        if hps.list[i+hps.pm] then
-          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) then ember() else white() end
+          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) and hps.mx<700 then ember() else white() end
           love.graphics.print(hps.list[i+hps.pm],50,100+(i*20))
        elseif hps.pm>0 then
           hps.pm = hps.pm - 1
+          hps.allowdown = false
+       else   
+          hps.allowdown = false
        end
    end
+   -- Scroll arrows
+   if (not hps.allowup) then
+      Color(80,80,80)
+   elseif hps.mx and hps.mx>780 and hps.my and hps.my>150 and hps.my<175 then
+      ember()
+   else
+      white()
+   end
+   DrawImage("ed_cn",780,150)
+   if (not hps.allowdown) then
+      Color(80,80,80)
+   elseif hps.mx and hps.mx>780 and hps.my and hps.my>550 and hps.my<575 then
+      ember()
+   else
+      white()
+   end
+   DrawImage("ed_cs",780,550)            
    -- enter file name if applicable
    hps.xdraw[mainmenu.para]()
 end
@@ -164,9 +186,11 @@ function hps.mousepressed(x,y,b,t)
    hps.pm = hps.pm or 0
    for i=1,10 do
        if hps.list[i+hps.pm] then
-          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) then hps.chosenfile=hps.list[i+hps.pm] nextround() end
+          if hps.my and hps.my>100+(i*20) and hps.my<120+(i*20) and x<700 then hps.chosenfile=hps.list[i+hps.pm] nextround() end
        end
    end
+   if x>780 and y>150 and y<175 and hps.allowup   then hps.pm = hps.pm - 1 end
+   if x>780 and y>550 and y<575 and hps.allowdown then hps.pm = hps.pm + 1 end   
 end
 
 

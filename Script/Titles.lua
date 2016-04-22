@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.21
+Version: 16.04.22
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -48,7 +48,8 @@ local names = {
 	Pz17 = "Twelve years a slave",
 	Pz18 = "Requiescat in pace",
 	Pz19 = "Space! Above and beyond!",
-	Pz20 = "\83\104\101\39\115\32\97\108\119\97\121\115\32\97\32\119\111\109\97\110\32\116\111\32\109\101"}
+	Pz20 = "\83\104\101\39\115\32\97\108\119\97\121\115\32\97\32\119\111\109\97\110\32\116\111\32\109\101",
+	Pz21 = "May the Force be with you."}
 
 
 return names

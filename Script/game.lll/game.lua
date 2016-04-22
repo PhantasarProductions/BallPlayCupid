@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.21
+Version: 16.04.22
 ]]
 
 
@@ -577,7 +577,7 @@ function me.update()
                           (me.exits[objects[o.kind].finish]   or chain.nothing)(o)
                           if table2multidim(puzzle.floors,puzzle.format):get({o.x,o.y})==nil then -- and o.modx==0 and o.mody==0 then
                              local of = {
-                                          img    = cpImg(assets[o.kind]),
+                                          img    = cpImg(assets[objects[o.kind].image]),
                                           x      = (o.x*32)+(16),
                                           y      = ((o.y*32)+20)+(16),
                                           r      = objects[o.kind].color[1],
@@ -667,7 +667,7 @@ function me.keypressed(k,scancode)
              puzzle.stats.di_out = countballs(puzzle)
     end
     puzzle.women=me.getwomen()
-    if #puzzle.women==0 then me.stage='succeed' end 
+    if #puzzle.women==0 then me.endofpuzzle()  end 
  end   
 end
 

@@ -665,7 +665,7 @@ local womankeymove = {
                      }                  
 
 function me.keypressed(k,scancode)
- local key = love.keyboard.getKeyFromScancode( scancode )
+ local key = love.keyboard.getKeyFromScancode( scancode )  -- <== this line should make sure the "WASD" support works the same on all keyboards. Otherwise users of an AZERTY keyboard in stead of QWERTY could suffer greatly. In other words, AZERTY users can now use the power of WASD (although I guess it's ZQSD in their case) :) 
  local wgoto = womankeymove[key]
  local xgoto,ygoto
  local obs = table2multidim(puzzle.obstacles,puzzle.format)
@@ -714,6 +714,16 @@ function me.startpuzzle()
   if puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free" then
      puzzle.breakblocks = me.countbreakblocks()
      me.ass(puzzle.breakblocks,"ENBB")
+  end
+  local nocolext = function() ass(puzzle.mission=='Color-Split','ENCE') end
+  for k,v in pairs(puzzle.obstacles) do
+      (({
+           a_exit  = function() ass(puzzle.mission=='Normal','ENNE') end,
+           cr_exit = nocolext,
+           cg_exit = nocolext,
+           cb_exit = nocolext,
+           ce_exit = nocolext           
+      })[v or 'Rare jongens! Die Romeinen!'] or chain.nothing)()
   end
 end
 

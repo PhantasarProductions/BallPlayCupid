@@ -128,6 +128,9 @@ phantasar.after(
    function()
       Hot("woman",0,32)
       Hot("womanghost",0,32)
+      for k,i in pairs(assets) do
+          if prefixed(k,"pz_") then i.oy = ImageHeight(i)-32 end
+          end
    end
 )
 end initgame() initgame=nil -- Execute immediately and get this shit out of the RAM as we don't need it any more.               

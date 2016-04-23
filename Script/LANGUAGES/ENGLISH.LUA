@@ -131,6 +131,8 @@ local lang = {
                               ENOB     = "No balls present",
                               ENBB     = "No break-away blocks present", -- This error can only appear in break-away or break-free puzzles.
                               EOWW     = "You may only place a woman in a 'Walkthrough' mission",
+                              ENNE     = "Normal exits may only be present in normal missions. Break-Free puzzles should put them in automatically, and they should not be present from the start!",
+                              ENCE     = "Colored exits may only be present in color-split missions!",
                               IUOM     = "Unknown movement code: ",
                               IUKT     = "Unnown tool selected"
                          },

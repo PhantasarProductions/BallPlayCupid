@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.22
+Version: 16.04.23
 ]]
 
 
@@ -192,7 +192,7 @@ function me.draw()
    love.graphics.print(puzzle.tools.trash    ,200,580)
    love.graphics.print(puzzle.tools.barrier  ,250,580)
    -- stats
-   puzzle.showstat = puzzle.showstat or ({ [true]={'di_in','di_req','di_out','di_dead'},[false]={'di_req','di_out','di_dead'}})[puzzle.mission=='Normal' or puzzle.mission=='Break-Free']
+   puzzle.showstat = puzzle.showstat or ({ [true]={'di_in','di_req','di_out','di_dead'},[false]={'di_req','di_out','di_dead'}})[puzzle.mission=='Normal' or puzzle.mission=='Break-Free' or puzzle.mission=='Color Split']
    puzzle.stats = puzzle.stats or {}
    puzzle.stats.di_in   = puzzle.stats.di_in  or 0 
    puzzle.stats.di_out  = puzzle.stats.di_out or countballs(puzzle)
@@ -390,7 +390,8 @@ end
 
 function me.gocoords(o,altdir)
 o.dir = o.dir or "D"
-return 
+o.dir = ({ E='R', N='U', W='L', S='D'})[o.dir] or o.dir; 
+return
 (({
      D = function() return o.x,o.y+1 end,
      U = function() return o.x,o.y-1 end,
@@ -471,10 +472,23 @@ print("object #"..i.." should be destroyed!")
 append(me.destroylist,i)       
 end
 
-function me.finish(o)
+function me.finish(o,v)
 puzzle.stats.di_in = puzzle.stats.di_in + 1
 me.destroy(o)
 sfx('exit')
+end
+
+function me.colfinish(o,ex)
+  local x = mid(ex,2,1)
+  local b = mid(o.kind,5,1)
+  print('colcheck '..x.." <=> "..b)
+  if x==b then
+     me.finish(o,ex)
+  else
+     puzzle.stats.di_dead = puzzle.stats.di_dead + 1
+     me.destroy(o)
+     sfx('buzz')
+  end      
 end
 
 me.exits = {}
@@ -485,8 +499,12 @@ function me.exits.ball_finish(o)
    if not v then return end
    if not suffixed(v,"exit") then return end
    ;(({
-       ['a_exit'] = me.finish                     
-   })[v] or function(o) error("I don't know exit type:"..v) end)(o)
+       a_exit     = me.finish   ,    
+       cr_exit    = me.colfinish ,
+       cg_exit    = me.colfinish,
+       cb_exit    = me.colfinish,
+       ce_exit    = me.colfinish
+   })[v] or function(o,v) error("I don't know exit type:"..v) end)(o,v)
 end
 
 me.moves = {}
@@ -559,7 +577,7 @@ end
 
 function me.endofpuzzle()
     local ihave = puzzle.stats.di_out
-    if puzzle.mission=='Normal' or puzzle.mission=="Break-Free" then ihave = puzzle.stats.di_in end
+    if puzzle.mission=='Normal' or puzzle.mission=="Break-Free" or puzzle.mission=='Color Split' then ihave = puzzle.stats.di_in end
     if ihave>=puzzle.stats.di_req then
        -- success!
        if me.rec then -- Only act upon an original puzzle!
@@ -715,10 +733,10 @@ function me.startpuzzle()
      puzzle.breakblocks = me.countbreakblocks()
      me.ass(puzzle.breakblocks,"ENBB")
   end
-  local nocolext = function() ass(puzzle.mission=='Color-Split','ENCE') end
+  local nocolext = function() me.ass(puzzle.mission=='Color Split','ENCE') end
   for k,v in pairs(puzzle.obstacles) do
       (({
-           a_exit  = function() ass(puzzle.mission=='Normal','ENNE') end,
+           a_exit  = function() me.ass(puzzle.mission=='Normal','ENNE') end,
            cr_exit = nocolext,
            cg_exit = nocolext,
            cb_exit = nocolext,

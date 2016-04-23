@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.21
+Version: 16.04.23
 ]]
 
 --- Language file. English
@@ -49,7 +49,7 @@ Version: 16.04.21
 ]]
 
 -- Don't bother modifying the mkl lines. My building scripts put in the data that goes there automatically.
-mkl.version("BallPlay Cupid - English.lua","16.04.21")
+mkl.version("BallPlay Cupid - English.lua","16.04.23")
 mkl.lic    ("BallPlay Cupid - English.lua","GNU General Public License 3")
 
 local lang = {
@@ -105,9 +105,10 @@ local lang = {
              }, 
       missions = {
                               Normal         = "Bring as many balls as you can\nto the finish",
-                              ['Break-Away'] = "Break all blocks away\nand get as little\nballs destroyed as possible",
-                              ['Break-Free'] = "Break all blocks away.\nThe last block broken\nwill turn into an exit",
-                              Walkthrough    = "You may see a woman, and she needs\nto get home\nYou can use the directional bottoms or the\nwasd keys to control her\n\nIf there are multiple women they all move in\nthe same direction if possible.\n\nBe warned, ALL women must get home.\n\nIf they get touched by a ball\nor any other moving object\nthey'll die instantly causing you to fail the puzzle.\n\nAs the end of the puzzle,\nyou must at least still have\n\nthe number of balls written\nat the \"clubs\" symbol to be\nin the field!"
+                              ['Break-Away']  = "Break all blocks away\nand get as little\nballs destroyed as possible",
+                              ['Break-Free']  = "Break all blocks away.\nThe last block broken\nwill turn into an exit",
+                              ['Color Split'] = "Bring all balls to the exit of the same color\nBalls arrving at the wrong exit will\nbe destroyed\n\nIf you suffer from color blindness\nPlease go back to the main menu\nand turn on the\ncolor-blind mode.",
+                              Walkthrough     = "You may see a woman, and she needs\nto get home\nYou can use the directional bottoms or the\nwasd keys to control her\n\nIf there are multiple women they all move in\nthe same direction if possible.\n\nBe warned, ALL women must get home.\n\nIf they get touched by a ball\nor any other moving object\nthey'll die instantly causing you to fail the puzzle.\n\nAs the end of the puzzle,\nyou must at least still have\n\nthe number of balls written\nat the \"clubs\" symbol to be\nin the field!"
                  },           
       game = {
                  symbols = {

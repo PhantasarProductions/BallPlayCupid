@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 23 April 2016; 13:13:28.
+Below is a list of contributors to the game. This list was last updated on Sun 24 April 2016; 23:13:32.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -86,6 +86,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/For Icon/winicon.ico
     - GFX/Title/Cupid.ico
     - GFX/Title/Cupid.png
+- ImageAfter
+  - The license terms can be found here: http://www.imageafter.com/terms.php
+    - GFX/Game/Puzzle/Walls/Shed/Vaal Hout.png
 - Jeroen Petrus Broks
   - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
     - GFX/Editor/CE.png
@@ -207,6 +210,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz23.lua
     - Script/game.lll/Puzzles/Pz24.lua
     - Script/game.lll/Puzzles/Pz25.lua
+    - Script/game.lll/Puzzles/Pz26.lua
+    - Script/game.lll/Puzzles/Pz27.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
@@ -231,6 +236,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - music/theme/Christmas Rap.mp3
     - music/theme/Ultra Polka.mp3
     - music/theme/dark/Agnus Dei X.mp3
+    - music/theme/dark/Day of Chaos.ogg
     - music/theme/dark/Lithium.mp3
 - Man of Steel
   - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/

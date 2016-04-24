@@ -277,7 +277,20 @@ function me.draw()
                         y=25
                         Color(0,0,0,puzzle.vda*.75)
                         Rect(0,20,800,480)
-                        for tab,name in spairs(lang.game.suctab) do
+                        if me.rec=='Pz26' then
+                          Color(255,0,0,puzzle.vda)
+                          love.graphics.print("Those who made it",10,y)
+                          love.graphics.line(10,y,790,y)
+                          y = y + 25
+                          for i=1,25 do
+                             Color(0,180,255,puzzle.vda)
+                             love.graphics.print(i..". "..(me.victorydata['MADEIT['..i..'].NAME'] or "Nobody"),20,y)
+                             Color(180,255,0)
+                             love.graphics.print(me.victorydata['MADEIT['..i..'].TIME'] or "Never",400,y)
+                             y = y + 15 
+                          end                               
+                        else
+                          for tab,name in spairs(lang.game.suctab) do
                             if me.victorydata['BOARD.YOU.'..tab] then
                                Color(255,0,0,puzzle.vda)
                                love.graphics.print(name,10,y)
@@ -304,6 +317,7 @@ function me.draw()
                                love.graphics.print("World average: "..(({ TME = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)), PTM = time.sec2time(tonumber(me.victorydata['BOARD.AVG.'..tab] or 0)) })[tab] or me.victorydata['BOARD.AVG.'..tab] or "---"),500,y)
                                y = y + 50
                             end
+                          end  
                         end    
                      end         
                   end    ,    
@@ -360,7 +374,7 @@ function me.mousepressed(x,y,b)
                       local wv= w:get({tx,ty})
                       local pp= p
                       if pp and prefixed(pp,"plate") then pp="r"..pp end
-                      if (v=='rplate1' or v=='rplate2' or v=='yplate1' or v=='yplate2' or v==nil) and v~=pp and (not wv) and puzzle.tools[p or 'trash']>0 and table2multidim(puzzle.floors,puzzle.format):get({tx,ty}) then
+                      if (v=='rplate1' or v=='rplate2' or v=='gplate1' or v=='gplate2' or v==nil) and v~=pp and (not wv) and puzzle.tools[p or 'trash']>0 and table2multidim(puzzle.floors,puzzle.format):get({tx,ty}) then
                          if wall then w:def({tx,ty},p) else o:def({tx,ty},pp) end
                          puzzle.usedtools = puzzle.usedtools + 1
                          puzzle.tools[p or 'trash'] = puzzle.tools[p or 'trash'] - 1

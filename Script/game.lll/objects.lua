@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.21
+Version: 16.04.23
 ]]
 local o = {
 
@@ -38,7 +38,8 @@ local o = {
                 movement = "move_default",
                 collide = "collide_ball",
                 finish = "ball_finish",
-                ename = "Green Ball"
+                ename = "Green Ball",
+                cbr = "G"
                 },       
     ballred   = {
                 image = "ball",
@@ -46,7 +47,8 @@ local o = {
                 movement = "move_default",
                 collide = "collide_ball",
                 finish = "ball_finish",
-                ename = "Red Ball"
+                ename = "Red Ball",
+                cbr = "R"
                 },       
     ballblue   = {
                 image = "ball",
@@ -54,7 +56,8 @@ local o = {
                 movement = "move_default",
                 collide = "collide_ball",
                 finish = "ball_finish",
-                ename = "Blue Ball"
+                ename = "Blue Ball",
+                cbr = "B"
                 },       
     ballember = {
                 image = "ball",
@@ -62,7 +65,8 @@ local o = {
                 movement = "move_default",
                 collide = "collide_ball",
                 finish = "ball_finish",
-                ename = "Ember Ball"
+                ename = "Ember Ball",
+                cbr = "E"
                 },       
     ghostred = {
                 image = "ghost",

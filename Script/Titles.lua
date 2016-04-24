@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.23
+Version: 16.04.24
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -54,6 +54,8 @@ local names = {
 	Pz23 = "\67\97\110\32\121\111\117\32\102\101\101\108\32\105\116\63",
 	Pz24 = "Castle Mania",
 	Pz25 = "The colors of the wind",
+	Pz26 = "You can make it!",
+	Pz27 = "The Madness Returns",
 	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 

@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.21
+Version: 16.04.23
 ]]
 
 objects = objects or j_love_import("SCRIPT/GAME.LLL/objects.lua")	-- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.21")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.23")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -60,6 +60,13 @@ local function dgs(pz)
   -- objects
   for o in each(pz.objects) do
       DrawObject(o.kind,(o.x*32)+(o.modx or 0),((o.y*32)+20)+(o.mody or 0))
+      if pz.mission=='Color Split' and user.data.config.colorlind then
+         black() 
+         love.graphics.print(objects[o.kind].cbr or "",(o.x*32)+(o.modx or 0)+(-1),((o.y*32)+20)+(o.mody or 0)+(-1))
+         love.graphics.print(objects[o.kind].cbr or "",(o.x*32)+(o.modx or 1)+( 0),((o.y*32)+20)+(o.mody or 0)+( 1))
+         white()
+         love.graphics.print(objects[o.kind].cbr or "",(o.x*32)+(o.modx or 0)+( 0),((o.y*32)+20)+(o.mody or 0)+( 0))
+      end   
       --love.graphics.print(valstr(o.modx).."/"..valstr(o.mody),o.x*32,(o.y*32)+20) -- debug line only
       if (not o.blockautomod) and o.modx and o.mody then
          if o.modx<0 then o.modx=o.modx+2 elseif o.modx>0 then o.modx=o.modx-2 end

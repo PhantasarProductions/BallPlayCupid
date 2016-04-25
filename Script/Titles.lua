@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.24
+Version: 16.04.25
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -56,6 +56,8 @@ local names = {
 	Pz25 = "The colors of the wind",
 	Pz26 = "You can make it!",
 	Pz27 = "The Madness Returns",
+	Pz28 = "Plate Chaos",
+	Pz29 = "Maniac Mansion",
 	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 

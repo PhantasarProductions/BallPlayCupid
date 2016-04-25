@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sun 24 April 2016; 23:13:32.
+Below is a list of contributors to the game. This list was last updated on Mon 25 April 2016; 17:56:52.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -63,6 +63,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - music/random/Special-Time.mp3
     - music/random/The-Games_v001.mp3
     - music/random/The-Magic-Box.mp3
+    - music/random/scriptarchive.mp3
     - music/theme/Urban-Jungle-2061.mp3
 - Fractint
   - These files are all generated with Fractint and after that colored by Jeroen P. Broks. It's hard to license them, so I'll keep it to a CC_BY_SA license.
@@ -140,6 +141,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/Exit.png
     - GFX/Game/Puzzle/Obstacles/LaserDown.png
     - GFX/Game/Puzzle/Obstacles/LaserLeft.png
+    - GFX/Game/Puzzle/Obstacles/LaserPlate.piko
     - GFX/Game/Puzzle/Obstacles/LaserPlate.png
     - GFX/Game/Puzzle/Obstacles/LaserRight.png
     - GFX/Game/Puzzle/Obstacles/LaserUp.png
@@ -167,6 +169,11 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Walls/Nature/Bush.png
     - GFX/Game/Puzzle/Walls/Pink/0001.png
     - GFX/Game/Puzzle/Walls/Road/Pylon.png
+    - GFX/Game/Puzzle/Walls/Shed/Blokjes.png
+    - GFX/Game/Puzzle/Walls/Shed/Poppetje.png
+    - GFX/Game/Puzzle/Walls/Shed/Poppetje2.png
+    - GFX/Game/Puzzle/Walls/Shed/Springtow.png
+    - GFX/Game/Puzzle/Walls/Shed/Tolletje.png
     - GFX/Game/Puzzle/Walls/XMas/Base.png
     - GFX/Game/Puzzle/Walls/XMas/BaseSnow.png
     - GFX/Game/Puzzle/Walls/XMas/Edge_L.png
@@ -212,6 +219,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz25.lua
     - Script/game.lll/Puzzles/Pz26.lua
     - Script/game.lll/Puzzles/Pz27.lua
+    - Script/game.lll/Puzzles/Pz28.lua
+    - Script/game.lll/Puzzles/Pz29.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua

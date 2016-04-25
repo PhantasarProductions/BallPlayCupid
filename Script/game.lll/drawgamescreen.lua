@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.23
+Version: 16.04.25
 ]]
 
 objects = objects or j_love_import("SCRIPT/GAME.LLL/objects.lua")	-- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.23")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.25")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -42,6 +42,13 @@ local function dglay(pz,lay)
              local o = glob.obstacles[v]
              Color(o[2],o[3],o[4])
              DrawImage(o[1],c[1]*32,(c[2]*32)+20)
+             if pz.mission=='Color Split' and user.data.config.colorblind then
+                black()
+                love.graphics.print(o[5] or "",(c[1]*32)+1,(c[2]*32)+21)
+                love.graphics.print(o[5] or "",(c[1]*32)-1,(c[2]*32)+19)
+                white()
+                love.graphics.print(o[5] or "",c[1]*32,(c[2]*32)+20)
+             end
           else
              DrawImage(v,c[1]*32,(c[2]*32)+20)
           end 
@@ -60,7 +67,7 @@ local function dgs(pz)
   -- objects
   for o in each(pz.objects) do
       DrawObject(o.kind,(o.x*32)+(o.modx or 0),((o.y*32)+20)+(o.mody or 0))
-      if pz.mission=='Color Split' and user.data.config.colorlind then
+      if pz.mission=='Color Split' and user.data.config.colorblind then
          black() 
          love.graphics.print(objects[o.kind].cbr or "",(o.x*32)+(o.modx or 0)+(-1),((o.y*32)+20)+(o.mody or 0)+(-1))
          love.graphics.print(objects[o.kind].cbr or "",(o.x*32)+(o.modx or 1)+( 0),((o.y*32)+20)+(o.mody or 0)+( 1))

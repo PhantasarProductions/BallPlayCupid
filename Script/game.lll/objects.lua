@@ -20,8 +20,9 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.23
+Version: 16.04.25
 ]]
+
 local o = {
 
     ball = {

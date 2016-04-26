@@ -20,13 +20,15 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.23
+Version: 16.04.26
 ]]
 
 
 
 
 -- *import drawgamescreen
+
+-- *define debug_lasercompile
 
 
 
@@ -426,6 +428,7 @@ function me.block(x,y)
     ret = ret or y>15-1
     ret = ret or walls:get({x,y})~=nil  -- I only want to return 'true' or 'false'. Not an actual value.
     ret = ret or prefixed(strval(obs:get({x,y})),"bb")
+    ret = ret or prefixed(strval(obs:get({x,y})),"laser_")
     if ret and prefixed(strval(obs:get({x,y})),"bb") then reason="bb" end
     return ret,reason
 end
@@ -740,6 +743,50 @@ function me.countbreakblocks()
     return cnt,locs 
 end
 
+function me.standardlaserclass() return { lines = {}, tiles = {} } end
+
+function me.compilelasers()
+  print("Compiling lasers")
+  puzzle.lasers = { red = me.standardlaserclass(), green = me.standardlaserclass(), ember = me.standardlaserclass(), blue = me.standardlaserclass() }
+  local einde = { Left = {0,15}, Right = {32,15}, Up = {15,0}, Down = {15,32} }
+  local start = { Right = {0,15}, Left = {32,15}, Down = {15,0}, Up = {15,32} }
+  local go = { Left = {-1,0}, Right={1,0}, Up={0,-1}, Down = {0,1}}
+  local ob = table2multidim(puzzle.obstacles,puzzle.format)
+  local o
+  local oinstruction,odir,ocol
+  local gx,gy,gd
+  for y=0,puzzle.format[2] do
+      for x=0,puzzle.format[1] do
+          o = ob:get({x,y})
+          if o and prefixed(o,"laser_") then
+             -- *if debug_lasercompile
+             print('- Laser found at: ('..x..","..y..")")
+             -- *fi
+             oinstruction = mysplit(o,"_")
+             odir = oinstruction[2]
+             ocol = oinstruction[3]
+             gd = go[odir]
+             gx=x+gd[1]
+             gy=y+gd[2]
+             while not me.block(gx,gy) do
+                   -- *if debug_lasercompile
+                   print("  = Adding tile: ("..gx..","..gy..")")
+                   -- *fi
+                   append(puzzle.lasers[ocol].tiles,{gx,gy})
+                   gx=gx+gd[1]             
+                   gy=gy+gd[2]
+             end
+             gx=gx-gd[1]             
+             gy=gy-gd[2]
+             append(puzzle.lasers[ocol].lines,{(x*32)+start[odir][1],(y*32)+start[odir][2]+20,(x*32)+einde[odir][1],(y*32)+einde[odir][2]+20})
+          end 
+      end
+  end
+  -- *if debug_lasercompile
+  print(serialize('lasers',puzzle.lasers))
+  -- *fi
+end
+
 function me.startpuzzle()
   me.stage = 'play'
   me.ass(countballs(puzzle)>0,"ENOB")
@@ -757,6 +804,7 @@ function me.startpuzzle()
            ce_exit = nocolext           
       })[v or 'Rare jongens! Die Romeinen!'] or chain.nothing)()
   end
+  me.compilelasers(0)
 end
 
 function me.pickpuzzle()

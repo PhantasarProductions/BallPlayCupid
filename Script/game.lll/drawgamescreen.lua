@@ -42,7 +42,7 @@ local function dglay(pz,lay)
              local o = glob.obstacles[v]
              Color(o[2],o[3],o[4])
              DrawImage(o[1],c[1]*32,(c[2]*32)+20)
-             if pz.mission=='Color Split' and user.data.config.colorblind then
+             if user.data.config.colorblind then
                 black()
                 love.graphics.print(o[5] or "",(c[1]*32)+1,(c[2]*32)+21)
                 love.graphics.print(o[5] or "",(c[1]*32)-1,(c[2]*32)+19)

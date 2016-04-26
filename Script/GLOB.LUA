@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.23
+Version: 16.04.25
 ]]
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
@@ -61,8 +61,17 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
                                            bb10 = {"breakblock",180,  0,255},
                                            bb11 = {"breakblock",255,255,255},
                                            bb12 = {"breakblock",255,180,   0},
-                                        }            
-                 }                   
+                                        },
+                          lasers = {}                          
+                 }
+                 
+for colname,col in pairs({red={255,0,0},green={0,255,0},blue={0,0,255},ember={255,180,0}}) do
+    for wind in each({'Up','Down','Left','Right'}) do
+        glob.sobstacles.lasers['laser_'..wind.."_"..colname] = {"laser"..lower(wind),col[1],col[2],col[3],left(colname,1)}
+    end
+   glob.sobstacles.lasers['platelaser_'..colname] = {'laserplate',col[1],col[2],col[3],left(colname,1)}
+end
+                                    
 glob.obstacles = {}   for sk,ls in pairs(glob.sobstacles) do for k,v in pairs(ls) do glob.obstacles[k] = v end end
 
 

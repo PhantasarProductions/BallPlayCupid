@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.26
+Version: 16.04.27
 ]]
 
 
@@ -136,6 +136,7 @@ me.collide = {
                                    end
                                   end,
                   woman = function(myself,other)
+                             if other.kind=="woman" then return end
                              append(puzzle.ghostwomen,{x=myself.x*32, y=(myself.y*32)+20})
                              me.stage  = 'fail'
                              me.failure = "A woman died!"
@@ -567,7 +568,10 @@ function me.laserkill()
                  print(o.kind.." #"..i.." was destroyed by a laser!")
                  puzzle.objects[i] = nil
                  me.addexplosion(o.x,o.y)
-                 if suffixed(o.kind,'ball') then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end    
+                 if suffixed(o.kind,'ball') then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end
+                 if o.kind=='woman' then
+                    me.collide.woman(o,{kind='whatever'}) 
+                    end    
                  end
              end 
          end
@@ -684,7 +688,11 @@ function me.update()
                              sfx("fall")            
                              HotCenter(of.img)
                              me.destroy(o)
-                             if prefixed(o.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                        
+                             if prefixed(o.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end     
+                             if o.kind=="woman" then
+                                me.stage='fail'
+                                me.failure="A woman fell to her death"
+                             end                                   
                           end
                         for kleur,d in pairs(puzzle.lasers) do
        										d.shoot=d.shoot or ob:get({o.x,o.y})=='platelaser_'..kleur

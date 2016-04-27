@@ -552,8 +552,39 @@ function me.checkbump(o)
    end
 end   
 
+function me.addexplosion(x,y)
+end
+
+function me.laserkill()
+  -- Kill EVERYTHING in the path of a laser
+  for kleur,gegevens in pairs(puzzle.lasers) do
+      if gegevens.shoot then
+         for atile in each(gegevens.tiles) do
+             for i,o in pairs(puzzle.objects) do
+                 if o.x==atile[1] and o.y==atile[2] then
+                 -- puzzle.objects[i] = nil
+                 me.destroy(o)
+                 print(o.kind.." #"..i.." was destroyed by a laser!")
+                 puzzle.objects[i] = nil
+                 me.addexplosion(o.x,o.y)
+                 if suffixed(o.kind,'ball') then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end    
+                 end
+             end 
+         end
+      end
+  end
+  --[[
+  for i in each(me.destroylist) do
+      puzzle.objects[i]=nil
+      print("object #"..i.." set to nil")
+  end   
+  puzzle.objects = packtable(puzzle.objects)
+  ]]
+  puzzle.stats.di_out = countballs(puzzle)  
+end
+
 function me.move(o)
-   local oldx,oldy
+   local oldx,oldy   
    if not me.objgoblock(o) then 
       oldx = o.x
       oldy = o.y
@@ -623,6 +654,7 @@ function me.update()
     me.destroylist = {};
     (({
          play = function()
+                  local ob = table2multidim(puzzle.obstacles,puzzle.format)
                    -- Let's set it all up here
                    local timer = floor(love.timer.getTime()*1000)
                    me.oldtimer = me.oldtimer or timer
@@ -631,6 +663,9 @@ function me.update()
                    if tsec~=me.oldtsec then puzzle.time = puzzle.time + 1; me.oldtsec = tsec end
                    --print(abs(timer-me.oldtimer).." acttimer:"..timer.." old-timer:"..me.oldtimer)
                    if abs(timer-me.oldtimer)>me.gamespeed then
+                      for kleur,d in pairs(puzzle.lasers) do
+                          d.shoot=false
+                      end
                       --print("CYCLE!")
                       for o in each(puzzle.objects) do
                           (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
@@ -651,16 +686,21 @@ function me.update()
                              me.destroy(o)
                              if prefixed(o.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                        
                           end
-                      end                      
+                        for kleur,d in pairs(puzzle.lasers) do
+       										d.shoot=d.shoot or ob:get({o.x,o.y})=='platelaser_'..kleur
+     										end
+                      end                                            
                       for i in each(me.destroylist) do
                           puzzle.objects[i]=nil
                           print("object #"..i.." set to nil")
                       end
+   										me.laserkill()
                       if (#me.destroylist>0) then
                          print("packing objects table")
                          puzzle.objects = packtable(puzzle.objects)
                          puzzle.stats.di_out = countballs(puzzle)
                       end
+                      
                       me.oldtimer=timer
                    end
                    -- Puzzle solved or failed?
@@ -743,18 +783,18 @@ function me.countbreakblocks()
     return cnt,locs 
 end
 
-function me.standardlaserclass() return { lines = {}, tiles = {} } end
+function me.standardlaserclass() return { lines = {}, tiles = {}, shoot=false } end
 
 function me.compilelasers()
   print("Compiling lasers")
   puzzle.lasers = { red = me.standardlaserclass(), green = me.standardlaserclass(), ember = me.standardlaserclass(), blue = me.standardlaserclass() }
-  local einde = { Left = {0,15}, Right = {32,15}, Up = {15,0}, Down = {15,32} }
-  local start = { Right = {0,15}, Left = {32,15}, Down = {15,0}, Up = {15,32} }
+  local einde = { Left = {0,15,0, 14,0,16}, Right = {32,15,32, 14,32,16}, Up = {15,0,14, 0,16,0}, Down = {15,32,14, 32,16,32} }
+  local start = { Right = {0,15,15, 14,15,16}, Left = {32,15,15,14,15,16}, Down = {15,0,16, 15,14,15}, Up = {15,32,16, 15,14,15} }
   local go = { Left = {-1,0}, Right={1,0}, Up={0,-1}, Down = {0,1}}
   local ob = table2multidim(puzzle.obstacles,puzzle.format)
   local o
   local oinstruction,odir,ocol
-  local gx,gy,gd
+  local gx,gy,gd,sx,sy
   for y=0,puzzle.format[2] do
       for x=0,puzzle.format[1] do
           o = ob:get({x,y})
@@ -768,6 +808,7 @@ function me.compilelasers()
              gd = go[odir]
              gx=x+gd[1]
              gy=y+gd[2]
+             sx,sy=gx,gy
              while not me.block(gx,gy) do
                    -- *if debug_lasercompile
                    print("  = Adding tile: ("..gx..","..gy..")")
@@ -778,7 +819,9 @@ function me.compilelasers()
              end
              gx=gx-gd[1]             
              gy=gy-gd[2]
-             append(puzzle.lasers[ocol].lines,{(x*32)+start[odir][1],(y*32)+start[odir][2]+20,(x*32)+einde[odir][1],(y*32)+einde[odir][2]+20})
+             append(puzzle.lasers[ocol].lines,{(sx*32)+start[odir][1],(sy*32)+start[odir][2]+20,(gx*32)+einde[odir][1],(gy*32)+einde[odir][2]+20,1})
+             append(puzzle.lasers[ocol].lines,{(sx*32)+start[odir][3],(sy*32)+start[odir][4]+20,(gx*32)+einde[odir][3],(gy*32)+einde[odir][4]+20,.5})
+             append(puzzle.lasers[ocol].lines,{(sx*32)+start[odir][5],(sy*32)+start[odir][6]+20,(gx*32)+einde[odir][5],(gy*32)+einde[odir][6]+20,.5})
           end 
       end
   end

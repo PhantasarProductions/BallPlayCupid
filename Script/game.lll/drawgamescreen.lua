@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.25
+Version: 16.04.26
 ]]
 
-objects = objects or j_love_import("SCRIPT/GAME.LLL/objects.lua")	-- *import objects
+-- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.25")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.26")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -96,6 +96,17 @@ local function dgs(pz)
       DrawImage("womanghost",o.x,o.y)
       o.y=o.y-.1
       if o.y<-70 then pz.ghostwomen[k]=nil end
+  end
+  -- Show lasers
+  if pz.lasers then
+     for kleur,data in pairs(pz.lasers) do
+         if data.shoot then
+           for line in each(data.lines) do
+             Color(({red=255, green=0, ember=255, blue=0})[kleur]*line[5],({red=0, green=255, ember=180,blue=0})[kleur]*line[5],({red=0, ember=0, green=0, blue=255})[kleur]*line[5]) -- dirty code STRAIGHT from HELL!
+             love.graphics.line(line[1],line[2],line[3],line[4])
+           end  
+         end
+     end
   end    
 end  
 

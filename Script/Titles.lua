@@ -63,6 +63,7 @@ local names = {
 	Pz32 = "Avada Kedavra",
 	Pz33 = "Walk this way!",
 	Pz34 = "The quick and the dead",
+	Pz35 = "The Collector",
 	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 

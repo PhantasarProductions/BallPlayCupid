@@ -43,6 +43,7 @@ local function dglay(pz,lay)
              --if chain.current.noshowdroidspots then error("lul") end -- debugline the system refuses to do something, and since this refusal cannot be possible I need to sort out why it still happens.
              if not(chain.current.noshowdroidspots and prefixed(v,'zzarrow_droid')) then
               Color(o[2],o[3],o[4])
+              if v=='dot' then Color(rand(1,255),rand(1,255),rand(1,255)) end
               DrawImage(o[1],c[1]*32,(c[2]*32)+20)
               if user.data.config.colorblind then
                 black()

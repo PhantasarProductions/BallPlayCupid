@@ -63,7 +63,8 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
                                            bb09 = {"breakblock",  0,255,180},
                                            bb10 = {"breakblock",180,  0,255},
                                            bb11 = {"breakblock",255,255,255},
-                                           bb12 = {"breakblock",255,180,   0},
+                                           bb12 = {"breakblock",255,180,  0},
+                                           dot  = {"dot"       ,255,255,255}
                                         },
                           lasers = {},                                                    
                  }

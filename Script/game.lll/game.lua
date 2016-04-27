@@ -177,6 +177,11 @@ function me.draw()
       puzzle.breakblocks = me.countbreakblocks()
       love.graphics.print(({[0]="",[1]="1 tile"})[puzzle.breakblocks] or strval(puzzle.breakblocks).." tiles",550,5)
    end   
+   if (puzzle.mission=='Collect') then
+      Color(180,0,255)
+      puzzle.dots = me.countdots()
+      love.graphics.print(({[0]="",[1]="1 dot"})[puzzle.dots] or strval(puzzle.dots).." dots",550,5)      
+   end
    -- bottom bar
    me.currenttool = me.currenttool or 'plate1'
    puzzle.tpr = puzzle.tpr or rand(1,100)
@@ -679,6 +684,9 @@ function me.update()
                           if prefixed(ob:get({o.x,o.y}) or "gezeik","zzarrow_normal_") then
                              o.dir = upper(mid(ob:get({o.x,o.y}),#("zzarrow_normal_")+1,1))
                           end 
+                          if ob:get({o.x,o.y})=='dot' and prefixed(o.kind,"ball") then
+                             ob:def({o.x,o.y},nil)                             
+                          end
                           if table2multidim(puzzle.floors,puzzle.format):get({o.x,o.y})==nil then -- and o.modx==0 and o.mody==0 then
                              local of = {
                                           img    = cpImg(assets[objects[o.kind].image]),
@@ -717,7 +725,11 @@ function me.update()
                       me.oldtimer=timer
                    end
                    -- Puzzle solved or failed?
-                   if puzzle.stats.di_out==0 then me.endofpuzzle() end                   
+                   if puzzle.stats.di_out==0 then me.endofpuzzle() end 
+                   if puzzle.mission=='Collect' then
+                      puzzle.dots = me.countdots()
+                      if puzzle.dots==0 then me.endofpuzzle() end                   
+                   end                  
                 end
     })[me.stage] or chain.nothing)()
 end
@@ -796,6 +808,14 @@ function me.countbreakblocks()
     return cnt,locs 
 end
 
+function me.countdots()
+    local cnt,locs = 0,{}
+    for k,v in pairs(puzzle.obstacles) do
+        if v=="dot" then cnt=cnt+1 append(locs,k) end
+    end
+    return cnt,locs 
+end
+
 function me.standardlaserclass() return { lines = {}, tiles = {}, shoot=false } end
 
 function me.compilelasers()
@@ -847,8 +867,11 @@ function me.startpuzzle()
   me.stage = 'play'
   me.ass(countballs(puzzle)>0,"ENOB")
   if puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free" then
-     puzzle.breakblocks = me.countbreakblocks()
+     puzzle.breakblocks, puzzle.oriblocks = me.countbreakblocks()
      me.ass(puzzle.breakblocks,"ENBB")
+  end
+  if puzzle.mission=='Collect' then
+     puzzle.dots = me.countdots()
   end
   local nocolext = function() me.ass(puzzle.mission=='Color Split','ENCE') end
   for k,v in pairs(puzzle.obstacles) do
@@ -860,7 +883,7 @@ function me.startpuzzle()
            ce_exit = nocolext           
       })[v or 'Rare jongens! Die Romeinen!'] or chain.nothing)()
   end
-  me.compilelasers(0)
+  me.compilelasers()
 end
 
 function me.pickpuzzle()

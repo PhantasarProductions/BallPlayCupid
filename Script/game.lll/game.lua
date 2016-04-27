@@ -451,6 +451,7 @@ function me.blockturn(o)
         table2multidim(puzzle.obstacles,puzzle.format):def({x,y},nil)
         sfx("breakblock")
         puzzle.breakblocks = me.countbreakblocks()
+        me.compilelasers()
         if puzzle.breakblocks==0 then 
            (({
                ['Break-Away'] = me.endofpuzzle,

@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.22
+Version: 16.04.27
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.22")
+mkl.version("BallPlay Cupid - edit.lua","16.04.27")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -322,7 +322,8 @@ local tab -- The second line *is* required, or the editor *can* and *will* crash
 function e.arrive() 
 	e.filename = LoadImage(love.graphics.newText(glob.love2dfont,e.file))
 	if love.filesystem.exists("homemadepuzzles/"..e.file..".lua") then puzzle,pconfig = save.load("homemadepuzzles/"..e.file) end --j_love_import("homemadepuzzles/"..e.filename..".lua") end
-	pconfig = pconfig or {}
+	pconfig = pconfig or { tab='settings' }
+	pconfig.tab = pconfig.tab or 'settings'
 	puzzle.title = puzzle.title or e.file
 	puzzle.format = puzzle.format or {25,15}
 	e.floors = declaremultidim(puzzle.format)
@@ -454,6 +455,32 @@ function e.update()
      e.dt=e.dt - 1
      if e.dt<100 then e.dt=nil end
   end
+end
+
+function e.quit_event()
+   local ret = false
+   local ql 
+   ql = lang or { general = {"Really quit? "}, editsave = {"Save","No Save","Save back to menu","Don't save back to menu","Cancel"}}
+   ql.editsave.escapebutton=5
+   local answer = love.window.showMessageBox("Ballplay Cupid",ql.general.reallyquit,ql.editsave)
+   return ({
+              function()
+                 save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig}) chain.go("mainmenu")
+              end,
+              chain.nothing,
+              function()
+                 save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig}) chain.go("mainmenu")
+                 chain.go('mainmenu')
+                 return true
+              end,
+              function ()
+                 chain.go("mainmenu")
+                 return true
+              end,
+              function ()
+                return true
+              end   
+        })[answer]() 
 end
   
 

@@ -20,8 +20,11 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.25
+Version: 16.04.27
 ]]
+
+-- *import tablemerge
+
 local glob = {}
 glob.love2dfont = love.graphics.getFont()
 
@@ -35,10 +38,10 @@ glob.config.lang = 'ENGLISH'
 glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'plate2',255,255,  0},
                                     rplate1={'plate1',255,  0,  0},rplate2={'plate2',255,  0,  0},
                                     zplate1={'plate1',  0,255,255},zplate2={'plate2',  0,255,255},
-                                    zzarrowup   ={'arrow_up'   ,0,255,255},
-                                    zzarrowdown ={'arrow_down' ,0,255,255},
-                                    zzarrowright={'arrow_right',0,255,255},
-                                    zzarrowleft ={'arrow_left' ,0,255,255},
+                                    --zzarrowup   ={'arrow_up'   ,0,255,255},
+                                    --zzarrowdown ={'arrow_down' ,0,255,255},
+                                    --zzarrowright={'arrow_right',0,255,255},
+                                    --zzarrowleft ={'arrow_left' ,0,255,255},
                                     zzzglass    ={'glass'      ,255,255,255} 
                                     },
                           exits = { a_exit = {'exit',  0,255,255},
@@ -62,7 +65,7 @@ glob.sobstacles = {       plates = {gplate1={'plate1',255,255,  0},gplate2={'pla
                                            bb11 = {"breakblock",255,255,255},
                                            bb12 = {"breakblock",255,180,   0},
                                         },
-                          lasers = {}                          
+                          lasers = {},                                                    
                  }
                  
 for colname,col in pairs({red={255,0,0},green={0,255,0},blue={0,0,255},ember={255,180,0}}) do
@@ -70,6 +73,13 @@ for colname,col in pairs({red={255,0,0},green={0,255,0},blue={0,0,255},ember={25
         glob.sobstacles.lasers['laser_'..wind.."_"..colname] = {"laser"..lower(wind),col[1],col[2],col[3],left(colname,1)}
     end
    glob.sobstacles.lasers['platelaser_'..colname] = {'laserplate',col[1],col[2],col[3],left(colname,1)}
+end
+
+for kind,col in pairs({normal={255,180,0},droid={0,180,255}}) do
+    for dir in each({"up","down","left","right"}) do
+        glob.sobstacles.plates["zzarrow_"..kind.."_"..dir] = {'arrow_'..dir}
+        tablemerge(glob.sobstacles.plates["zzarrow_"..kind.."_"..dir],col)
+    end
 end
                                     
 glob.obstacles = {}   for sk,ls in pairs(glob.sobstacles) do for k,v in pairs(ls) do glob.obstacles[k] = v end end

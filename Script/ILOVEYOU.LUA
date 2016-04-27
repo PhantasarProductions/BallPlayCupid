@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.24
+Version: 16.04.27
 ]]
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ Version: 16.04.24
 -- *import homemadepuzzleselector
 -- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.24")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.27")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 
@@ -136,10 +136,13 @@ phantasar.after(
 )
 end initgame() initgame=nil -- Execute immediately and get this shit out of the RAM as we don't need it any more.               
 
-function great_quit()
-local ql 
-ql = ql or { general = {reallyquit="Do you really want to quit?"},yes="Yes",no="No"} 
-local ret = love.window.showMessageBox("Ballplay Cupid",ql.general.reallyquit,{ql.yes,ql.no,escapebutton=2})==2
-if user.data then user.save() end
-return ret
+function great_quit()   
+  local ret = ( chain.current.quit_event or function()
+    local ql
+    ql = lang or { general = {reallyquit="Do you really want to quit?"},yes="Yes",no="No"} 
+    local ret = love.window.showMessageBox("Ballplay Cupid",ql.general.reallyquit,{ql.yes,ql.no,escapebutton=2})==2
+  return ret
+  end)()
+  if user.data then user.save() end
+  return ret
 end

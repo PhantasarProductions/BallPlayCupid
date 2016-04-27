@@ -39,6 +39,7 @@ local me = {}
 local puzzle
 
 
+me.noshowdroidspots = true
 me.gamespeed = 500 -- The higher this number, the slower it goes.
 
 me.backgrounds = {
@@ -675,6 +676,9 @@ function me.update()
                       for o in each(puzzle.objects) do
                           (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
                           (me.exits[objects[o.kind].finish]   or chain.nothing)(o)
+                          if prefixed(ob:get({o.x,o.y}) or "gezeik","zzarrow_normal_") then
+                             o.dir = upper(mid(ob:get({o.x,o.y}),#("zzarrow_normal_")+1,1))
+                          end 
                           if table2multidim(puzzle.floors,puzzle.format):get({o.x,o.y})==nil then -- and o.modx==0 and o.mody==0 then
                              local of = {
                                           img    = cpImg(assets[objects[o.kind].image]),

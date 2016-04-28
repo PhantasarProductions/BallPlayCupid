@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.27
+Version: 16.04.28
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
@@ -64,6 +64,7 @@ local names = {
 	Pz33 = "Walk this way!",
 	Pz34 = "The quick and the dead",
 	Pz35 = "The Collector",
+	Pz36 = "\73\39\109\32\104\97\118\105\110\103\32\97\110\32\111\108\100\32\102\114\105\101\110\100\32\102\111\114\32\100\105\110\110\101\114",
 	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 

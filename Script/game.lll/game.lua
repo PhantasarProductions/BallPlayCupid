@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.27
+Version: 16.04.28
 ]]
 
 
@@ -78,7 +78,25 @@ me.backgrounds = {
               end,
       snow = function()
                me.snow('back')
-             end                             
+             end    ,
+      blood = function()
+               assets.blood = assets.blood or 
+                    (function()
+                        local ret = love.graphics.newCanvas(800,600)
+                        red()
+                        love.graphics.setCanvas(ret)
+                        for x=0,3 do for y=0,12 do
+                            DrawImage('water',x*200,y*150)
+                        end end
+                        love.graphics.setCanvas()
+                        white()
+                        return LoadImage(ret) 
+                     end)()
+                 puzzle.bloody = (puzzle.bloody or 0) + 1
+                 if puzzle.bloody>=600 then puzzle.bloody = 0 end
+                 DrawImage('blood',0,puzzle.bloody-600)
+                 DrawImage('blood',0,puzzle.bloody)                     
+              end                         
 }
 
 me.foregrounds = {
@@ -169,7 +187,7 @@ function me.draw()
    white()
    love.graphics.print(me.source,5,5)
    ember()
-   love.graphics.print(puzzle.title,150,5)
+   love.graphics.print(puzzle.title,135,5)
    Color(0,180,255) puzzle.time = puzzle.time or 0
    love.graphics.print(time.sec2time(puzzle.time),700,5)
    if (puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free") then

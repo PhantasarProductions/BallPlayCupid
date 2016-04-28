@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.27
+Version: 16.04.28
 ]]
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -72,7 +72,7 @@ Version: 16.04.27
 -- *import homemadepuzzleselector
 -- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.27")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.28")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 
@@ -98,6 +98,7 @@ local junk =            {
                                 gamepaused = "GFX/GAME/GENERAL/PAUSED.PNG",
                                      gratz = "GFX/GAME/GENERAL/GRATZ.PNG",
                                     failed = "GFX/GAME/GENERAL/FAIL.PNG",
+                                     water = "GFX/GAME/BACKEFFECT/WATER.PNG", 
                                   menuitem = "GFX/MAINMENU/ITEM.PNG"},
                            audio = {
                                   sfx_buzz = "AUDIO/INTERFACE/BUZZ.OGG" },

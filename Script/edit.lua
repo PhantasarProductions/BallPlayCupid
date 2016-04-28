@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.27
+Version: 16.04.28
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.27")
+mkl.version("BallPlay Cupid - edit.lua","16.04.28")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -354,7 +354,7 @@ function e.keypressed(key,s,r)
     (({
          s = function() save.multisave("homemadepuzzles/"..e.file,{puzzle,pconfig}) e.modified=nil end 
     })[key] or chain.nothing)()
-	elseif (len(key)==1 or (len(key)==3 and left(key,2)=='kp')) and len(puzzle.title)<30 then	
+	elseif (len(key)==1 or (len(key)==3 and left(key,2)=='kp')) and len(puzzle.title)<35 then	
 	  k = key
 	  if keypressed.capslock or keypressed.lshift or keypressed.rshift then
 	  	k = ({['1']="!", ['2']='@', ['3']="#", ['4']="$", ['5']="%", ['6']="^", ['7']="&", ['8']="*", ["9"]="(", ["0"]=")",["-"]="_", ['=']="+", ['\\']="|"})[k] or upper(k)
@@ -420,10 +420,10 @@ function e.draw()
 end
 
 function e.mousepressed(x,y,button)
+	(tab[pconfig.tab].clickstrip or chain.nothing)(x,y,button)
 	for i,t in ipairs(tabs) do
 		if y>505 and y<530 and x>(i-1)*100 and x<((i-1)*100)+80 then pconfig.tab=t end
 	end
-	(tab[pconfig.tab].clickstrip or chain.nothing)(x,y,button)
 	local fx,fy
 	if y>20 and y<500 then
 	   fx = floor(x/32)

@@ -197,7 +197,7 @@ function me.draw()
    love.graphics.print(puzzle.title,135,5)
    Color(0,180,255) puzzle.time = puzzle.time or 0
    love.graphics.print(time.sec2time(puzzle.time),700,5)
-   if (puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free") then
+   if (puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free" or puzzle.mission=="Break&Collect") then
       Color(180,0,255)
       puzzle.breakblocks = me.countbreakblocks()
       love.graphics.print(({[0]="",[1]="1 tile"})[puzzle.breakblocks] or strval(puzzle.breakblocks).." tiles",550,5)
@@ -486,7 +486,13 @@ function me.blockturn(o)
         if puzzle.breakblocks==0 then 
            (({
                ['Break-Away'] = me.endofpuzzle,
-               ['Break-Free'] = function() table2multidim(puzzle.obstacles,puzzle.format):def({x,y},'a_exit') end
+               ['Break-Free'] = function() table2multidim(puzzle.obstacles,puzzle.format):def({x,y},'a_exit') end,
+               ['Break&Collect'] = function()
+                                   for k,v in pairs(puzzle.oriblocks) do
+                                       puzzle.obstacles[v]='dot'
+                                       end
+                                   puzzle.mission='Collect'    
+                                   end
            })[puzzle.mission] or chain.nothing)()
         end   
      end
@@ -569,7 +575,7 @@ end
 function me.moves.droid(o)
 -- print(serialize('droidarrows',puzzle.droidarrows.array))
 --print(o.x..","..o.y..">"..strval(puzzle.droidarrows:get({o.x,o.y})))
-if puzzle.droidarrows:get({o.x,o.y}) then   
+if puzzle.droidarrows and puzzle.droidarrows:get({o.x,o.y}) then   
    o.dir = ({
       zzarrow_droid_left   = "L",
       zzarrow_droid_right  = "R",
@@ -907,7 +913,7 @@ end
 function me.startpuzzle()
   me.stage = 'play'
   me.ass(countballs(puzzle)>0,"ENOB")
-  if puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free" then
+  if puzzle.mission=="Break-Away" or puzzle.mission=="Break-Free"  or puzzle.mission=='Break&Collect' then
      puzzle.breakblocks, puzzle.oriblocks = me.countbreakblocks()
      me.ass(puzzle.breakblocks,"ENBB")
   end

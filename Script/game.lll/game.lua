@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.28
+Version: 16.04.29
 ]]
 
 
@@ -154,6 +154,13 @@ me.collide = {
                                       if suffixed(other.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                      
                                    end
                                   end,
+                  collide_droid = function(myself,other)
+                                   if suffixed(other.kind,"ball") then
+                                      sfx('ghost_grab')
+                                      me.destroy(other)
+                                      if suffixed(other.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                      
+                                   end
+                                  end,                
                   woman = function(myself,other)
                              if other.kind=="woman" then return end
                              append(puzzle.ghostwomen,{x=myself.x*32, y=(myself.y*32)+20})
@@ -555,6 +562,22 @@ me.moves = {}
 function me.moves.move_default(o)
 -- print("Move Default")
 me.plateturn(o) -- "plateturn" MUST come prior to "blockturn" or you will get some very undesirable behavior!
+me.blockturn(o)
+me.move(o)
+end
+
+function me.moves.droid(o)
+-- print(serialize('droidarrows',puzzle.droidarrows.array))
+--print(o.x..","..o.y..">"..strval(puzzle.droidarrows:get({o.x,o.y})))
+if puzzle.droidarrows:get({o.x,o.y}) then   
+   o.dir = ({
+      zzarrow_droid_left   = "L",
+      zzarrow_droid_right  = "R",
+      zzarrow_droid_up     = "U",
+      zzarrow_droid_down   = "D"
+   })[puzzle.droidarrows:get({o.x,o.y})]
+   --print("So droid's been changed to "..o.dir)
+   end
 me.blockturn(o)
 me.move(o)
 end

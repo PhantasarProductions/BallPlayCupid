@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.27
+Version: 16.04.29
 ]]
 
 -- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.27")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.29")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 
@@ -53,7 +53,7 @@ local function dglay(pz,lay)
                 love.graphics.print(o[5] or "",c[1]*32,(c[2]*32)+20)
               end 
              else
-               pz.droidarrows = declaremultidim(pz.format)
+               pz.droidarrows = pz.droidarrows or declaremultidim(pz.format)
                pz.droidarrows:def({ax,ay},v)
                l:def({ax,ay},nil)
              end 

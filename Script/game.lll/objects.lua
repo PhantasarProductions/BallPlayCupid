@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.25
+Version: 16.04.29
 ]]
 
 local o = {
@@ -108,7 +108,15 @@ local o = {
                 movement = "woman",
                 collide = "woman",
                 ename = "Woman"
-             }            
+             },
+    robot = {
+                image = 'robot',
+                color = {255,255,255},
+                alpha = 255,
+                movement = 'droid',
+                collide = 'collide_droid',
+                ename = 'Droid'
+            }                     
 
 }
 

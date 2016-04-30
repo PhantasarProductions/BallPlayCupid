@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.29
+Version: 16.04.30
 ]]
 
 
@@ -96,7 +96,16 @@ me.backgrounds = {
                  if puzzle.bloody>=600 then puzzle.bloody = 0 end
                  DrawImage('blood',0,puzzle.bloody-600)
                  DrawImage('blood',0,puzzle.bloody)                     
-              end                         
+              end,
+      hellfire = function()
+                   local t=love.timer.getTime()*25
+                   local c
+                   for y=0,600 do
+                       c = abs(sin(t+(y/5)))
+                       Color(255,180-(c*180),0)
+                       love.graphics.line(0,y,800,y)
+                   end
+                 end                                 
 }
 
 me.foregrounds = {
@@ -108,7 +117,11 @@ me.foregrounds = {
                   Color(puzzle.ifor.r or 255,puzzle.ifor.g or 255,puzzle.ifor.b or 255,puzzle.ifor.a or 255)
                   DrawImage("fore_"..puzzle.ifor.img,400-(ImageWidth("fore_"..puzzle.ifor.img)/2),300-(ImageHeight("fore_"..puzzle.ifor.img)/2))
                   white()
-                 end
+                 end,
+         hellfire = function()
+                       me.foregrounds.image()
+                       DrawImage('fore_devil',-25,300+(sin(love.timer.getTime()*2))*50)
+                    end
 }
 
 function me.snow(layer)

@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.17
+Version: 16.04.30
 ]]
 local mm = {}
 
 
-mkl.version("BallPlay Cupid - mainmenu.lua","16.04.17")
+mkl.version("BallPlay Cupid - mainmenu.lua","16.04.30")
 mkl.lic    ("BallPlay Cupid - mainmenu.lua","GNU General Public License 3")
 
 chain.reg("mainmenu",mm)
@@ -41,6 +41,7 @@ Color(0,255,255)
 love.graphics.print(user.data.config.lang,item.ix+300,item.iy+10)
 end
 
+
 mm.ver = mkl.newestversion() -- This can be false as the game and editor modules are not loaded at this time this is executed.
 
 
@@ -51,7 +52,7 @@ mm.menuitems = {
                  { tag = "sfx", booleconfig='sfx' },
                  { tag = 'music', booleconfig='music'},
                  { tag = 'cblind', booleconfig='colorblind'},
-                 { tag = 'language',fun='lang', xdata=mm.langdata},
+                 { tag = 'language',fun='selectlang', xdata=mm.langdata},
                  { tag = 'viewmyprofile', fun='profile'},
                  { tag = 'license', fun='license'},
                  { tag = 'logout', fun='logout'},
@@ -136,7 +137,17 @@ end
 
 
 mm.fun = {}
-function mm.fun.lang()
+function mm.fun.selectlang()
+mm.langs = mm.langs or (function() local d = love.filesystem.getDirectoryItems( 'SCRIPT/LANGUAGES' ) for i=1,#d do d[i]=stripext(d[i]) end return d end)()
+print ("we got the languages: "..serialize("langs",mm.langs))
+local i=0
+user.config.lang = user.config.lang or 'ENGLISH'
+repeat
+i=i+1
+if i>#mm.langs then user.config.lang='ENGLISH' return end
+until mm.langs[i]==user.config.lang
+user.config.lang = mm.langs[i+1] or mm.langs[1] or "ENGLISH"
+lang = j_love_import("SCRIPT/LANGUAGES/"..upper(user.config.lang)..".LUA",true)
 end
 
 function mm.fun.license()

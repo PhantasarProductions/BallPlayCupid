@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 09:33:19.
+Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 14:43:14.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -97,6 +97,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Editor/CS.png
     - GFX/Editor/CW.png
     - GFX/Game/ForeGrounds/CircularDarkness.png
+    - GFX/Game/ForeGrounds/Devil.png
     - GFX/Game/Laser/HorizontalLaserBeam.png
     - GFX/Game/Laser/VerticalLaserBeam.png
     - GFX/Game/Puzzle/Extern/Bom.png
@@ -118,6 +119,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Floors/Flesh/Floor.png
     - GFX/Game/Puzzle/Floors/Graveyard/Grass.png
     - GFX/Game/Puzzle/Floors/Graveyard/Sand.png
+    - GFX/Game/Puzzle/Floors/HELL/Floor.png
     - GFX/Game/Puzzle/Floors/Modern/Blue.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey2.png
@@ -169,6 +171,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Walls/Graveyard/Bush.png
     - GFX/Game/Puzzle/Walls/Graveyard/Grave1.png
     - GFX/Game/Puzzle/Walls/Graveyard/Grave2.png
+    - GFX/Game/Puzzle/Walls/Hell/Skull.png
+    - GFX/Game/Puzzle/Walls/Hell/ZWART.png
     - GFX/Game/Puzzle/Walls/Modern/E.png
     - GFX/Game/Puzzle/Walls/Modern/N.png
     - GFX/Game/Puzzle/Walls/Modern/NE.png
@@ -205,6 +209,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/GENERATEINTERFACE.LUA
     - Script/ILoveYou.lua
     - Script/LANGUAGES/English.lua
+    - Script/LANGUAGES/Nederlands.lua
     - Script/Titles.lua
     - Script/edit.lua
     - Script/game.lll/Puzzles/Pz01.lua
@@ -251,6 +256,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz42.lua
     - Script/game.lll/Puzzles/Pz43.lua
     - Script/game.lll/Puzzles/Pz44.lua
+    - Script/game.lll/Puzzles/Pz45.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
@@ -292,6 +298,15 @@ This list is automatically updated every time I modify the game myself, and as s
     - gfx/game/puzzle/walls/Dungeon/SouthWall2.png
     - gfx/game/puzzle/walls/Dungeon/WestWall2.png
     - gfx/game/puzzle/walls/Dungeon/fakkelgevalding.png
+    - gfx/game/puzzle/walls/Hell/E.png
+    - gfx/game/puzzle/walls/Hell/IN_NE.png
+    - gfx/game/puzzle/walls/Hell/IN_NW.png
+    - gfx/game/puzzle/walls/Hell/IN_SE.png
+    - gfx/game/puzzle/walls/Hell/IN_SW.png
+    - gfx/game/puzzle/walls/Hell/N.png
+    - gfx/game/puzzle/walls/Hell/S.png
+    - gfx/game/puzzle/walls/Hell/W.png
+    - gfx/game/puzzle/walls/Hell/stalagmiet.png
     - gfx/game/puzzle/walls/Horror House/WD.png
     - gfx/game/puzzle/walls/Horror House/WU.png
     - gfx/game/puzzle/walls/Horror House/WWE.png

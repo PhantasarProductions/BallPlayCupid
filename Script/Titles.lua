@@ -74,6 +74,10 @@ local names = {
 	Pz43 = "Perfect Timing",
 	Pz44 = "YOU SHALL NOT PASS! Or shall you?",
 	Pz45 = "Hellfire! This fire in my skin!",
+	Pz46 = "The fool on the hill",
+	Pz47 = "Winter is coming",
+	Pz48 = "One direction",
+	Pz49 = "The final frontier",
 	Pzxm = "\73\116\39\115\32\67\104\114\105\115\116\109\97\115\32\105\110\32\72\101\97\118\101\110"}
 
 

@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 14:43:14.
+Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 18:45:23.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -123,6 +123,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Floors/Modern/Blue.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey.png
     - GFX/Game/Puzzle/Floors/Modern/BlueGrey2.png
+    - GFX/Game/Puzzle/Floors/Nature/Snow.png
     - GFX/Game/Puzzle/Floors/Nature/Untitled.png
     - GFX/Game/Puzzle/Floors/Pink/0001.png
     - GFX/Game/Puzzle/Floors/Road/Road-0.png
@@ -186,6 +187,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Walls/Modern/SWS.png
     - GFX/Game/Puzzle/Walls/Modern/W.png
     - GFX/Game/Puzzle/Walls/Nature/Bush.png
+    - GFX/Game/Puzzle/Walls/Nature/Bush_snow.png
     - GFX/Game/Puzzle/Walls/Pink/0001.png
     - GFX/Game/Puzzle/Walls/Road/Pylon.png
     - GFX/Game/Puzzle/Walls/Shed/Blokjes.png
@@ -257,6 +259,10 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz43.lua
     - Script/game.lll/Puzzles/Pz44.lua
     - Script/game.lll/Puzzles/Pz45.lua
+    - Script/game.lll/Puzzles/Pz46.lua
+    - Script/game.lll/Puzzles/Pz47.lua
+    - Script/game.lll/Puzzles/Pz48.lua
+    - Script/game.lll/Puzzles/Pz49.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua

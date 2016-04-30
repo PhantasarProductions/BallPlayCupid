@@ -105,7 +105,21 @@ me.backgrounds = {
                        Color(255,180-(c*180),0)
                        love.graphics.line(0,y,800,y)
                    end
-                 end                                 
+                 end,
+      final = function()
+                 puzzle.finaly = puzzle.finaly or -500
+                 puzzle.finalm = puzzle.finalm or 2.5
+                 puzzle.finaly = puzzle.finaly + puzzle.finalm
+                 puzzle.finalc = puzzle.finalc or {0,180,255}
+                 Color(puzzle.finalc[1],puzzle.finalc[2],puzzle.finalc[3])
+                 DrawImage('back_fbar',0,puzzle.finaly)
+                 if puzzle.finaly>=600 then
+                    puzzle.finalm = -2.5
+                 elseif puzzle.finaly<=-400 then
+                    puzzle.finalm = 2.5
+                    puzzle.finalc = { rand(1,255),rand(1,255),rand(1,255) }
+                 end
+              end                                            
 }
 
 me.foregrounds = {

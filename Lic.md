@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 18:45:23.
+Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 21:50:01.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -116,6 +116,8 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Extern/Vloer3.png
     - GFX/Game/Puzzle/Extern/Vloer4.png
     - GFX/Game/Puzzle/Floors/Desert/DES_Sand.png
+    - GFX/Game/Puzzle/Floors/Final/000_Full.png
+    - GFX/Game/Puzzle/Floors/Final/999_Checkers.png
     - GFX/Game/Puzzle/Floors/Flesh/Floor.png
     - GFX/Game/Puzzle/Floors/Graveyard/Grass.png
     - GFX/Game/Puzzle/Floors/Graveyard/Sand.png
@@ -157,6 +159,17 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Obstacles/trashcan.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Cactus.png
     - GFX/Game/Puzzle/Walls/Desert/DES_Pyramid.png
+    - GFX/Game/Puzzle/Walls/Final/000H.png
+    - GFX/Game/Puzzle/Walls/Final/000V.png
+    - GFX/Game/Puzzle/Walls/Final/001.png
+    - GFX/Game/Puzzle/Walls/Final/002.png
+    - GFX/Game/Puzzle/Walls/Final/003.png
+    - GFX/Game/Puzzle/Walls/Final/004.png
+    - GFX/Game/Puzzle/Walls/Final/005.png
+    - GFX/Game/Puzzle/Walls/Final/006.png
+    - GFX/Game/Puzzle/Walls/Final/007.png
+    - GFX/Game/Puzzle/Walls/Final/008.png
+    - GFX/Game/Puzzle/Walls/Final/009.png
     - GFX/Game/Puzzle/Walls/Flesh/IC_NE.png
     - GFX/Game/Puzzle/Walls/Flesh/IC_NW.png
     - GFX/Game/Puzzle/Walls/Flesh/IC_SE.png
@@ -200,6 +213,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Puzzle/Walls/XMas/Edge_L.png
     - GFX/Game/Puzzle/Walls/XMas/Edge_R.png
     - GFX/Game/PuzzleSolvedIndicator.png
+    - GFX/Game/backgrounds/FBAR.PNG
     - GFX/MainMenu/Item.png
     - Lic.md
     - README.md
@@ -263,6 +277,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz47.lua
     - Script/game.lll/Puzzles/Pz48.lua
     - Script/game.lll/Puzzles/Pz49.lua
+    - Script/game.lll/Puzzles/Pz50.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
@@ -285,6 +300,7 @@ This list is automatically updated every time I modify the game myself, and as s
 - Kevin McLeod
   - Licensed under Creative Commons: By Attribution 3.0
     - music/theme/Christmas Rap.mp3
+    - music/theme/Mystic Force.mp3
     - music/theme/Ultra Polka.mp3
     - music/theme/dark/Agnus Dei X.mp3
     - music/theme/dark/Day of Chaos.ogg

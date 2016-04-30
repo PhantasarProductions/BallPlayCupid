@@ -20,13 +20,13 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.28
+Version: 16.04.30
 ]]
 
 print("Loaded the editor! Hello boys and girls!")
 user.call_anna({HC='Game',A="Doc",Doc="RRE",Game='BPC',id=user.data.onlineid,secu=user.data.secucode})
 
-mkl.version("BallPlay Cupid - edit.lua","16.04.28")
+mkl.version("BallPlay Cupid - edit.lua","16.04.30")
 mkl.lic    ("BallPlay Cupid - edit.lua","GNU General Public License 3")
 
 
@@ -378,6 +378,8 @@ function e.draw()
     local ty=floor(((e.my or 0)-20)/32)
     pconfig.tab = pconfig.tab or "walls"
     Cls()
+    -- Draw Rect if we got one
+    if pconfig.rect then Color(pconfig.rect[1],pconfig.rect[2],pconfig.rect[3]) love.graphics.rectangle('fill',0,0,800,600) end
     -- Draw puzzle
     white()
     drawgamescreen(puzzle)

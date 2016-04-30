@@ -183,7 +183,7 @@ me.collide = {
                                   end,
                   collide_droid = function(myself,other)
                                    if suffixed(other.kind,"ball") then
-                                      sfx('ghost_grab')
+                                      sfx('android')
                                       me.destroy(other)
                                       if suffixed(other.kind,"ball") then puzzle.stats.di_dead = puzzle.stats.di_dead + 1 end                                      
                                    end

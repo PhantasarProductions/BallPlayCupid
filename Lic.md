@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 08:45:14.
+Below is a list of contributors to the game. This list was last updated on Sat 30 April 2016; 09:33:19.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -250,6 +250,7 @@ This list is automatically updated every time I modify the game myself, and as s
     - Script/game.lll/Puzzles/Pz41.lua
     - Script/game.lll/Puzzles/Pz42.lua
     - Script/game.lll/Puzzles/Pz43.lua
+    - Script/game.lll/Puzzles/Pz44.lua
     - Script/game.lll/Puzzles/Pzxm.lua
     - Script/game.lll/drawgamescreen.lua
     - Script/game.lll/game.lua
@@ -307,6 +308,9 @@ This list is automatically updated every time I modify the game myself, and as s
     - GFX/Game/Symbol/Diamonds.png
     - GFX/Game/Symbol/Hearts.png
     - GFX/Game/Symbol/Spades.png
+- Your Marginally Talented Girl-Friend
+  - Licensed under a Creative Commons - Attribution - NonCommercial - ShareAlike license  >>> https://creativecommons.org/licenses/by-nc-sa/3.0/
+    - Music/theme/dark/EmilyRose.ogg
 - pacdv
   - This file has been downloaded from: www.pacdv.com (it is possible a few alterations were made for fitting better in the game). The license forbids me to allow you to extract it from this project. If you want it, download it yourself from their website.
     - Audio/Interface/Buzz.ogg

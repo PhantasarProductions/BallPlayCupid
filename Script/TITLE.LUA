@@ -20,10 +20,10 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.30
+Version: 16.05.01
 ]]
 
-mkl.version("BallPlay Cupid - title.lua","16.04.30")
+mkl.version("BallPlay Cupid - title.lua","16.05.01")
 mkl.lic    ("BallPlay Cupid - title.lua","GNU General Public License 3")
 
 local me = {}; chain.reg("Title",me)
@@ -33,7 +33,7 @@ me.subchain="askname"
 
 me.quit = chain.nothing -- When in title screen, just quit this shit immediately!
 
-if love.filesystem.exists( "glob/login.lua" ) then me.username = me.username or save.load("glob/login") end
+if love.filesystem.exists( "glob/login.lua" ) then me.username = me.username or save.load("glob/login",true) end
 function me.draw()
 me.username = me.username or ""
 Cls()

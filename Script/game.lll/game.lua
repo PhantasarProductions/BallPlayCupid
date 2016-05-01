@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.30
+Version: 16.05.01
 ]]
 
 
@@ -845,7 +845,8 @@ function me.keypressed(k,scancode)
  local obs = table2multidim(puzzle.obstacles,puzzle.format)
  local home
  if not wgoto then return end
- for o in each(puzzle.women) do
+ if me.stage~='play' then return end
+ for o in each(puzzle.women or {}) do
    xgoto,ygoto = wgoto(o)
    if not me.block(xgoto,ygoto) then o.x=xgoto o.y=ygoto end
    me.checkbump(o)

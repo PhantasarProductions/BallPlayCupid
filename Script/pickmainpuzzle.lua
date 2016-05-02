@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.22
+Version: 16.05.02
 ]]
 -- *import titles
 local pmp = {}
@@ -100,11 +100,11 @@ function pmp.mousepressed(x,y,b)
           print("Loading game")
           -- *localimport game
           game.getback   = 'mainmenu'
-          game.puzzle    = save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(pmp.hoverkey)) 
+          game.puzzle    = save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(pmp.hoverkey),false) 
           game.source    = "Puzzle #"..right(pmp.hoverkey,2)
           game.rec       = pmp.hoverkey          
           game.mode      = "official"
-          game.pickchain = pmp
+          game.pickchain = pmp                   
           print("Starting game")          
           chain.go( game )
         end,

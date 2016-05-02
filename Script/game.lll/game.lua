@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.05.01
+Version: 16.05.02
 ]]
 
 
@@ -976,9 +976,9 @@ end
 
 function me.restart()
   music.stop()
-  puzzle    = (({ official = function() return save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(me.rec)) end,
-                  homemade = function() return save.load("homemadepuzzles/"..me.loadpz) end,
-                  test     = function() return save.load("homemadepuzzles/"..me.testpz) end,
+  puzzle    = (({ official = function() return save.load("SCRIPT/GAME.LLL/PUZZLES/"..upper(me.rec),false) end,
+                  homemade = function() return save.load("homemadepuzzles/"..me.loadpz,true) end,
+                  test     = function() return save.load("homemadepuzzles/"..me.testpz,true) end,
                   
               })[me.mode] or function() error('Unknown mode') end)()
   me.stage='intro'                

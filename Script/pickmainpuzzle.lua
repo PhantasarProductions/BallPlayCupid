@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.05.02
+Version: 16.05.19
 ]]
 -- *import titles
 local pmp = {}
@@ -63,7 +63,7 @@ function pmp.draw()
                  Color(0,255,0)
                  if hover then Color(180,255,0) end
               else
-                 Color(255,0,0)
+                 Color(180,0,0)
                  if hover then Color(255,30,30) end
               end
               love.graphics.print(name,20,y)                   

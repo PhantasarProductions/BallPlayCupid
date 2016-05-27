@@ -20,10 +20,10 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.05.01
+Version: 16.05.28
 ]]
 
-mkl.version("BallPlay Cupid - title.lua","16.05.01")
+mkl.version("BallPlay Cupid - title.lua","16.05.28")
 mkl.lic    ("BallPlay Cupid - title.lua","GNU General Public License 3")
 
 local me = {}; chain.reg("Title",me)
@@ -114,7 +114,11 @@ function me.mousepressed(x,y,button,touch)
                       if y<500 or y>520 then return end -- Move along, there's nothing to see here!
                       if x<300 then 
                          -- let's go online
+                         local ok
+                         repeat
                          local status,reason = user.tietosite()
+                         ok = status=="SUCCESS" or (function() local r = love.window.showMessageBox("Ballplay Cupid","Signing up to the website failed\n\nReason:\n"..strval(reason),{'retry','skip','quit',escapebutton=2}); if r==3 then os.exit() else return r==2 end end)()
+                         until ok
                          -- chain.go("waitverify")
                          me.subchain='waitverify'
                       else

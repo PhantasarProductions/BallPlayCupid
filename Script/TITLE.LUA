@@ -128,11 +128,11 @@ print("user pressed: "..key)
  	             if key=='enter' or key=='kpenter' or key=='return' then
  	               -- error('Claiming not yet implemented')
  	               -- "HC=Game&A=Auth&Game="+AnnaGameID+"&GameSecu="+AnnaGameSecu+"&Version="+MKL_NewestVersion()+"&id="+d.c("AnnaID")+"&secu="+d.c("AnnaSecu")
- 	               local success,getdata = user.call_anna({HC='Game',A='Auth',Game='BPC',id=me.id,secu=me.secu})
- 	               if success then
- 	                  u.data.onlineid = me.id -- getdata.IP
- 	                  u.data.secu = me.secu
- 	                  u.data.online = true
+ 	               local success,getdata = user.call_anna({HC='Game',A='Auth',Game='BPC',GameSecu='ts17nf',id=me.id,secu=me.secu})
+ 	               if success or getdata.STATUS=='SUCCESS' then
+ 	                  user.data.onlineid = me.id -- getdata.IP
+ 	                  user.data.secucode = me.secu
+ 	                  user.data.online = true
  	                  chain.go('mainmenu')
  	                else
  	                  local ret = love.window.showMessageBox("Ballplay Cupid","Signing up to the website failed\n\nReason:\n"..strval(reason),{'retry','skip','quit',escapebutton=3});
@@ -143,14 +143,14 @@ print("user pressed: "..key)
  	                end   	                
  	             elseif key=='tab' or key=='up' or key=='down' then
  	               me.claimfield = not me.claimfield
- 	             elseif (k>=48 and k<=57) and me.claimfield then
- 	               me.id = me.id .. key
  	             elseif key=='backspace' and me.claimfield and me.id~="" then
  	               me.id = left(me.id,#me.id-1)
+ 	             elseif (k>=48 and k<=57) and me.claimfield then
+ 	               me.id = me.id .. key
+ 	             elseif key=='backspace' and (not me.claimfield) and me.secu~="" then
+ 	               me.secu = left(me.secu,#me.secu-1)
  	             elseif ((k>=48 and k<=57) or (k>=97 and k<=102)) and (not me.claimfield) then
  	               me.secu = me.secu .. key
- 	             elseif key=='backspace' and (not me.claimfield) and me.secy~="" then
- 	               me.id = left(me.secu,#me.secu-1)
  	             end         
  	           end         
 })[me.subchain] or error("Unknown subchain: "..varstr(me.subchain)))()

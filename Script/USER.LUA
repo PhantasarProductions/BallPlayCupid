@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.25
+Version: 16.05.27
 ]]
 
 -- And exception to the GPL Freedom!
@@ -32,12 +32,15 @@ Version: 16.04.25
 -- (which will mostly only happen with bugfixes, actually).
 
 -- If you modified the game, you MUST change the line below into "-- *undef original", which will put down all network functions.
+
+-- *import copytable
+
 -- *define original
 
 
 -- *define annachat
 
-mkl.version("BallPlay Cupid - user.lua","16.04.25")
+mkl.version("BallPlay Cupid - user.lua","16.05.27")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 
@@ -48,7 +51,7 @@ u.netallowed = true
 http = require("socket.http") -- this is needed to make Lua able to contact the internet.
 -- *fi
 
-mkl.version("BallPlay Cupid - user.lua","16.04.25")
+mkl.version("BallPlay Cupid - user.lua","16.05.27")
 mkl.lic    ("BallPlay Cupid - user.lua","GNU General Public License 3")
 
 --home.createsavedir("/users")
@@ -68,7 +71,7 @@ end
 function u.load(name)
 u.data = j_love_import("users/"..name..".lua",true)
 u.username=name
-u.data.config = u.data.config or glob.config
+u.data.config = u.data.config or copytable(glob.config,true)
 u.config = u.data.config
 u.config = u.config or glob.config
 for k,v in pairs(glob.config) do 
@@ -85,6 +88,7 @@ end
 
 function u.create(name)
 u.username      = name
+u.data          = {}
 u.data.kenteken = "??-??-??"
 u.data.secucode = "nothing"
 u.data.onlineid = -1

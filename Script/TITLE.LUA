@@ -33,6 +33,10 @@ me.subchain="askname"
 
 me.quit = chain.nothing -- When in title screen, just quit this shit immediately!
 
+me.claimfield = true
+me.id = ""
+me.secu = ""
+
 if love.filesystem.exists( "glob/login.lua" ) then me.username = me.username or save.load("glob/login",true) end
 function me.draw()
 me.username = me.username or ""
@@ -68,6 +72,7 @@ love.graphics.setFont(glob.love2dfont)
                	Color(255,180,0)
                	love.graphics.print("Go on-line",200,500)
                	love.graphics.print("Stay off-line",400,500)
+               	love.graphics.print("Claim existing account",300,550)
                else
                 Color(255,180,0)
                 love.graphics.print("Click the game screen to continue",5,500)
@@ -79,7 +84,22 @@ love.graphics.setFont(glob.love2dfont)
                   love.graphics.print("A browser window should now open. Follow the instructions",5,415)
                   love.graphics.print("to verify your account. When you are done, just press any key",5,430)
                   love.graphics.print("or click (or touch) anywhere in the game screen to continue",5,445)
-                  end                
+                  end,
+     claim = function()
+               Color(0,180,255)
+               love.graphics.print("id:",5,400)
+               love.graphics.print("secu-code:",5,450)
+               cur = { [true]="_",[false]=""}    
+               Color(100,100,100)           
+               if me.claimfield then
+                  love.graphics.rectangle('fill',200,400,100,25)
+               else
+                  love.graphics.rectangle('fill',200,450,300,25)
+               end
+               Color(255,180,0)               
+               love.graphics.print(me.id..cur[me.claimfield],205,400)
+               love.graphics.print(me.secu..cur[not me.claimfield],205,450)
+             end                                   
 })[me.subchain] or error("Unknown subchain: "..valstr(me.subchain)))()
 end
 
@@ -103,7 +123,36 @@ print("user pressed: "..key)
  	            end  ,
  	   loaduser = function() end,         
  	   newuser  = function() end,
- 	   waitverify = function() chain.go("mainmenu") end         
+ 	   waitverify = function() chain.go("mainmenu") end,
+ 	   claim = function()
+ 	             if key=='enter' or key=='kpenter' or key=='return' then
+ 	               error('Claiming not yet implemented')
+ 	               -- "HC=Game&A=Auth&Game="+AnnaGameID+"&GameSecu="+AnnaGameSecu+"&Version="+MKL_NewestVersion()+"&id="+d.c("AnnaID")+"&secu="+d.c("AnnaSecu")
+ 	               local success,getdata = anna.call({HC='Game',A='Auth',Game='BPC',id=me.id,secu=me.secu})
+ 	               if success then
+ 	                  u.data.onlineid = me.id -- getdata.IP
+ 	                  u.data.secu = me.secu
+ 	                  u.data.online = true
+ 	                  chain.go('mainmenu')
+ 	                else
+ 	                  local ret = love.window.showMessageBox("Ballplay Cupid","Signing up to the website failed\n\nReason:\n"..strval(reason),{'retry','skip','quit',escapebutton=3});
+ 	                  ({ chain.nothing,
+ 	                     function() chain.go('mainmenu') end,
+ 	                     love.event.quit
+ 	                   })[ret]() 
+ 	                end   	                
+ 	             elseif key=='tab' or key=='up' or key=='down' then
+ 	               me.claimfield = not me.claimfield
+ 	             elseif (k>=48 and k<=57) and me.claimfield then
+ 	               me.id = me.id .. key
+ 	             elseif key=='backspace' and me.claimfield and me.id~="" then
+ 	               me.id = left(me.id,#me.id-1)
+ 	             elseif ((k>=48 and k<=57) or (k>=97 and k<=102)) and (not me.claimfield) then
+ 	               me.secu = me.secu .. key
+ 	             elseif key=='backspace' and (not me.claimfield) and me.secy~="" then
+ 	               me.id = left(me.secu,#me.secu-1)
+ 	             end         
+ 	           end         
 })[me.subchain] or error("Unknown subchain: "..varstr(me.subchain)))()
 -- error("Is a key pressed! "..k) -- Force an error to makes sure a key is pressed! (only for debugging, of course)   
 end
@@ -111,13 +160,14 @@ end
 function me.mousepressed(x,y,button,touch)
 (({  	   newuser  = function() 
                       if not user.netallowed then chain.go("mainmenu") return end
+                      if y>550 then me.subchain='claim' end
                       if y<500 or y>520 then return end -- Move along, there's nothing to see here!
                       if x<300 then 
                          -- let's go online
                          local ok
                          repeat
                          local status,reason = user.tietosite()
-                         ok = status=="SUCCESS" or (function() local r = love.window.showMessageBox("Ballplay Cupid","Signing up to the website failed\n\nReason:\n"..strval(reason),{'retry','skip','quit',escapebutton=2}); if r==3 then os.exit() else return r==2 end end)()
+                         ok = status=="SUCCESS" or (function() local r = love.window.showMessageBox("Ballplay Cupid","Signing up to the website failed\n\nReason:\n"..strval(reason),{'retry','skip','quit',escapebutton=2}); if r==3 then love.event.quit() else return r==2 end end)()
                          until ok
                          -- chain.go("waitverify")
                          me.subchain='waitverify'

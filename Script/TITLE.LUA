@@ -128,7 +128,7 @@ print("user pressed: "..key)
  	             if key=='enter' or key=='kpenter' or key=='return' then
  	               -- error('Claiming not yet implemented')
  	               -- "HC=Game&A=Auth&Game="+AnnaGameID+"&GameSecu="+AnnaGameSecu+"&Version="+MKL_NewestVersion()+"&id="+d.c("AnnaID")+"&secu="+d.c("AnnaSecu")
- 	               local success,getdata = anna.call({HC='Game',A='Auth',Game='BPC',id=me.id,secu=me.secu})
+ 	               local success,getdata = user.call_anna({HC='Game',A='Auth',Game='BPC',id=me.id,secu=me.secu})
  	               if success then
  	                  u.data.onlineid = me.id -- getdata.IP
  	                  u.data.secu = me.secu

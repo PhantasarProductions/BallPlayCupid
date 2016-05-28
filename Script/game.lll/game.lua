@@ -753,6 +753,7 @@ function me.update()
                       end
                       --print("CYCLE!")
                       for o in each(puzzle.objects) do
+                          if o.modx~=0 or o.mody~=0 then slowcomputer = true end
                           (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
                           (me.exits[objects[o.kind].finish]   or chain.nothing)(o)
                           if prefixed(ob:get({o.x,o.y}) or "gezeik","zzarrow_normal_") then

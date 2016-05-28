@@ -74,6 +74,7 @@ local function dgs(pz)
   dglay(pz,'obstacles')
   -- objects
   for o in each(pz.objects) do
+      if slowcomputer then o.modx=0 o.mody=0 end
       DrawObject(o.kind,(o.x*32)+(o.modx or 0),((o.y*32)+20)+(o.mody or 0))
       if pz.mission=='Color Split' and user.data.config.colorblind then
          black() 

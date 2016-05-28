@@ -34,6 +34,7 @@ local ret1, ret2
 
 
 ret1 = {
+["background"] = "space",
 	["format"] = {
 		[1] = 25,
 		[2] = 15

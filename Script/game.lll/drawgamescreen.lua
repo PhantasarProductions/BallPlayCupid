@@ -20,12 +20,12 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.29
+Version: 16.05.28
 ]]
 
 -- *import objects
 
-mkl.version("BallPlay Cupid - drawgamescreen.lua","16.04.29")
+mkl.version("BallPlay Cupid - drawgamescreen.lua","16.05.28")
 mkl.lic    ("BallPlay Cupid - drawgamescreen.lua","GNU General Public License 3")
 
 

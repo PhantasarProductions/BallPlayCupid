@@ -753,6 +753,8 @@ function me.update()
                       end
                       --print("CYCLE!")
                       for o in each(puzzle.objects) do
+                          o.modx=o.modx or 0
+                          o.mody=o.mody or 0
                           if o.modx~=0 or o.mody~=0 then slowcomputer = true end
                           (me.moves[objects[o.kind].movement] or function(o) me.error("IUOM",objects[o.kind].movement) end)(o);
                           (me.exits[objects[o.kind].finish]   or chain.nothing)(o)

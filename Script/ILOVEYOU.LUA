@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.04.28
+Version: 16.05.28
 ]]
 
 -----------------------------------------------------------------------------------------------------------------------------
@@ -60,7 +60,7 @@ Version: 16.04.28
 -- *import append
 
 -- Interal libs
---- *import anna
+-- import anna
 -- *import glob
 -- *import user
 -- import mouse
@@ -72,7 +72,7 @@ Version: 16.04.28
 -- *import homemadepuzzleselector
 -- *import pickmainpuzzle
 
-mkl.version("BallPlay Cupid - ILoveYou.lua","16.04.28")
+mkl.version("BallPlay Cupid - ILoveYou.lua","16.05.28")
 mkl.lic    ("BallPlay Cupid - ILoveYou.lua","GNU General Public License 3")
 
 
@@ -116,7 +116,7 @@ for t in each({"wall","floor"}) do
     for d in each(list) do
         stuff = stuff or {}        
         stuff[t] = stuff[t] or {}
-        if lower(d)~="xmas" then
+        if lower(d)~="xmas" and lower(d)~='final' then
            stuff[t][#stuff[t]+1] = lower(d) 
            print("Adding "..t.." dir: "..d)
            end   

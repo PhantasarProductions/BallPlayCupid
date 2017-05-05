@@ -33,7 +33,7 @@ None of the data will be transferred to third parties with basically three excep
 Under no circumstances shall any data stored on this site be sold to third parties, however all data you entrust to my site is entrusted to my site for your own risks. Under no way can any party related to the website be held liable for data falling into the wrong hands.
 
 
-Below is a list of contributors to the game. This list was last updated on Mon 30 May 2016; 09:39:28.
+Below is a list of contributors to the game. This list was last updated on Fri 17 June 2016; 16:44:04.
 
 This list is automatically updated every time I modify the game myself, and as soon as I push my changes, an updated version of this list is sent as well.
 
@@ -338,6 +338,9 @@ This list is automatically updated every time I modify the game myself, and as s
 - Mayang's Free Textures
   - The license type of these assets do not allow extraction from this project. Please download this file from its original website. http://www.mayang.com/textures/faq.html
     - GFX/Game/BackEffect/Water.png
+- TiAge
+  - This is a translation, done by a third party of content originally copyrighted by Jeroen Broks. The same license terms apply as to the rest of the game.
+    - Script/Languages/Deutsch.lua
 - Unknown
   - These pictures were contributed to the public domain. The source has been lost to me. If you can identify the original creator for me, let me know.
     - GFX/Game/Puzzle/Obstacles/Hut.png

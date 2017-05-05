@@ -1,5 +1,7 @@
 ![image](https://cloud.githubusercontent.com/assets/11202073/14110002/fde677ac-f5c4-11e5-8752-20e60cb99104.png)
 
+[![Download BallPlay Cupid](https://a.fsdn.com/con/app/sf-download-button)](https://sourceforge.net/projects/ballplay-cupid/files/latest/download)
+
 # BallPlay Cupid
 
 This repository will contain the script files for an experimental game called "BallPlay Cupid".

@@ -20,7 +20,7 @@
 		
 	Exceptions to the standard GNU license are available with Jeroen's written permission given prior 
 	to the project the exceptions are needed for.
-Version: 16.05.30
+Version: 16.06.17
 ]]
 --[[ 
                   This file is generated just for the puzzle overview
